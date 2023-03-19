@@ -1,5 +1,7 @@
 package com.example.android_bong.view.login
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.activity.viewModels
@@ -14,6 +16,11 @@ class LoginActivity : ViewBindingActivity<ActivityLoginBinding>() {
     override val bindingInflater: (LayoutInflater) -> ActivityLoginBinding
         get() = ActivityLoginBinding::inflate
 
+    companion object {
+        fun getIntent(context: Context): Intent {
+            return Intent(context, LoginActivity::class.java)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
