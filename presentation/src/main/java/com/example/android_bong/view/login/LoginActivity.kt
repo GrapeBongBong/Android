@@ -23,8 +23,8 @@ class LoginActivity : ViewBindingActivity<ActivityLoginBinding>() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        WindowCompat.setDecorFitsSystemWindows(window, true)
         super.onCreate(savedInstanceState)
 
-        WindowCompat.setDecorFitsSystemWindows(window, true)
     }
 }

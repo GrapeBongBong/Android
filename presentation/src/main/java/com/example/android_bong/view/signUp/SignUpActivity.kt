@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.activity.viewModels
+import androidx.core.view.WindowCompat
 import com.example.android_bong.common.ViewBindingActivity
 import com.example.android_bong.databinding.ActivitySignUpBinding
 
@@ -22,6 +23,7 @@ class SignUpActivity : ViewBindingActivity<ActivitySignUpBinding>() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        WindowCompat.setDecorFitsSystemWindows(window, true)
         super.onCreate(savedInstanceState)
     }
 }
