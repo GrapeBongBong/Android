@@ -6,4 +6,8 @@
     <string name="signUpDescription">혹시 회원이 아니신가요?</string>
     <string name="signUp">회원 가입</string>
     <string name="or">Or</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>
