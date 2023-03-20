@@ -1,10 +1,10 @@
-package com.example.android_bong.view.home.ui.notifications
+package com.example.android_bong.view.main.community
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class NotificationsViewModel : ViewModel() {
+class CommunityViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is notifications Fragment"

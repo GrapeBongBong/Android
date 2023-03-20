@@ -1,4 +1,4 @@
-package com.example.android_bong.view.home.ui.home
+package com.example.android_bong.view.main.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

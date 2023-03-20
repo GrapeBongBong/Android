@@ -1,4 +1,4 @@
-package com.example.android_bong.view.home.ui.home
+package com.example.android_bong.view.main.home
 
 import android.os.Bundle
 import android.view.LayoutInflater

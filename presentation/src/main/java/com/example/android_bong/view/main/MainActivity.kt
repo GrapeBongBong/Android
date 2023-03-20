@@ -1,4 +1,4 @@
-package com.example.android_bong.view.home
+package com.example.android_bong.view.main
 
 import android.content.Context
 import android.content.Intent
@@ -11,18 +11,18 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.android_bong.R
 import com.example.android_bong.common.ViewBindingActivity
-import com.example.android_bong.databinding.ActivityHomeBinding
+import com.example.android_bong.databinding.ActivityMainBinding
 
-class HomeActivity : ViewBindingActivity<ActivityHomeBinding>() {
+class MainActivity : ViewBindingActivity<ActivityMainBinding>() {
 
-    override val bindingInflater: (LayoutInflater) -> ActivityHomeBinding
-        get() = ActivityHomeBinding::inflate
+    override val bindingInflater: (LayoutInflater) -> ActivityMainBinding
+        get() = ActivityMainBinding::inflate
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
     companion object {
         fun getIntent(context: Context): Intent {
-            return Intent(context, HomeActivity::class.java)
+            return Intent(context, MainActivity::class.java)
         }
     }
 
@@ -40,8 +40,8 @@ class HomeActivity : ViewBindingActivity<ActivityHomeBinding>() {
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_home,
-                R.id.navigation_dashboard,
-                R.id.navigation_notifications
+                R.id.navigation_volunteer,
+                R.id.navigation_community
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
