@@ -1,10 +1,13 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     ext {
-        fragment_version = "1.5.5"
-        coroutine_version = "1.6.0"
-        life_cycle_version = "2.5.0"
+        // Dependencies
         paging = "3.1.1"
+        retrofit_version = "2.9.0"
+        androidx_core = "1.8.0"
+        joda = "2.10.13"
+        fragment_version = "1.5.5"
+        life_cycle_version = "2.5.0"
         glide = "4.14.2"
         androidx_core = "1.8.0"
         coroutines_version = "1.6.4"
@@ -20,7 +23,7 @@ buildscript {
 plugins {
     id 'com.android.application' version '7.2.2' apply false
     id 'com.android.library' version '7.2.2' apply false
-    id 'org.jetbrains.kotlin.android' version '1.7.10' apply false
+    id 'org.jetbrains.kotlin.android' version '1.8.0' apply false
 }
 
 task clean(type: Delete) {
