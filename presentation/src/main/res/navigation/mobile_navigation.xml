@@ -22,4 +22,10 @@
         android:name="com.example.android_bong.view.main.community.CommunityFragment"
         android:label="@string/title_community"
         tools:layout="@layout/fragment_community" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.example.android_bong.view.main.profile.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

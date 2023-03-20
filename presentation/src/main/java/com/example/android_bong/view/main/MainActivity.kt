@@ -41,7 +41,8 @@ class MainActivity : ViewBindingActivity<ActivityMainBinding>() {
             setOf(
                 R.id.navigation_home,
                 R.id.navigation_volunteer,
-                R.id.navigation_community
+                R.id.navigation_community,
+                R.id.navigation_profile
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

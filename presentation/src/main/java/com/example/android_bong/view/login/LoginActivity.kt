@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import androidx.core.view.WindowCompat
 import com.example.android_bong.common.ViewBindingActivity
 import com.example.android_bong.databinding.ActivityLoginBinding
+import com.example.android_bong.view.main.MainActivity
 
 class LoginActivity : ViewBindingActivity<ActivityLoginBinding>() {
 
@@ -26,5 +27,17 @@ class LoginActivity : ViewBindingActivity<ActivityLoginBinding>() {
         WindowCompat.setDecorFitsSystemWindows(window, true)
         super.onCreate(savedInstanceState)
 
+        binding.signInButton.setOnClickListener {
+            navigateToMainView()
+        }
+
+    }
+
+    private fun navigateToMainView() {
+        val intent = MainActivity.getIntent(this).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_TASK_ON_HOME
+        }
+        startActivity(intent)
+        finish()
     }
 }
