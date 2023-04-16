@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.core.view.WindowCompat
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.android_bong.R
@@ -35,17 +37,23 @@ class MainActivity : ViewBindingActivity<ActivityMainBinding>() {
 
     private fun initBottomNavigationView() {
         val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_home)
-        val navController = findNavController(R.id.nav_host_fragment_activity_home)
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_home) as NavHostFragment
+        val navController = navHostFragment.navController
         appBarConfiguration = AppBarConfiguration(
-            setOf(
+            topLevelDestinationIds = setOf(
                 R.id.navigation_home,
                 R.id.navigation_volunteer,
                 R.id.navigation_community,
                 R.id.navigation_profile
-            )
+            ),
+            fallbackOnNavigateUpListener = ::onSupportNavigateUp
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         binding.bottomNavView.setupWithNavController(navController)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.nav_host_fragment_activity_home)
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 }
