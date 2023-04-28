@@ -32,6 +32,7 @@ class MainActivity : ViewBindingActivity<ActivityMainBinding>() {
         WindowCompat.setDecorFitsSystemWindows(window, true)
         super.onCreate(savedInstanceState)
 
+        setSupportActionBar(binding.toolbar)
         initBottomNavigationView()
     }
 
@@ -42,7 +43,7 @@ class MainActivity : ViewBindingActivity<ActivityMainBinding>() {
         appBarConfiguration = AppBarConfiguration(
             topLevelDestinationIds = setOf(
                 R.id.navigation_home,
-                R.id.navigation_volunteer,
+                R.id.navigation_talent_exchange,
                 R.id.navigation_community,
                 R.id.navigation_profile
             ),

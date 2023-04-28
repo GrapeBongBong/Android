@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_volunteer"
-        android:name="com.example.android_bong.view.main.volunteer.VolunteerFragment"
-        android:label="@string/title_volunteer"
-        tools:layout="@layout/fragment_volunteer" />
+        android:id="@+id/navigation_talent_exchange"
+        android:name="com.example.android_bong.view.main.talentexchange.TalentExchangeFragment"
+        android:label="@string/title_talent_exchange"
+        tools:layout="@layout/fragment_talent_exchange" />
 
     <fragment
         android:id="@+id/navigation_community"

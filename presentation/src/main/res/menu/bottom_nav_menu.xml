@@ -7,18 +7,18 @@
         android:title="@string/title_home" />
 
     <item
+        android:id="@+id/navigation_talent_exchange"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:title="@string/title_talent_exchange" />
+
+    <item
         android:id="@+id/navigation_community"
         android:icon="@drawable/ic_dashboard_black_24dp"
         android:title="@string/title_community" />
 
     <item
-        android:id="@+id/navigation_volunteer"
-        android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/title_volunteer" />
-
-    <item
         android:id="@+id/navigation_profile"
-        android:icon="@drawable/ic_notifications_black_24dp"
+        android:icon="@drawable/ic_baseline_person_24"
         android:title="@string/title_profile" />
 
 </menu>
