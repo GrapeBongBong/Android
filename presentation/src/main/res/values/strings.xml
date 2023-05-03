@@ -11,4 +11,5 @@
     <string name="title_home">홈</string>
     <string name="title_profile">프로필</string>
     <string name="find_id_password">아이디/비밀번호찾기</string>
+    <string name="write_post">게시물 쓰기</string>
 </resources>
