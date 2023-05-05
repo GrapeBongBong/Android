@@ -9,7 +9,9 @@ import androidx.core.view.WindowCompat
 import com.example.android_bong.common.ViewBindingActivity
 import com.example.android_bong.databinding.ActivityLoginBinding
 import com.example.android_bong.view.main.MainActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginActivity : ViewBindingActivity<ActivityLoginBinding>() {
 
     private val viewModel: LoginViewModel by viewModels()
