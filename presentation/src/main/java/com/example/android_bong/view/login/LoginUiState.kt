@@ -8,22 +8,16 @@ data class LoginUiState(
     val userMessage: String? = null
 ) {
     val isInputValid: Boolean
-        get() = isEmailValid && isPasswordValid
+        get() = isIDValid && isPasswordValid
 
-    private val isEmailValid: Boolean
-        get() {
-            return if (id.isEmpty()) {
-                false
-            } else {
-                android.util.Patterns.EMAIL_ADDRESS.matcher(id).matches()
-            }
-        }
+    private val isIDValid: Boolean
+        get() = id.length >= 4
 
     private val isPasswordValid: Boolean
         get() = password.length >= 6
 
     val showEmailError: Boolean
-        get() = id.isNotEmpty() && !isEmailValid
+        get() = id.isNotEmpty() && !isIDValid
 
     val showPasswordError: Boolean
         get() = password.isNotEmpty() && !isPasswordValid
