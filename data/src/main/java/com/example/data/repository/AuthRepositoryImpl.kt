@@ -19,4 +19,8 @@ class AuthRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun signUp(): Result<Unit> {
+        TODO("Not yet implemented")
+    }
+
 }
