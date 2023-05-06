@@ -41,8 +41,7 @@
         android:layout_gravity="end|bottom"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:text="@string/write_post"
-        app:icon="@drawable/ic_baseline_create_24"
+        app:icon="@drawable/ic_baseline_add_24"
         app:layout_constraintBottom_toTopOf="@+id/bottom_nav_view"
         app:layout_constraintEnd_toEndOf="parent" />
 

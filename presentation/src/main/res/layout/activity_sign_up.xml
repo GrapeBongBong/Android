@@ -79,23 +79,23 @@
 
 
                 <RadioButton
-                    android:id="@+id/radioButton"
+                    android:id="@+id/manRadioButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:button="@null"
                     android:checked="true"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
+                    android:paddingLeft="50dp"
+                    android:paddingRight="50dp"
                     android:text="@string/man"
                     android:textAlignment="center" />
 
                 <RadioButton
-                    android:id="@+id/radioButton2"
+                    android:id="@+id/womanRadioButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:button="@null"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
+                    android:paddingLeft="50dp"
+                    android:paddingRight="50dp"
                     android:text="@string/woman"
                     android:textAlignment="center" />
 
