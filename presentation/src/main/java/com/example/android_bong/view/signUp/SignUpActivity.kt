@@ -8,7 +8,9 @@ import androidx.activity.viewModels
 import androidx.core.view.WindowCompat
 import com.example.android_bong.common.ViewBindingActivity
 import com.example.android_bong.databinding.ActivitySignUpBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SignUpActivity : ViewBindingActivity<ActivitySignUpBinding>() {
 
     private val viewModel: SignUpViewModel by viewModels()

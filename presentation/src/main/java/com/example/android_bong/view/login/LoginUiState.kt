@@ -1,7 +1,7 @@
 package com.example.android_bong.view.login
 
 data class LoginUiState(
-    val email: String = "",
+    val id: String = "",
     val password: String = "",
     val isLoading: Boolean = false,
     val successToSignIn: Boolean = false,
@@ -12,10 +12,10 @@ data class LoginUiState(
 
     private val isEmailValid: Boolean
         get() {
-            return if (email.isEmpty()) {
+            return if (id.isEmpty()) {
                 false
             } else {
-                android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+                android.util.Patterns.EMAIL_ADDRESS.matcher(id).matches()
             }
         }
 
@@ -23,7 +23,7 @@ data class LoginUiState(
         get() = password.length >= 6
 
     val showEmailError: Boolean
-        get() = email.isNotEmpty() && !isEmailValid
+        get() = id.isNotEmpty() && !isEmailValid
 
     val showPasswordError: Boolean
         get() = password.isNotEmpty() && !isPasswordValid
