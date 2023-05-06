@@ -27,5 +27,6 @@ class SignUpActivity : ViewBindingActivity<ActivitySignUpBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, true)
         super.onCreate(savedInstanceState)
+        setSupportActionBar(binding.toolbar)
     }
 }

@@ -10,6 +10,9 @@
     <string name="password_check">비밀번호 확인</string>
     <string name="signUpDescription">혹시 회원이 아니신가요?</string>
     <string name="signUp">회원 가입</string>
+    <string name="man">남</string>
+    <string name="woman">여</string>
+    <string name="do_signup">회원 가입하기</string>
     <string name="or">Or</string>
     <string name="ID_is_not_valid">유효한 아이디가 아닙니다.</string>
     <string name="password_is_not_valid">유효한 비밀번호가 아닙니다.</string>
