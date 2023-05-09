@@ -14,7 +14,9 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.android_bong.R
 import com.example.android_bong.common.ViewBindingActivity
 import com.example.android_bong.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ViewBindingActivity<ActivityMainBinding>() {
 
     override val bindingInflater: (LayoutInflater) -> ActivityMainBinding

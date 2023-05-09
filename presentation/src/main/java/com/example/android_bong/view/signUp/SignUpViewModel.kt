@@ -2,6 +2,7 @@ package com.example.android_bong.view.signUp
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.domain.usecase.auth.SignUpUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -12,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
-    private val signUpUiState: SignUpUiState
+    private val signUpUseCase: SignUpUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(SignUpUiState())
@@ -56,9 +57,8 @@ class SignUpViewModel @Inject constructor(
 
 
     fun signUp() {
-        uiState.value
         viewModelScope.launch {
-            signUpUiState
+
         }
     }
 

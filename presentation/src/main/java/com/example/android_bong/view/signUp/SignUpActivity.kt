@@ -2,10 +2,12 @@ package com.example.android_bong.view.signUp
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.core.view.WindowCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Lifecycle
@@ -34,6 +36,7 @@ class SignUpActivity : ViewBindingActivity<ActivitySignUpBinding>() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, true)
         super.onCreate(savedInstanceState)
@@ -57,10 +60,18 @@ class SignUpActivity : ViewBindingActivity<ActivitySignUpBinding>() {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun initEventListeners() = with(binding) {
         signUpButton.setOnClickListener {
             viewModel.signUp()
         }
+
+        dataPicker.setOnDateChangedListener { dataPicker, _, _, _ ->
+            viewModel.updateBirth(
+                "${dataPicker.year}-${dataPicker.month + 1}-${dataPicker.dayOfMonth}"
+            )
+        }
+
 
         name.addTextChangedListener {
             if (it != null) {
