@@ -73,6 +73,7 @@ class SignUpActivity : ViewBindingActivity<ActivitySignUpBinding>() {
         }
 
 
+
         name.addTextChangedListener {
             if (it != null) {
                 viewModel.updateName(it.toString())

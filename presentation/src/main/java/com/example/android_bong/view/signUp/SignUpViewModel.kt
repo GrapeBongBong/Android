@@ -51,14 +51,44 @@ class SignUpViewModel @Inject constructor(
         _uiState.update { it.copy(birth = birth) }
     }
 
-    fun updateGender(gender: Boolean) {
+    fun updateGender(gender: String) {
         _uiState.update { it.copy(gender = gender) }
     }
 
 
     fun signUp() {
+        val name = uiState.value.name
+        val phoneNumber = uiState.value.phoneNumber
+        val email = uiState.value.email
+        val nickName = uiState.value.nickName
+        val id = uiState.value.id
+        val address = uiState.value.address
+        val gender = uiState.value.gender
+        val birth = uiState.value.birth
+        val password = uiState.value.password
+        _uiState.update { it.copy(isLoading = true) }
         viewModelScope.launch {
-
+            val result = signUpUseCase(
+                id = id,
+                password = password,
+                name = name,
+                nickName = nickName,
+                birth = birth,
+                email = email,
+                phoneNum = phoneNumber,
+                address = address,
+                gender = gender
+            )
+            if (result.isSuccess) {
+                _uiState.update { it.copy(successToSignUp = true, isLoading = false) }
+            } else {
+                _uiState.update {
+                    it.copy(
+                        userMessage = result.exceptionOrNull()!!.localizedMessage,
+                        isLoading = false
+                    )
+                }
+            }
         }
     }
 
