@@ -4,6 +4,7 @@ import com.example.data.api.AuthApi
 import com.example.data.model.ResponseBody
 import com.example.data.model.auth.LoginDto
 import com.example.data.model.auth.LoginRequestBody
+import com.example.data.model.auth.SignUpRequestBody
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -12,4 +13,7 @@ class AuthRemoteDataSourceImpl @Inject constructor(
 ) : AuthRemoteDataSource {
     override suspend fun login(loginRequestBody: LoginRequestBody): Response<ResponseBody<LoginDto>> =
         api.login(loginRequestBody = loginRequestBody)
+
+    override suspend fun signUp(signUpRequestBody: SignUpRequestBody): Response<ResponseBody<Unit>> =
+        api.signUp(signUpRequestBody = signUpRequestBody)
 }

@@ -59,6 +59,12 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="생년월일" />
+
             <DatePicker
                 android:id="@+id/dataPicker"
                 android:layout_width="wrap_content"
@@ -66,6 +72,12 @@
                 android:layout_marginBottom="20dp"
                 android:calendarViewShown="false"
                 android:datePickerMode="spinner" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="성별" />
 
             <RadioGroup
                 android:id="@+id/radioGroup"
@@ -94,6 +106,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:button="@null"
+                    android:checked="false"
                     android:paddingLeft="50dp"
                     android:paddingRight="50dp"
                     android:text="@string/woman"
@@ -114,7 +127,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/phoneNumber"
-                    android:inputType="textPassword"
+                    android:inputType="phone"
                     android:maxLines="1"
                     tools:ignore="Autofill,TextFields,SpeakableTextPresentCheck,SpeakableTextPresentCheck,TouchTargetSizeCheck,TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck" />
 
@@ -133,7 +146,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/email"
-                    android:inputType="textPassword"
+                    android:inputType="textEmailAddress"
                     android:maxLines="1"
                     tools:ignore="Autofill,TextFields,SpeakableTextPresentCheck,SpeakableTextPresentCheck,TouchTargetSizeCheck,TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck" />
 
@@ -152,7 +165,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/nickName"
-                    android:inputType="textPassword"
+                    android:inputType="textPersonName"
                     android:maxLines="1"
                     tools:ignore="Autofill,TextFields,SpeakableTextPresentCheck,SpeakableTextPresentCheck,TouchTargetSizeCheck,TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck" />
 
@@ -172,7 +185,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/id"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textPersonName"
                     android:maxLines="1"
                     tools:ignore="Autofill,TextFields,SpeakableTextPresentCheck,SpeakableTextPresentCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
 

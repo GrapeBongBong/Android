@@ -2,6 +2,7 @@ package com.example.data.repository
 
 import com.example.data.extension.getDataOrThrowMessage
 import com.example.data.model.auth.LoginRequestBody
+import com.example.data.model.auth.SignUpRequestBody
 import com.example.data.source.AuthRemoteDataSource
 import com.example.domain.repository.AuthRepository
 import javax.inject.Inject
@@ -19,8 +20,33 @@ class AuthRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun signUp(): Result<Unit> {
-        TODO("Not yet implemented")
+    override suspend fun signUp(
+        id: String,
+        password: String,
+        name: String,
+        nickName: String,
+        birth: String,
+        email: String,
+        phoneNum: String,
+        address: String,
+        gender: String
+    ): Result<Unit> {
+        return runCatching {
+            val response = remoteDataSource.signUp(
+                SignUpRequestBody(
+                    id = id,
+                    password = password,
+                    name = name,
+                    nickName = nickName,
+                    birth = birth,
+                    email = email,
+                    phoneNum = phoneNum,
+                    address = address,
+                    gender = gender
+                )
+            )
+            response.getDataOrThrowMessage()
+        }
     }
 
 }

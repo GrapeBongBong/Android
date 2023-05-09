@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
-
+    private val signUpUiState: SignUpUiState
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(SignUpUiState())
@@ -20,6 +20,10 @@ class SignUpViewModel @Inject constructor(
 
     fun updateID(id: String) {
         _uiState.update { it.copy(id = id) }
+    }
+
+    fun updatePhoneNumber(phoneNumber: String) {
+        _uiState.update { it.copy(phoneNumber = phoneNumber) }
     }
 
     fun updatePassword(password: String) {
@@ -52,8 +56,9 @@ class SignUpViewModel @Inject constructor(
 
 
     fun signUp() {
+        uiState.value
         viewModelScope.launch {
-
+            signUpUiState
         }
     }
 

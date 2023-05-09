@@ -6,6 +6,7 @@ data class SignUpUiState(
     val email: String = "",
     val nickName: String = "",
     val id: String = "",
+    val address: String = "",
     val gender: Boolean = true,
     val birth: String = "",
     val password: String = "",
@@ -23,10 +24,10 @@ data class SignUpUiState(
         get() = nickName.length >= 4
 
     private val isPasswordValid: Boolean
-        get() = password.length >= 6 && password == passwordCheck
+        get() = password.length >= 6
 
     private val isPasswordCheckValid: Boolean
-        get() = passwordCheck.length >= 6
+        get() = passwordCheck.length >= 6 && password == passwordCheck
 
     private val isIdValid: Boolean
         get() = id.length >= 4
@@ -54,6 +55,9 @@ data class SignUpUiState(
 
     val showNameError: Boolean
         get() = name.isNotEmpty() && !isNameValid
+
+    val showPhoneNumberError: Boolean
+        get() = phoneNumber.isNotEmpty() && !isPhoneNumberValid
 
     val showNickNameError: Boolean
         get() = nickName.isNotEmpty() && !isNickNameValid
