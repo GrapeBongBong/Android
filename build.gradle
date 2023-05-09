@@ -6,16 +6,17 @@ buildscript {
         retrofit_version = "2.9.0"
         androidx_core = "1.8.0"
         joda = "2.10.13"
-        fragment_version = "1.5.5"
+        fragment_version = "1.5.7"
         life_cycle_version = "2.5.0"
         glide = "4.14.2"
         androidx_core = "1.8.0"
         coroutines_version = "1.6.4"
         room_version = "2.5.0"
-        hilt_version = "2.42"
+        hilt_version = "2.43.2"
     }
     dependencies {
         classpath "com.android.tools.build:gradle:7.0.0"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.10"
         // hilt
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
     }
@@ -24,6 +25,14 @@ plugins {
     id 'com.android.application' version '7.2.2' apply false
     id 'com.android.library' version '7.2.2' apply false
     id 'org.jetbrains.kotlin.android' version '1.8.0' apply false
+    id 'org.jlleitschuh.gradle.ktlint' version "11.0.0" apply true
+    id 'com.google.dagger.hilt.android' version "$hilt_version" apply false
+}
+
+allprojects {
+    apply {
+        plugin 'org.jlleitschuh.gradle.ktlint'
+    }
 }
 
 task clean(type: Delete) {

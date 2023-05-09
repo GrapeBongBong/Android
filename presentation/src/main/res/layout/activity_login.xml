@@ -23,17 +23,17 @@
             tools:ignore="ImageContrastCheck,ImageContrastCheck" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/emailInputLayout"
+            android:id="@+id/idInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp">
 
             <EditText
-                android:id="@+id/email"
+                android:id="@+id/id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/email"
+                android:hint="@string/id"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:textColorHint="#757575"
