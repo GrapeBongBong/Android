@@ -2,10 +2,13 @@ package com.example.android_bong.view.signUp
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.core.view.WindowCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Lifecycle
@@ -15,6 +18,7 @@ import com.example.android_bong.R
 import com.example.android_bong.common.ViewBindingActivity
 import com.example.android_bong.databinding.ActivitySignUpBinding
 import com.example.android_bong.extension.RefreshStateContract
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -34,6 +38,7 @@ class SignUpActivity : ViewBindingActivity<ActivitySignUpBinding>() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, true)
         super.onCreate(savedInstanceState)
@@ -57,9 +62,26 @@ class SignUpActivity : ViewBindingActivity<ActivitySignUpBinding>() {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun initEventListeners() = with(binding) {
         signUpButton.setOnClickListener {
             viewModel.signUp()
+        }
+
+        dataPicker.setOnDateChangedListener { dataPicker, _, _, _ ->
+            viewModel.updateBirth(
+                "${dataPicker.year}-${dataPicker.month + 1}-${dataPicker.dayOfMonth}"
+            )
+        }
+
+        radioGroup.setOnCheckedChangeListener { group, checkedId ->
+            when (group.id) {
+                R.id.radioGroup ->
+                    when (checkedId) {
+                        R.id.manRadioButton -> viewModel.updateGender("남자")
+                        R.id.womanRadioButton -> viewModel.updateGender("여자")
+                    }
+            }
         }
 
         name.addTextChangedListener {
@@ -149,9 +171,24 @@ class SignUpActivity : ViewBindingActivity<ActivitySignUpBinding>() {
             } else null
         }
         binding.signUpButton.apply {
-            isEnabled = uiState.isInputValid
+            isEnabled = uiState.isInputValid && !uiState.isLoading
+            setText(if (uiState.isLoading) R.string.loading else R.string.signUp)
         }
 
+        if (uiState.successToSignUp) {
+            Toast.makeText(this, "회원가입에 성공했습니다.", Toast.LENGTH_LONG).show()
+            finish()
+        }
+
+        if (uiState.userMessage != null) {
+            showSnackBar(uiState.userMessage)
+            viewModel.userMessageShown()
+        }
     }
+
+    private fun showSnackBar(message: String) {
+        Snackbar.make(this, binding.root, message, Snackbar.LENGTH_LONG).show()
+    }
+
 
 }

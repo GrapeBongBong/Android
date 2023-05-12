@@ -14,6 +14,8 @@
     <string name="woman">여</string>
     <string name="do_signup">회원 가입하기</string>
     <string name="or">Or</string>
+    <string name="yearMonthDay">생년월일</string>
+    <string name="gender">성별</string>
     <string name="ID_is_not_valid">유효한 아이디가 아닙니다.</string>
     <string name="password_is_not_valid">유효한 비밀번호가 아닙니다.</string>
     <string name="name_is_not_valid">유효한 이름이 아닙니다.</string>

@@ -7,11 +7,12 @@ data class SignUpUiState(
     val nickName: String = "",
     val id: String = "",
     val address: String = "",
-    val gender: Boolean = true,
+    val gender: String = "",
     val birth: String = "",
     val password: String = "",
     val passwordCheck: String = "",
     val userMessage: String? = null,
+    val successToSignUp: Boolean = false,
     val isLoading: Boolean = false,
 ) {
     val isInputValid: Boolean
@@ -27,7 +28,7 @@ data class SignUpUiState(
         get() = password.length >= 6
 
     private val isPasswordCheckValid: Boolean
-        get() = passwordCheck.length >= 6 && password == passwordCheck
+        get() = password == passwordCheck
 
     private val isIdValid: Boolean
         get() = id.length >= 4

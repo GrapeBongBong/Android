@@ -2,6 +2,7 @@ package com.example.android_bong.view.signUp
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.domain.usecase.auth.SignUpUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -12,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
-    private val signUpUiState: SignUpUiState
+    private val signUpUseCase: SignUpUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(SignUpUiState())
@@ -50,15 +51,44 @@ class SignUpViewModel @Inject constructor(
         _uiState.update { it.copy(birth = birth) }
     }
 
-    fun updateGender(gender: Boolean) {
+    fun updateGender(gender: String) {
         _uiState.update { it.copy(gender = gender) }
     }
 
 
     fun signUp() {
-        uiState.value
+        val name = uiState.value.name
+        val phoneNumber = uiState.value.phoneNumber
+        val email = uiState.value.email
+        val nickName = uiState.value.nickName
+        val id = uiState.value.id
+        val address = uiState.value.address
+        val gender = uiState.value.gender
+        val birth = uiState.value.birth
+        val password = uiState.value.password
+        _uiState.update { it.copy(isLoading = true) }
         viewModelScope.launch {
-            signUpUiState
+            val result = signUpUseCase(
+                id = id,
+                password = password,
+                name = name,
+                nickName = nickName,
+                birth = birth,
+                email = email,
+                phoneNum = phoneNumber,
+                address = address,
+                gender = gender
+            )
+            if (result.isSuccess) {
+                _uiState.update { it.copy(successToSignUp = true, isLoading = false) }
+            } else {
+                _uiState.update {
+                    it.copy(
+                        userMessage = result.exceptionOrNull()!!.localizedMessage,
+                        isLoading = false
+                    )
+                }
+            }
         }
     }
 

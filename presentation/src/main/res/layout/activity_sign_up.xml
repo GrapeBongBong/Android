@@ -63,7 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:text="생년월일" />
+                android:text="@string/yearMonthDay" />
 
             <DatePicker
                 android:id="@+id/dataPicker"
@@ -77,7 +77,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:text="성별" />
+                android:text="@string/gender" />
 
             <RadioGroup
                 android:id="@+id/radioGroup"
@@ -94,23 +94,27 @@
                     android:id="@+id/manRadioButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/selector_radio_button"
                     android:button="@null"
-                    android:checked="true"
+                    android:checked="false"
                     android:paddingLeft="50dp"
                     android:paddingRight="50dp"
                     android:text="@string/man"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:textColor="@drawable/selector_radio_text" />
 
                 <RadioButton
                     android:id="@+id/womanRadioButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/selector_radio_button"
                     android:button="@null"
                     android:checked="false"
                     android:paddingLeft="50dp"
                     android:paddingRight="50dp"
                     android:text="@string/woman"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:textColor="@drawable/selector_radio_text" />
 
             </RadioGroup>
 
