@@ -28,7 +28,7 @@ data class SignUpUiState(
         get() = password.length >= 6
 
     private val isPasswordCheckValid: Boolean
-        get() = passwordCheck.length >= 6 && password == passwordCheck
+        get() = password == passwordCheck
 
     private val isIdValid: Boolean
         get() = id.length >= 4

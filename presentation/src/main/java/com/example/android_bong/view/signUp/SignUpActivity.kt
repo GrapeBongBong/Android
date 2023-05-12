@@ -72,7 +72,15 @@ class SignUpActivity : ViewBindingActivity<ActivitySignUpBinding>() {
             )
         }
 
-
+        radioGroup.setOnCheckedChangeListener { group, checkedId ->
+            when (group.id) {
+                R.id.radioGroup ->
+                    when (checkedId) {
+                        R.id.manRadioButton -> viewModel.updateGender("남자")
+                        R.id.womanRadioButton -> viewModel.updateGender("여자")
+                    }
+            }
+        }
 
         name.addTextChangedListener {
             if (it != null) {
