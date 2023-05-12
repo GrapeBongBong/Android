@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
@@ -17,6 +18,7 @@ import com.example.android_bong.R
 import com.example.android_bong.common.ViewBindingActivity
 import com.example.android_bong.databinding.ActivitySignUpBinding
 import com.example.android_bong.extension.RefreshStateContract
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -169,9 +171,24 @@ class SignUpActivity : ViewBindingActivity<ActivitySignUpBinding>() {
             } else null
         }
         binding.signUpButton.apply {
-            isEnabled = uiState.isInputValid
+            isEnabled = uiState.isInputValid && !uiState.isLoading
+            setText(if (uiState.isLoading) R.string.loading else R.string.signUp)
         }
 
+        if (uiState.successToSignUp) {
+            Toast.makeText(this, "회원가입에 성공했습니다.", Toast.LENGTH_LONG).show()
+            finish()
+        }
+
+        if (uiState.userMessage != null) {
+            showSnackBar(uiState.userMessage)
+            viewModel.userMessageShown()
+        }
     }
+
+    private fun showSnackBar(message: String) {
+        Snackbar.make(this, binding.root, message, Snackbar.LENGTH_LONG).show()
+    }
+
 
 }
