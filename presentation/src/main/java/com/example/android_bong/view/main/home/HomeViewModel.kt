@@ -1,13 +1,47 @@
 package com.example.android_bong.view.main.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.android_bong.R
+import com.example.domain.usecase.user.GetUserUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeViewModel : ViewModel() {
+@HiltViewModel
+class HomeViewModel @Inject constructor(
+    private val getUserUseCase: GetUserUseCase
+) : ViewModel() {
+    private val _uiState = MutableStateFlow(HomeUiState())
+    val uiState = _uiState.asStateFlow()
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+    private var fetchJob: Job? = null
+
+    init {
+        fetchUserTemperature()
     }
-    val text: LiveData<String> = _text
+
+    private fun fetchUserTemperature() {
+        fetchJob?.cancel()
+        fetchJob = viewModelScope.launch {
+            if (getUserUseCase() != null) {
+                _uiState.update {
+                    it.copy(
+                        userTemperature = getUserUseCase()!!.temperature
+                    )
+                }
+            } else {
+                _uiState.update {
+                    it.copy(
+                        userMessage = R.string.unable_to_retrieve_member_information
+                    )
+                }
+            }
+        }
+    }
+
 }

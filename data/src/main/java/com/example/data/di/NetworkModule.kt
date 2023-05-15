@@ -2,6 +2,7 @@ package com.example.data.di
 
 import com.example.data.BuildConfig
 import com.example.data.api.AuthApi
+import com.example.data.api.ExchangePostApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -66,6 +67,12 @@ class NetworkModule {
     @Singleton
     fun provideAuthApiService(retrofit: Retrofit): AuthApi {
         return retrofit.create(AuthApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideExchangePostApi(retrofit: Retrofit): ExchangePostApi {
+        return retrofit.create(ExchangePostApi::class.java)
     }
 
 }
