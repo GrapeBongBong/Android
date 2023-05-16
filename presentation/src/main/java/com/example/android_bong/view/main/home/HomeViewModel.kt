@@ -45,4 +45,12 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    fun userMessageShown() {
+        _uiState.update { it.copy(userMessage = null) }
+    }
+
+    fun showUserMessage(message: Int) {
+        _uiState.update { it.copy(userMessage = message) }
+    }
+
 }

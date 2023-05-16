@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 interface ExchangePostApi {
 
-    @GET("/exchange/exchange-posts")
+    @GET("/exchange/posts")
     suspend fun getAll(
         @Query("size") size: Int,
         @Query("page") page: Int

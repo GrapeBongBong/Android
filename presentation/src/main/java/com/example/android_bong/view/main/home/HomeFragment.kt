@@ -13,6 +13,7 @@ import com.example.android_bong.R
 import com.example.android_bong.common.ViewBindingFragment
 import com.example.android_bong.databinding.FragmentHomeBinding
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 
 class HomeFragment : ViewBindingFragment<FragmentHomeBinding>() {
@@ -43,6 +44,14 @@ class HomeFragment : ViewBindingFragment<FragmentHomeBinding>() {
         val extendedFab = requireActivity().findViewById<ExtendedFloatingActionButton>(R.id.fab)
         extendedFab.isVisible = false
 
+        if (uiState.userMessage != null) {
+            showSnackBar(uiState.userMessage.toString())
+            viewModel.userMessageShown()
+        }
+    }
+
+    private fun showSnackBar(message: String) {
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).show()
     }
 
 }
