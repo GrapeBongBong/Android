@@ -43,7 +43,6 @@ class MainActivity : ViewBindingActivity<ActivityMainBinding>() {
         }
     }
 
-    
     private fun initBottomNavigationView() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_home) as NavHostFragment
