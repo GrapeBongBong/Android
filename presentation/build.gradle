@@ -62,6 +62,10 @@ dependencies {
     // swipe refresh
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
+    // paging
+    implementation "androidx.paging:paging-common-ktx:$paging"
+    implementation "androidx.paging:paging-runtime-ktx:$paging"
+
     // hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
