@@ -1,7 +1,9 @@
 package com.example.data.di
 
 import com.example.data.repository.AuthRepositoryImpl
+import com.example.data.repository.ExchangePostRepositoryImpl
 import com.example.domain.repository.AuthRepository
+import com.example.domain.repository.ExchangePostRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -17,5 +19,11 @@ abstract class RepositoryModule {
     abstract fun bindsAuthRepository(
         authRepositoryImpl: AuthRepositoryImpl
     ): AuthRepository
+
+    @Singleton
+    @Binds
+    abstract fun bindsExchangePostRepository(
+        exchangePostRepositoryImpl: ExchangePostRepositoryImpl
+    ): ExchangePostRepository
 
 }

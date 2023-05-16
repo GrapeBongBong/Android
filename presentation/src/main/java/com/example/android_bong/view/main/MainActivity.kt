@@ -14,6 +14,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.android_bong.R
 import com.example.android_bong.common.ViewBindingActivity
 import com.example.android_bong.databinding.ActivityMainBinding
+import com.example.android_bong.view.postcreate.PostCreateActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -36,6 +37,10 @@ class MainActivity : ViewBindingActivity<ActivityMainBinding>() {
 
         setSupportActionBar(binding.toolbar)
         initBottomNavigationView()
+
+        binding.fab.setOnClickListener {
+            navigateToPostCreateActivity()
+        }
     }
 
     private fun initBottomNavigationView() {
@@ -58,5 +63,10 @@ class MainActivity : ViewBindingActivity<ActivityMainBinding>() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_activity_home)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    private fun navigateToPostCreateActivity() {
+        val intent = PostCreateActivity.getIntent(this)
+        startActivity(intent)
     }
 }

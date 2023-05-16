@@ -3,6 +3,7 @@ package com.example.android_bong.view.login
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.viewModels
@@ -74,6 +75,7 @@ class LoginActivity : ViewBindingActivity<ActivityLoginBinding>() {
             navigateMainActivity()
         }
         if (uiState.userMessage != null) {
+            Log.d("error", uiState.userMessage)
             showSnackBar(uiState.userMessage)
             viewModel.userMessageShown()
         }

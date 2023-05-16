@@ -1,4 +1,5 @@
 package com.example.android_bong.view.main.community
 
-class CommunityUiState {
-}
+data class CommunityUiState(
+    val userMessage: String? = null
+)
