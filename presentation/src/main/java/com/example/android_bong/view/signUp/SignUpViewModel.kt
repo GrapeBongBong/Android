@@ -76,7 +76,7 @@ class SignUpViewModel @Inject constructor(
                 birth = birth,
                 email = email,
                 phoneNum = phoneNumber,
-                address = address,
+                address = "서울시 성북구",
                 gender = gender
             )
             if (result.isSuccess) {

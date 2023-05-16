@@ -13,4 +13,5 @@ interface ExchangePostApi {
         @Query("size") size: Int,
         @Query("page") page: Int
     ): Response<ResponseBody<ExchangePostListDto>>
+
 }

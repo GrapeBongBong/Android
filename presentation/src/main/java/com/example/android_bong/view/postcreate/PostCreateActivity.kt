@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import androidx.core.view.WindowCompat
 import com.example.android_bong.common.ViewBindingActivity
 import com.example.android_bong.databinding.ActivityPostCreateBinding
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,5 +25,13 @@ class PostCreateActivity : ViewBindingActivity<ActivityPostCreateBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, true)
         super.onCreate(savedInstanceState)
+    }
+
+    private fun updateUi() {
+
+    }
+
+    private fun showSnackBar(message: String) {
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).show()
     }
 }

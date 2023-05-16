@@ -11,7 +11,7 @@ import javax.inject.Inject
 class AuthRemoteDataSourceImpl @Inject constructor(
     private val api: AuthApi
 ) : AuthRemoteDataSource {
-    override suspend fun login(loginRequestBody: LoginRequestBody): Response<ResponseBody<LoginDto>> =
+    override suspend fun login(loginRequestBody: LoginRequestBody): Response<LoginDto> =
         api.login(loginRequestBody = loginRequestBody)
 
     override suspend fun signUp(signUpRequestBody: SignUpRequestBody): Response<ResponseBody<Unit>> =

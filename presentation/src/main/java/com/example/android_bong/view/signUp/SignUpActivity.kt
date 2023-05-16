@@ -14,6 +14,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.ui.AppBarConfiguration
 import com.example.android_bong.R
 import com.example.android_bong.common.ViewBindingActivity
 import com.example.android_bong.databinding.ActivitySignUpBinding
@@ -31,6 +32,8 @@ class SignUpActivity : ViewBindingActivity<ActivitySignUpBinding>() {
         get() = ActivitySignUpBinding::inflate
 
     private var launcher: ActivityResultLauncher<Intent>? = null
+
+    private lateinit var appBarConfiguration: AppBarConfiguration
 
     companion object {
         fun getIntent(context: Context): Intent {

@@ -1,20 +1,18 @@
 package com.example.domain.model.user
 
-import android.graphics.Bitmap
-
 data class User(
-    val id: String,
-    val password: String,
-    val name: String,
-    val nickName: String,
+    val activated: Boolean,
+    val address: String,
     val birth: String,
     val email: String,
-    val phone_num: String,
-    val address: String,
-    val activated: Boolean,
     val gender: String,
+    val id: String,
+    val name: String,
+    val nickName: String,
+    val password: String,
+    val phone_num: String,
+    val profile_img: Any?,
+    val roles: List<Any>,
     val temperature: Double,
-    val profile_img: Bitmap?,
-    val roles: List<String>,
     val uid: Int
 )

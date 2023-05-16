@@ -13,10 +13,11 @@ interface AuthApi {
     @POST("/auth/login")
     suspend fun login(
         @Body loginRequestBody: LoginRequestBody
-    ): Response<ResponseBody<LoginDto>>
+    ): Response<LoginDto>
 
     @POST("/auth/join")
     suspend fun signUp(
         @Body signUpRequestBody: SignUpRequestBody
     ): Response<ResponseBody<Unit>>
+
 }

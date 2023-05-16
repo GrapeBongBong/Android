@@ -18,7 +18,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".ProfileUpdateActivity"
+            android:name=".view.main.profile.profileUpdate.ProfileUpdateActivity"
             android:exported="false" />
         <activity
             android:name=".view.postcreate.PostCreateActivity"
