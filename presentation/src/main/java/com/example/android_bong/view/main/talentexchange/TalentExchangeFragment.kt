@@ -34,6 +34,10 @@ class TalentExchangeFragment : ViewBindingFragment<FragmentTalentExchangeBinding
         }
     }
 
+    private fun onClickPost(talentExchangeItemUiState : TalentExchangeItemUiState){
+
+    }
+
     private fun updateUi(uiState: TalentExchangeUiState) {
         val extendedFab = requireActivity().findViewById<ExtendedFloatingActionButton>(R.id.fab)
         extendedFab.isVisible = true
