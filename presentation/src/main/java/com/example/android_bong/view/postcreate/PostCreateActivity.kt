@@ -1,12 +1,28 @@
 package com.example.android_bong.view.postcreate
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import com.example.android_bong.R
+import android.view.LayoutInflater
+import androidx.core.view.WindowCompat
+import com.example.android_bong.common.ViewBindingActivity
+import com.example.android_bong.databinding.ActivityPostCreateBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-class PostCreateActivity : AppCompatActivity() {
+@AndroidEntryPoint
+class PostCreateActivity : ViewBindingActivity<ActivityPostCreateBinding>() {
+
+    override val bindingInflater: (LayoutInflater) -> ActivityPostCreateBinding
+        get() = ActivityPostCreateBinding::inflate
+
+    companion object {
+        fun getIntent(context: Context): Intent {
+            return Intent(context, PostCreateActivity::class.java)
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        WindowCompat.setDecorFitsSystemWindows(window, true)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_post_create)
     }
 }

@@ -33,7 +33,6 @@ class HomeFragment : ViewBindingFragment<FragmentHomeBinding>() {
     }
 
     private fun updateUi(uiState: HomeUiState) = with(binding) {
-
         userTemperature.text = uiState.userTemperature.toString()
 
     }

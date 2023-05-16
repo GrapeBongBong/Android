@@ -1,13 +1,17 @@
 package com.example.android_bong.view.main.community
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import javax.inject.Inject
 
-class CommunityViewModel : ViewModel() {
+@HiltViewModel
+class CommunityViewModel @Inject constructor(
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is notifications Fragment"
-    }
-    val text: LiveData<String> = _text
+) : ViewModel() {
+
+    private val _uiState = MutableStateFlow(CommunityUiState())
+    val uiState = _uiState.asStateFlow()
+
 }

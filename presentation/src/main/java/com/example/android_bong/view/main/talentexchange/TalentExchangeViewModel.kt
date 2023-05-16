@@ -1,13 +1,17 @@
 package com.example.android_bong.view.main.talentexchange
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import javax.inject.Inject
 
-class TalentExchangeViewModel : ViewModel() {
+@HiltViewModel
+class TalentExchangeViewModel @Inject constructor(
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
-    }
-    val text: LiveData<String> = _text
+) : ViewModel() {
+
+    private val _uiState = MutableStateFlow(TalentExchangeUiState())
+    val uiState = _uiState.asStateFlow()
+
 }

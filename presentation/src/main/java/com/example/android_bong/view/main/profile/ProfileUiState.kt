@@ -1,4 +1,5 @@
 package com.example.android_bong.view.main.profile
 
-class ProfileUiState {
-}
+data class ProfileUiState(
+    val userMessage: String? = null
+)
