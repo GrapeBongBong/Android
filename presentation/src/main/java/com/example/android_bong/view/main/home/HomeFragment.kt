@@ -36,7 +36,10 @@ class HomeFragment : ViewBindingFragment<FragmentHomeBinding>() {
     }
 
     private fun updateUi(uiState: HomeUiState) = with(binding) {
-        userTemperature.text = uiState.userTemperature.toString()
+        userNickname.text = getString(R.string.user_nickname, uiState.userNickName)
+        userTemperature.text =
+            getString(R.string.user_temperature, uiState.userTemperature.toString())
+
         val extendedFab = requireActivity().findViewById<ExtendedFloatingActionButton>(R.id.fab)
         extendedFab.isVisible = false
 
