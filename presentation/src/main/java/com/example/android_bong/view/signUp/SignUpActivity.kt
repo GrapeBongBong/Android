@@ -31,6 +31,7 @@ class SignUpActivity : ViewBindingActivity<ActivitySignUpBinding>() {
     override val bindingInflater: (LayoutInflater) -> ActivitySignUpBinding
         get() = ActivitySignUpBinding::inflate
 
+
     private var launcher: ActivityResultLauncher<Intent>? = null
 
     private lateinit var appBarConfiguration: AppBarConfiguration
