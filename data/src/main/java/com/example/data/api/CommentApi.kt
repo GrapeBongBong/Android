@@ -6,4 +6,16 @@ interface CommentApi {
 
     )
 
+    suspend fun deleteComment(
+
+    )
+
+    suspend fun getAllComment(
+
+    )
+
+    suspend fun updateComment(
+
+    )
+
 }
