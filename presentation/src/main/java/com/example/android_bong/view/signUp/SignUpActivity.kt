@@ -45,6 +45,7 @@ class SignUpActivity : ViewBindingActivity<ActivitySignUpBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, true)
         super.onCreate(savedInstanceState)
+        binding.toolbar.setTitle(R.string.signUp)
         setSupportActionBar(binding.toolbar)
 
         initEventListeners()

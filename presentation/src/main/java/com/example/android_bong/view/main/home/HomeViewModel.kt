@@ -31,7 +31,8 @@ class HomeViewModel @Inject constructor(
             if (getUserUseCase() != null) {
                 _uiState.update {
                     it.copy(
-                        userTemperature = getUserUseCase()!!.temperature
+                        userTemperature = getUserUseCase()!!.temperature,
+                        userNickName = getUserUseCase()!!.nickName
                     )
                 }
             } else {
@@ -42,6 +43,14 @@ class HomeViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    fun userMessageShown() {
+        _uiState.update { it.copy(userMessage = null) }
+    }
+
+    fun showUserMessage(message: Int) {
+        _uiState.update { it.copy(userMessage = message) }
     }
 
 }

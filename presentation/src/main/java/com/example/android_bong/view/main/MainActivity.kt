@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import androidx.core.view.WindowCompat
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -68,5 +69,20 @@ class MainActivity : ViewBindingActivity<ActivityMainBinding>() {
     private fun navigateToPostCreateActivity() {
         val intent = PostCreateActivity.getIntent(this)
         startActivity(intent)
+    }
+
+    @Suppress("UNUSED_PARAMETER")
+    fun onScrollChangeListener(
+        v: View,
+        scrollX: Int,
+        scrollY: Int,
+        oldScrollX: Int,
+        oldScrollY: Int
+    ) {
+        if (scrollY > oldScrollY) {
+            binding.fab.shrink()
+        } else {
+            binding.fab.extend()
+        }
     }
 }
