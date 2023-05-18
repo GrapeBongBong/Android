@@ -13,7 +13,11 @@
     <string name="man">남</string>
     <string name="woman">여</string>
     <string name="do_signup">회원 가입하기</string>
+    <string name="profile_temperature">나의 온도는 %s도에요.</string>
     <string name="or">Or</string>
+    <string name="exchange_talent">재능 교환</string>
+    <string name="anonymous">익명</string>
+    <string name="date">2018년 5월 18일</string>
     <string name="yearMonthDay">생년월일</string>
     <string name="failed_to_load">불러오기에 실패했습니다.</string>
     <string name="fail_to_connect">연결에 실패하였습니다.</string>
