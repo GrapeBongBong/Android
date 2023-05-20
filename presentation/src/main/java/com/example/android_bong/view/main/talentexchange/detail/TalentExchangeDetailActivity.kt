@@ -5,19 +5,19 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import com.example.android_bong.common.ViewBindingActivity
-import com.example.android_bong.databinding.ActivityTalentExchangePostDetailBinding
+import com.example.android_bong.databinding.ActivityTalentExchangeDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class TalentExchangePostDetailActivity :
-    ViewBindingActivity<ActivityTalentExchangePostDetailBinding>() {
+class TalentExchangeDetailActivity :
+    ViewBindingActivity<ActivityTalentExchangeDetailBinding>() {
 
-    override val bindingInflater: (LayoutInflater) -> ActivityTalentExchangePostDetailBinding
-        get() = ActivityTalentExchangePostDetailBinding::inflate
+    override val bindingInflater: (LayoutInflater) -> ActivityTalentExchangeDetailBinding
+        get() = ActivityTalentExchangeDetailBinding::inflate
 
     companion object {
         fun getIntent(context: Context): Intent {
-            return Intent(context, TalentExchangePostDetailActivity::class.java)
+            return Intent(context, TalentExchangeDetailActivity::class.java)
         }
     }
 

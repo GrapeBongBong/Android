@@ -1,4 +1,4 @@
-package com.example.android_bong.view.postdetail
+package com.example.android_bong.view.main.talentexchange.detail
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -7,11 +7,11 @@ import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 
 @HiltViewModel
-class PostDetailViewModel @Inject constructor(
+class TalentExchangeDetailViewModel @Inject constructor(
 
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(PostDetailUiState())
+    private val _uiState = MutableStateFlow(TalentExchangeDetailUiState())
     val uiState = _uiState.asStateFlow()
 
 }

@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.main.talentexchange.detail.TalentExchangePostDetailActivity">
+    tools:context=".view.main.community.detail.CommunityDetailActivity">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,16 +18,19 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".PostDetailActivity"
+            android:name=".CommunityDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".view.main.talentexchange.detail.TalentExchangePostDetailActivity"
+            android:name=".CommunityCreateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.main.talentexchange.create.TalentExchangeCreateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.main.talentexchange.detail.TalentExchangeDetailActivity"
             android:exported="false" />
         <activity
             android:name=".view.main.profile.profileUpdate.ProfileUpdateActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.postcreate.PostCreateActivity"
             android:exported="false" />
         <activity
             android:name=".view.main.MainActivity"
