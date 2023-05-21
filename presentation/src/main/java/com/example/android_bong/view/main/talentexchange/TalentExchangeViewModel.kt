@@ -44,4 +44,8 @@ class TalentExchangeViewModel @Inject constructor(
         }
     }
 
+    fun userMessageShown() {
+        _uiState.update { it.copy(userMessage = null) }
+    }
+
 }

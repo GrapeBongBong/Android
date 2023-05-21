@@ -1,6 +1,7 @@
 package com.example.android_bong.view.main.talentexchange
 
 import com.example.domain.model.exchange.AvailableTime
+import java.io.Serializable
 
 data class TalentExchangeItemUiState(
     val availableTime: AvailableTime,
@@ -17,4 +18,4 @@ data class TalentExchangeItemUiState(
     val uid: Int,
     val writerId: String,
     val writerNick: String
-)
+) : Serializable

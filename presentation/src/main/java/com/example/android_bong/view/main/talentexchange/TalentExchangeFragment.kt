@@ -42,7 +42,7 @@ class TalentExchangeFragment : ViewBindingFragment<FragmentTalentExchangeBinding
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect {
-                    updateUi(it)
+                    updateUi(it, adapter)
                 }
             }
         }
@@ -68,29 +68,14 @@ class TalentExchangeFragment : ViewBindingFragment<FragmentTalentExchangeBinding
         adapter.registerObserverForScrollToTop(recyclerView, whenItemRangeMoved = true)
     }
 
-    private fun onClickPost(talentExchangeItemUiState: TalentExchangeItemUiState) {
-
-
-    }
-
-    private fun updateUi(uiState: TalentExchangeUiState) {
-
+    private fun updateUi(uiState: TalentExchangeUiState, adapter: TalentExchangeAdapter) {
+        adapter.submitData(viewLifecycleOwner.lifecycle, uiState.pagingData)
     }
 
     private fun initEventListeners() {
         binding.fab.setOnClickListener {
             navigateToCreate()
         }
-    }
-
-    private fun navigateToCreate() {
-        val intent = TalentExchangeCreateActivity.getIntent(requireContext())
-        startActivity(intent)
-    }
-
-    private fun navigateToDetail() {
-        val intent = TalentExchangeDetailActivity.getIntent(requireContext())
-        startActivity(intent)
     }
 
     private fun showSnackBar(message: String) {
@@ -112,4 +97,13 @@ class TalentExchangeFragment : ViewBindingFragment<FragmentTalentExchangeBinding
         }
     }
 
+    private fun navigateToCreate() {
+        val intent = TalentExchangeCreateActivity.getIntent(requireContext())
+        startActivity(intent)
+    }
+
+    private fun onClickPost(talentExchangeItemUiState: TalentExchangeItemUiState) {
+        val intent = TalentExchangeDetailActivity.getIntent(requireContext())
+        launcher?.launch(intent)
+    }
 }

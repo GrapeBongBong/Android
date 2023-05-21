@@ -27,7 +27,7 @@ class TalentExchangeAdapter(
                 oldItem: TalentExchangeItemUiState,
                 newItem: TalentExchangeItemUiState
             ): Boolean {
-                return oldItem.uid == newItem.uid
+                return oldItem.pid == newItem.pid
             }
 
             override fun areContentsTheSame(

@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import com.example.android_bong.common.ViewBindingActivity
 import com.example.android_bong.databinding.ActivityTalentExchangeCreateBinding
-import com.example.android_bong.view.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -17,7 +16,7 @@ class TalentExchangeCreateActivity : ViewBindingActivity<ActivityTalentExchangeC
 
     companion object {
         fun getIntent(context: Context): Intent {
-            return Intent(context, MainActivity::class.java)
+            return Intent(context, TalentExchangeCreateActivity::class.java)
         }
     }
 

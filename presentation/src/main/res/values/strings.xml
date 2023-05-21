@@ -48,9 +48,11 @@
     <string name="give_text">Give : %s</string>
     <string name="updating">정보 수정하기</string>
     <string name="yearMonthDay">생년월일</string>
+    <string name="post_id_nickName">%s(%s)</string>
     <string name="address">주소</string>
     <string name="failed_to_load">불러오기에 실패했습니다.</string>
     <string name="fail_to_connect">연결에 실패하였습니다.</string>
+    <string name="middle_dot">\u0020•\u0020</string>
     <string name="content">내용</string>
     <string name="empty">텅</string>
     <string name="retry">재시도</string>
