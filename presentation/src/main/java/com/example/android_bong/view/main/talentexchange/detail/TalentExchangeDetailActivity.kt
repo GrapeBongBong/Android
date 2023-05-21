@@ -48,6 +48,8 @@ class TalentExchangeDetailActivity :
         val item = intent.getSerializable("item", TalentExchangeItemUiState::class.java)
         viewModel.bind(item)
 
+        //TODO : 댓글 adapter와 viewHolder 필요
+
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect {
