@@ -1,6 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/commentItem"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:focusable="true"
+    android:paddingHorizontal="10dp"
+    android:paddingVertical="10dp">
+
+    <TextView
+        android:id="@+id/anonymous"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="12dp"
+        android:text="@string/anonymous"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:alpha="0.6"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:paddingBottom="12dp"
+        android:text="@string/date"
+        android:textColor="?attr/colorOnBackground"
+        app:layout_constraintBottom_toTopOf="@id/commentText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/commentText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/anonymous"
+        tools:text="안녕하세요. 헬스를 얼마나 하셨는지는 모르겠지만, 몸이 너무 구리네요. 끔찍해요." />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

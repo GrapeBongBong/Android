@@ -1,4 +1,4 @@
-package com.example.android_bong.view.login
+package com.example.android_bong.view.auth.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

@@ -18,22 +18,28 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".view.main.talentexchange.detail.TalentExchangePostDetailActivity"
+            android:name=".view.main.community.create.CommunityCreateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.main.community.detail.CommunityDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.main.talentexchange.create.TalentExchangeCreateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.main.talentexchange.detail.TalentExchangeDetailActivity"
             android:exported="false" />
         <activity
             android:name=".view.main.profile.profileUpdate.ProfileUpdateActivity"
             android:exported="false" />
         <activity
-            android:name=".view.postcreate.PostCreateActivity"
-            android:exported="false" />
-        <activity
             android:name=".view.main.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".view.signUp.SignUpActivity"
+            android:name="com.example.android_bong.view.auth.signUp.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".view.login.LoginActivity"
+            android:name="com.example.android_bong.view.auth.login.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

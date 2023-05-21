@@ -1,4 +1,4 @@
-package com.example.android_bong.view.login
+package com.example.android_bong.view.auth.login
 
 import android.content.Context
 import android.content.Intent
@@ -16,7 +16,7 @@ import com.example.android_bong.common.ViewBindingActivity
 import com.example.android_bong.databinding.ActivityLoginBinding
 import com.example.android_bong.extension.RefreshStateContract
 import com.example.android_bong.view.main.MainActivity
-import com.example.android_bong.view.signUp.SignUpActivity
+import com.example.android_bong.view.auth.signUp.SignUpActivity
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

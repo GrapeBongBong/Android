@@ -7,11 +7,11 @@ import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 
 @HiltViewModel
-class TalentExchangePostDetailViewModel @Inject constructor(
+class TalentExchangeDetailViewModel @Inject constructor(
 
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(TalentExchangePostDetailUiState())
+    private val _uiState = MutableStateFlow(TalentExchangeDetailUiState())
     val uiState = _uiState.asStateFlow()
 
 }

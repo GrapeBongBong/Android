@@ -1,4 +1,4 @@
-package com.example.android_bong.view.signUp
+package com.example.android_bong.view.auth.signUp
 
 import android.content.Context
 import android.content.Intent
@@ -30,6 +30,7 @@ class SignUpActivity : ViewBindingActivity<ActivitySignUpBinding>() {
 
     override val bindingInflater: (LayoutInflater) -> ActivitySignUpBinding
         get() = ActivitySignUpBinding::inflate
+
 
     private var launcher: ActivityResultLauncher<Intent>? = null
 

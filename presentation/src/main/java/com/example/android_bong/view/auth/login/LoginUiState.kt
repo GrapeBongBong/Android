@@ -1,4 +1,4 @@
-package com.example.android_bong.view.login
+package com.example.android_bong.view.auth.login
 
 data class LoginUiState(
     val id: String = "",

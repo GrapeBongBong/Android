@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.main.talentexchange.detail.TalentExchangeDetailActivity">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?android:attr/windowBackground"
+            app:layout_scrollFlags="scroll|enterAlways|snap"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:id="@+id/content_layout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            tools:ignore="UselessParent">
+
+            <TextView
+                android:id="@+id/title"
+                style="?attr/textAppearanceTitleLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                tools:text="제목이 들어가는 공간" />
+
+            <TextView
+                android:id="@+id/nickName"
+                style="?attr/textAppearanceLabelMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                tools:text="닉네임이 들어가는 공간" />
+
+            <TextView
+                android:id="@+id/date"
+                style="?attr/textAppearanceLabelMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                tools:text="날짜가 들어가는 공간" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:alpha="0.6"
+                android:background="@color/md_theme_light_outline"
+                android:ellipsize="end" />
+
+            <LinearLayout
+                android:id="@+id/imageLinearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/ic_baseline_add_24" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/ic_baseline_add_24" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/ic_baseline_add_24" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/takeTalent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:alpha="0.6"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/take_text"
+                android:textColor="?attr/colorOnBackground"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/giveTalent"
+                app:layout_constraintTop_toBottomOf="@+id/content" />
+
+            <TextView
+                android:id="@+id/giveTalent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:alpha="0.6"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/give_text"
+                android:textColor="?attr/colorOnBackground"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/takeTalent" />
+
+            <TextView
+                android:id="@+id/content"
+                style="?attr/textAppearanceBodyMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/memo_style"
+                android:textSize="16sp"
+                tools:text="내용이 들어가는 공간\n\n\n\n\n\n\n" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:alpha="0.6"
+                android:background="@color/md_theme_light_outline"
+                android:ellipsize="end" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/commentInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/input_comment"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:textColorHint="#757575"
+                    tools:ignore="Autofill,TextFields,TouchTargetSizeCheck,TouchTargetSizeCheck" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                tools:listitem="@layout/item_comment" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

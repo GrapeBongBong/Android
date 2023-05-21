@@ -4,15 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.example.android_bong.R
 import com.example.android_bong.common.ViewBindingFragment
 import com.example.android_bong.databinding.FragmentCommunityBinding
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+import com.example.android_bong.view.main.community.create.CommunityCreateActivity
+import com.example.android_bong.view.main.community.detail.CommunityDetailActivity
 import kotlinx.coroutines.launch
 
 class CommunityFragment : ViewBindingFragment<FragmentCommunityBinding>() {
@@ -25,6 +24,8 @@ class CommunityFragment : ViewBindingFragment<FragmentCommunityBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initEventListeners()
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect {
@@ -36,8 +37,24 @@ class CommunityFragment : ViewBindingFragment<FragmentCommunityBinding>() {
     }
 
     private fun updateUi(uiState: CommunityUiState) {
-        val extendedFab = requireActivity().findViewById<ExtendedFloatingActionButton>(R.id.fab)
-        extendedFab.isVisible = true
+
     }
+
+    private fun initEventListeners() {
+        binding.fab.setOnClickListener {
+            navigateToCreate()
+        }
+    }
+
+    private fun navigateToCreate() {
+        val intent = CommunityCreateActivity.getIntent(requireContext())
+        startActivity(intent)
+    }
+
+    private fun navigateToDetail() {
+        val intent = CommunityDetailActivity.getIntent(requireContext())
+        startActivity(intent)
+    }
+
 
 }

@@ -1,4 +1,4 @@
-package com.example.android_bong.view.signUp
+package com.example.android_bong.view.auth.signUp
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
