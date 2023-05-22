@@ -36,9 +36,6 @@
             android:id="@+id/content_layout1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
             android:gravity="center"
             android:orientation="vertical"
             tools:ignore="UselessParent">
@@ -48,6 +45,8 @@
                 style="?attr/textAppearanceTitleLarge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:textStyle="bold"
                 tools:text="제목이 들어가는 공간" />
 
@@ -56,7 +55,9 @@
                 style="?attr/textAppearanceLabelMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp"
                 tools:text="닉네임이 들어가는 공간" />
 
             <TextView
@@ -64,13 +65,17 @@
                 style="?attr/textAppearanceLabelMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp"
                 tools:text="날짜가 들어가는 공간" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
                 android:layout_marginBottom="10dp"
                 android:alpha="0.6"
                 android:background="@color/md_theme_light_outline"
@@ -107,7 +112,9 @@
                 android:id="@+id/takeTalent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp"
                 android:alpha="0.6"
                 android:ellipsize="end"
                 android:maxLines="1"
@@ -121,7 +128,9 @@
                 android:id="@+id/giveTalent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp"
                 android:layout_marginBottom="5dp"
                 android:alpha="0.6"
                 android:ellipsize="end"
@@ -137,6 +146,8 @@
                 style="?attr/textAppearanceBodyMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:background="@drawable/memo_style"
                 android:textSize="16sp"
                 tools:text="내용이 들어가는 공간\n\n\n\n\n\n\n" />
@@ -144,7 +155,9 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
                 android:layout_marginBottom="10dp"
                 android:alpha="0.6"
                 android:background="@color/md_theme_light_outline"
@@ -153,7 +166,9 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/commentInputLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp">
 
                 <EditText
                     android:id="@+id/comment"
@@ -171,6 +186,8 @@
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:clipToPadding="false"
                 tools:listitem="@layout/item_comment" />
 

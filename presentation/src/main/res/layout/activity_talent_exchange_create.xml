@@ -231,7 +231,6 @@
                     android:checked="false"
                     android:text="@string/launch" />
 
-
                 <CheckBox
                     android:id="@+id/afternoon_button"
                     android:layout_width="wrap_content"
@@ -239,7 +238,6 @@
                     android:layout_marginEnd="5dp"
                     android:checked="false"
                     android:text="@string/afternoon" />
-
 
                 <CheckBox
                     android:id="@+id/dinner_button"
@@ -253,8 +251,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/photo"
                 android:layout_marginBottom="10dp"
+                android:text="@string/photo"
                 android:textStyle="bold" />
 
             <LinearLayout

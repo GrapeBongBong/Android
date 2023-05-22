@@ -2,7 +2,9 @@ package com.example.data.di
 
 import com.example.data.BuildConfig
 import com.example.data.api.AuthApi
+import com.example.data.api.CommentApi
 import com.example.data.api.ExchangePostApi
+import com.example.data.api.UserApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,8 +21,7 @@ import javax.inject.Singleton
 class NetworkModule {
 
     companion object {
-        private const val BASE_URL = "http://3.34.75.23:8080"
-        private const val TOKEN_HEADER_KEY = ""
+        private const val BASE_URL = "http://3.34.75.23:8080/"
     }
 
     @Provides
@@ -30,11 +31,10 @@ class NetworkModule {
         interceptor.level =
             if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY
             else HttpLoggingInterceptor.Level.NONE
-
         return OkHttpClient.Builder()
-            .readTimeout(5, TimeUnit.SECONDS)
-            .connectTimeout(5, TimeUnit.SECONDS)
-            .writeTimeout(5, TimeUnit.SECONDS)
+            .readTimeout(100, TimeUnit.SECONDS)
+            .connectTimeout(100, TimeUnit.SECONDS)
+            .writeTimeout(100, TimeUnit.SECONDS)
             .addInterceptor(
                 HttpLoggingInterceptor().apply {
                     this.level = if (BuildConfig.DEBUG) {
@@ -73,6 +73,18 @@ class NetworkModule {
     @Singleton
     fun provideExchangePostApi(retrofit: Retrofit): ExchangePostApi {
         return retrofit.create(ExchangePostApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideCommentApi(retrofit: Retrofit): CommentApi {
+        return retrofit.create(CommentApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideUserApi(retrofit: Retrofit): UserApi {
+        return retrofit.create(UserApi::class.java)
     }
 
 }

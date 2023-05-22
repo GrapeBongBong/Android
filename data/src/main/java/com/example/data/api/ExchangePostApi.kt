@@ -4,14 +4,22 @@ import com.example.data.model.ResponseBody
 import com.example.data.model.exchangePost.ExchangePostListDto
 import retrofit2.Response
 import retrofit2.http.GET
-import retrofit2.http.Query
 
 interface ExchangePostApi {
 
     @GET("/exchange/posts")
-    suspend fun getAll(
-        @Query("size") size: Int,
-        @Query("page") page: Int
-    ): Response<ResponseBody<ExchangePostListDto>>
+    suspend fun getAll(): Response<ExchangePostListDto>
+
+    suspend fun deleteExchangePost(
+
+    ): Response<Unit>
+
+    suspend fun updateExchangePost(
+
+    ): Response<Unit>
+
+    suspend fun createExchangePost(
+
+    ): Response<Unit>
 
 }

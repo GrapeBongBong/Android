@@ -18,7 +18,6 @@ class TalentExchangeViewHolder(
         )
 
         title.text = uiState.title
-
         content.text = uiState.content
 
         takeTalent.text = root.context.getString(

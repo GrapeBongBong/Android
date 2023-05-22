@@ -18,8 +18,6 @@ class AuthRepositoryImpl @Inject constructor(
     private val localDataSource: AuthLocalDataSource
 ) : AuthRepository {
 
-    private val isReady = MutableStateFlow(false)
-
     private val currentUserState: MutableStateFlow<User?> = MutableStateFlow(null)
 
     override suspend fun getUserDetail(): StateFlow<User?> {
@@ -27,24 +25,17 @@ class AuthRepositoryImpl @Inject constructor(
     }
 
     override suspend fun login(id: String, password: String): Result<Unit> {
-        return try {
+        return runCatching {
             val response = remoteDataSource.login(
                 LoginRequestBody(id = id, password = password)
             )
-            val loginResponseBody = response.body()
-            if (loginResponseBody != null) {
-                currentUserState.value = loginResponseBody.user.toEntity()
-                localDataSource.setData(
-                    authLocalData = AuthLocalData(
-                        sessionToken = loginResponseBody.token
-                    )
+            val loginResponseBody = response.getDataOrThrowMessage()
+            currentUserState.value = loginResponseBody.user.toEntity()
+            localDataSource.setData(
+                authLocalData = AuthLocalData(
+                    sessionToken = loginResponseBody.token
                 )
-                Result.success(Unit)
-            } else {
-                throw Exception("로그인에 실패하였습니다.")
-            }
-        } catch (e: Exception) {
-            Result.failure(e)
+            )
         }
     }
 

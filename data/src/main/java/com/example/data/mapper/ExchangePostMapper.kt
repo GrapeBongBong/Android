@@ -1,15 +1,19 @@
 package com.example.data.mapper
 
+import com.example.data.model.exchangePost.AvailableTimeDto
 import com.example.data.model.exchangePost.ExchangePostDto
+import com.example.data.model.exchangePost.ImageDto
+import com.example.domain.model.exchange.AvailableTime
 import com.example.domain.model.exchange.ExchangePost
+import com.example.domain.model.exchange.Image
 
 fun ExchangePostDto.toEntity() = ExchangePost(
-    availableTime = availableTime,
+    availableTime = availableTimeDto.toEntity(),
     content = content,
     date = date,
     giveCate = giveCate,
     giveTalent = giveTalent,
-    images = images,
+    images = imageDtos.map { it.toEntity() },
     pid = pid,
     postType = postType,
     takeCate = takeCate,
@@ -18,4 +22,14 @@ fun ExchangePostDto.toEntity() = ExchangePost(
     uid = uid,
     writerId = writerId,
     writerNick = writerNick
+)
+
+fun AvailableTimeDto.toEntity() = AvailableTime(
+    days = days,
+    timezone = timezone
+)
+
+fun ImageDto.toEntity() = Image(
+    fileUrl = fileUrl,
+    id = id
 )

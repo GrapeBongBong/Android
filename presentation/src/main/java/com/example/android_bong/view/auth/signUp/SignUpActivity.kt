@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.viewModels
@@ -34,8 +35,6 @@ class SignUpActivity : ViewBindingActivity<ActivitySignUpBinding>() {
 
     private var launcher: ActivityResultLauncher<Intent>? = null
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
-
     companion object {
         fun getIntent(context: Context): Intent {
             return Intent(context, SignUpActivity::class.java)
@@ -48,6 +47,8 @@ class SignUpActivity : ViewBindingActivity<ActivitySignUpBinding>() {
         super.onCreate(savedInstanceState)
         binding.toolbar.setTitle(R.string.signUp)
         setSupportActionBar(binding.toolbar)
+        val ab = supportActionBar!!
+        ab.setDisplayHomeAsUpEnabled(true)
 
         initEventListeners()
 
@@ -65,6 +66,16 @@ class SignUpActivity : ViewBindingActivity<ActivitySignUpBinding>() {
             }
         }
 
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

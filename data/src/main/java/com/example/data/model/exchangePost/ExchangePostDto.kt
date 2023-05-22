@@ -1,14 +1,12 @@
 package com.example.data.model.exchangePost
 
-import com.example.domain.model.exchange.AvailableTime
-
 data class ExchangePostDto(
-    val availableTime: AvailableTime,
+    val availableTimeDto: AvailableTimeDto,
     val content: String,
     val date: String,
     val giveCate: String,
     val giveTalent: String,
-    val images: List<Any>,
+    val imageDtos: List<ImageDto>,
     val pid: Int,
     val postType: String,
     val takeCate: String,

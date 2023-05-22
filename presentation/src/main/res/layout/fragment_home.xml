@@ -36,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/user_nickname"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -44,7 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/user_temperature"
-                android:textSize="24sp" />
+                android:textSize="16sp" />
 
         </LinearLayout>
 

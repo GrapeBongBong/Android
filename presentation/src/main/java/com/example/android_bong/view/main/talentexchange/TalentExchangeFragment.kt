@@ -103,7 +103,8 @@ class TalentExchangeFragment : ViewBindingFragment<FragmentTalentExchangeBinding
     }
 
     private fun onClickPost(talentExchangeItemUiState: TalentExchangeItemUiState) {
-        val intent = TalentExchangeDetailActivity.getIntent(requireContext())
+        val intent =
+            TalentExchangeDetailActivity.getIntent(requireContext(), talentExchangeItemUiState)
         launcher?.launch(intent)
     }
 }

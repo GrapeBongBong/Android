@@ -3,7 +3,6 @@ package com.example.data.paging
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.data.api.ExchangePostApi
-import com.example.data.extension.errorMessage
 import com.example.data.mapper.toEntity
 import com.example.domain.model.exchange.ExchangePost
 import javax.inject.Inject
@@ -20,9 +19,10 @@ class ExchangePagingSource @Inject constructor(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ExchangePost> {
         val page = params.key ?: START_PAGE
         return try {
-            val response = api.getAll(size = PAGE_SIZE, page = page)
+            val response =
+                api.getAll()
             if (response.isSuccessful) {
-                val posts = response.body()!!.data.posts.map { it.toEntity() }
+                val posts = response.body()!!.posts.map { it.toEntity() }
                 val isEnd = posts.isEmpty()
 
                 LoadResult.Page(
@@ -31,7 +31,7 @@ class ExchangePagingSource @Inject constructor(
                     nextKey = if (isEnd) null else page + 1
                 )
             } else {
-                throw Exception(response.errorMessage)
+                throw Exception(response.message())
             }
         } catch (e: java.lang.Exception) {
             LoadResult.Error(e)

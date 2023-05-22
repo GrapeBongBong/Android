@@ -10,12 +10,12 @@ import retrofit2.http.POST
 
 interface AuthApi {
 
-    @POST("/auth/login")
+    @POST("auth/login")
     suspend fun login(
         @Body loginRequestBody: LoginRequestBody
-    ): Response<LoginDto>
+    ): Response<ResponseBody<LoginDto>>
 
-    @POST("/auth/join")
+    @POST("auth/join")
     suspend fun signUp(
         @Body signUpRequestBody: SignUpRequestBody
     ): Response<ResponseBody<Unit>>
