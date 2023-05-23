@@ -6,7 +6,7 @@ import com.example.domain.repository.UserRepository
 import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
-    private val remoteDataSource: UserRemoteDataSource
+    private val remoteDataSource: UserRemoteDataSource,
 ) : UserRepository {
 
     override suspend fun updateUserInfo(
@@ -17,16 +17,18 @@ class UserRepositoryImpl @Inject constructor(
         return try {
             val response = remoteDataSource.updateUserInfo(
                 userId = userId,
-                ProfileUpdateRequestBody(
+                profileUpdateRequestBody = ProfileUpdateRequestBody(
                     nickName = nickName,
                     address = address
                 )
             )
-            if (response.code() == 200) {
+            val responseBody = response.body()
+            if (responseBody != null && response.code() == 200) {
                 Result.success(Unit)
             } else {
-                throw Exception("정보 수정에 실패하였습니다.")
+                throw Exception(response.body()!!.message)
             }
+
         } catch (e: Exception) {
             Result.failure(e)
         }

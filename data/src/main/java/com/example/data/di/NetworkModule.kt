@@ -1,10 +1,8 @@
 package com.example.data.di
 
 import com.example.data.BuildConfig
-import com.example.data.api.AuthApi
-import com.example.data.api.CommentApi
-import com.example.data.api.ExchangePostApi
-import com.example.data.api.UserApi
+import com.example.data.api.*
+import com.example.data.source.AuthLocalDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,16 +20,13 @@ class NetworkModule {
 
     companion object {
         private const val BASE_URL = "http://3.34.75.23:8080/"
+        private const val TOKEN_HEADER_KEY = "Authorization"
     }
 
     @Provides
     @Singleton
-    fun provideHttpClient(): OkHttpClient {
-        val interceptor = HttpLoggingInterceptor()
-        interceptor.level =
-            if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY
-            else HttpLoggingInterceptor.Level.NONE
-        return OkHttpClient.Builder()
+    fun provideHttpClient(authLocalDataSource: AuthLocalDataSource): OkHttpClient {
+        val client = OkHttpClient.Builder()
             .readTimeout(100, TimeUnit.SECONDS)
             .connectTimeout(100, TimeUnit.SECONDS)
             .writeTimeout(100, TimeUnit.SECONDS)
@@ -44,8 +39,22 @@ class NetworkModule {
                     }
                 }
             )
-            .build()
+            .addInterceptor {
+                val authLocalData = authLocalDataSource.getData()
+                var newRequest = it.request()
+                if (authLocalData != null) {
+                    val token = "Bearer ${authLocalData.sessionToken}"
+                    newRequest = newRequest.newBuilder().addHeader(
+                        name = TOKEN_HEADER_KEY,
+                        value = token
+                    ).build()
+                }
+                it.proceed(newRequest)
+            }
+
+        return client.build()
     }
+
 
     @Provides
     @Singleton
@@ -85,6 +94,12 @@ class NetworkModule {
     @Singleton
     fun provideUserApi(retrofit: Retrofit): UserApi {
         return retrofit.create(UserApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideCommunityApi(retrofit: Retrofit): CommunityApi {
+        return retrofit.create(CommunityApi::class.java)
     }
 
 }

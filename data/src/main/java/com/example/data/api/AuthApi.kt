@@ -1,8 +1,8 @@
 package com.example.data.api
 
 import com.example.data.model.ResponseBody
-import com.example.data.model.auth.LoginDto
 import com.example.data.model.auth.LoginRequestBody
+import com.example.data.model.auth.LoginResponseBody
 import com.example.data.model.auth.SignUpRequestBody
 import retrofit2.Response
 import retrofit2.http.Body
@@ -13,7 +13,7 @@ interface AuthApi {
     @POST("auth/login")
     suspend fun login(
         @Body loginRequestBody: LoginRequestBody
-    ): Response<ResponseBody<LoginDto>>
+    ): Response<LoginResponseBody>
 
     @POST("auth/join")
     suspend fun signUp(

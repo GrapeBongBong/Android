@@ -4,9 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
+import com.example.android_bong.R
 import com.example.android_bong.common.ViewBindingActivity
 import com.example.android_bong.databinding.ActivityCommunityCreateBinding
-import com.example.android_bong.view.main.MainActivity
 
 class CommunityCreateActivity : ViewBindingActivity<ActivityCommunityCreateBinding>() {
 
@@ -16,11 +17,26 @@ class CommunityCreateActivity : ViewBindingActivity<ActivityCommunityCreateBindi
 
     companion object {
         fun getIntent(context: Context): Intent {
-            return Intent(context, MainActivity::class.java)
+            return Intent(context, CommunityCreateActivity::class.java)
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding.toolbar.setTitle(R.string.community_posting)
+        setSupportActionBar(binding.toolbar)
+        val ab = supportActionBar!!
+        ab.setDisplayHomeAsUpEnabled(true)
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
 }

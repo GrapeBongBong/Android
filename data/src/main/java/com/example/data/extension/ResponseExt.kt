@@ -6,7 +6,7 @@ import retrofit2.Response
 
 val <T> Response<ResponseBody<T>>.errorMessage: String?
     get() {
-        if (isSuccessful || code() == 200) throw IllegalStateException()
+        if (isSuccessful) throw IllegalStateException()
         else {
             return try {
                 message()

@@ -21,4 +21,8 @@ interface AuthRepository {
 
     suspend fun getUserDetail(): StateFlow<User?>
 
+    fun syncCurrentUser(
+        nickName: String, address: String
+    )
+
 }

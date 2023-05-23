@@ -9,6 +9,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.example.android_bong.R
 import com.example.android_bong.common.ViewBindingActivity
 import com.example.android_bong.databinding.ActivityTalentExchangeCreateBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,7 +31,8 @@ class TalentExchangeCreateActivity : ViewBindingActivity<ActivityTalentExchangeC
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        binding.toolbar.setTitle(R.string.exchange_talent_posting)
+        setSupportActionBar(binding.toolbar)
         val ab = supportActionBar!!
         ab.setDisplayHomeAsUpEnabled(true)
 

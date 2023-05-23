@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -12,6 +13,7 @@ import com.example.android_bong.R
 import com.example.android_bong.common.ViewBindingFragment
 import com.example.android_bong.databinding.FragmentProfileBinding
 import com.example.android_bong.view.main.profile.profileUpdate.ProfileUpdateActivity
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 
@@ -35,6 +37,7 @@ class ProfileFragment : ViewBindingFragment<FragmentProfileBinding>() {
     }
 
     private fun updateUi(uiState: ProfileUiState) = with(binding) {
+
         if (uiState.currentUser != null) {
             val user = uiState.currentUser
             nicknameText.text = getString(R.string.profile_userNickName, user.nickName)

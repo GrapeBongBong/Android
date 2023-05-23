@@ -2,13 +2,13 @@ package com.example.android_bong.view.main.talentexchange
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import com.example.android_bong.databinding.ItemExchangePostBinding
 
 class TalentExchangeAdapter(
     private val onClickItem: (TalentExchangeItemUiState) -> Unit
-) : PagingDataAdapter<TalentExchangeItemUiState, TalentExchangeViewHolder>(diffCallback) {
+) : ListAdapter<TalentExchangeItemUiState, TalentExchangeViewHolder>(diffCallback) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TalentExchangeViewHolder {
@@ -18,7 +18,11 @@ class TalentExchangeAdapter(
     }
 
     override fun onBindViewHolder(holder: TalentExchangeViewHolder, position: Int) {
-        getItem(position)?.let { holder.bind(it) }
+        holder.bind(currentList[position])
+    }
+
+    override fun submitList(list: List<TalentExchangeItemUiState>?) {
+        super.submitList(list)
     }
 
     companion object {

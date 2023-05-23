@@ -45,12 +45,12 @@ class TalentExchangeDetailActivity :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setSupportActionBar(binding.toolbar)
+        val ab = supportActionBar!!
+        ab.setDisplayHomeAsUpEnabled(true)
 
         val item = intent.getSerializable("item", TalentExchangeItemUiState::class.java)
         viewModel.bind(item)
-
-        val ab = supportActionBar!!
-        ab.setDisplayHomeAsUpEnabled(true)
 
         //TODO : 댓글 adapter와 viewHolder 필요
 

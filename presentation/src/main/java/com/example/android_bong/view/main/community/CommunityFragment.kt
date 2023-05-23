@@ -38,6 +38,7 @@ class CommunityFragment : ViewBindingFragment<FragmentCommunityBinding>() {
 
     private fun updateUi(uiState: CommunityUiState) {
 
+
     }
 
     private fun initEventListeners() {
@@ -54,6 +55,22 @@ class CommunityFragment : ViewBindingFragment<FragmentCommunityBinding>() {
     private fun navigateToDetail() {
         val intent = CommunityDetailActivity.getIntent(requireContext())
         startActivity(intent)
+    }
+
+
+    @Suppress("UNUSED_PARAMETER")
+    fun onScrollChangeListener(
+        v: View,
+        scrollX: Int,
+        scrollY: Int,
+        oldScrollX: Int,
+        oldScrollY: Int
+    ) {
+        if (scrollY > oldScrollY) {
+            binding.fab.shrink()
+        } else {
+            binding.fab.extend()
+        }
     }
 
 

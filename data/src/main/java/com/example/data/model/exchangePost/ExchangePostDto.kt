@@ -6,7 +6,7 @@ data class ExchangePostDto(
     val date: String,
     val giveCate: String,
     val giveTalent: String,
-    val imageDtos: List<ImageDto>,
+    val imageDtos: List<ImageDto> = emptyList(),
     val pid: Int,
     val postType: String,
     val takeCate: String,
