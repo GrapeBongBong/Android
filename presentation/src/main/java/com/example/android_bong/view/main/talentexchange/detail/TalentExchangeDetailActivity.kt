@@ -21,8 +21,6 @@ import com.example.android_bong.common.ViewBindingActivity
 import com.example.android_bong.databinding.ActivityTalentExchangeDetailBinding
 import com.example.android_bong.extension.addDividerDecoration
 import com.example.android_bong.view.main.comment.CommentAdapter
-import com.example.android_bong.view.main.talentexchange.TalentExchangeUiState
-import com.example.android_bong.view.main.talentexchange.TalentExchangeViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -47,7 +45,7 @@ class TalentExchangeDetailActivity :
         return intent.getIntExtra("postId", 0)
     }
 
-    private val viewModel: TalentExchangeViewModel by viewModels()
+    private val viewModel: TalentExchangeDetailViewModel by viewModels()
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -126,46 +124,42 @@ class TalentExchangeDetailActivity :
         recyclerView.addDividerDecoration()
     }
 
-    private fun updateUi(uiState: TalentExchangeUiState, adapter: CommentAdapter) = with(binding) {
-        val postDetail = uiState.postDetail
+    private fun updateUi(uiState: TalentExchangeDetailUiState, adapter: CommentAdapter) =
+        with(binding) {
+            val postDetail = uiState.postDetail
 
-        binding.loadState.emptyText.isVisible =
-            uiState.comments.isEmpty()
+            binding.loadState.emptyText.isVisible =
+                uiState.comments.isEmpty()
 
-        if (uiState.isCommentLoadingSuccess) {
-            loadState.retryButton.isVisible = false
-            loadState.errorMsg.isVisible = false
-        }
+            if (uiState.isCommentLoadingSuccess) {
+                loadState.retryButton.isVisible = false
+                loadState.errorMsg.isVisible = false
+            }
 
-        adapter.submitList(uiState.comments)
-
-        if (postDetail != null) {
-            title.text = postDetail.title
-            content.text = postDetail.content
-            nickName.text =
-                getString(R.string.post_id_nickName, postDetail.writerNick, postDetail.writerId)
-            date.text = postDetail.date
-            takeTalent.text = getString(R.string.take_text, postDetail.takeTalent)
-            giveTalent.text = getString(R.string.give_text, postDetail.giveTalent)
-
-            //postDetailButton.isVisible = postDetail.isNotMine
-        }
-
-        if (uiState.userMessage != null) {
-            showSnackBar(uiState.userMessage)
-            viewModel.userMessageShown()
-        }
-
-        createCommentButton.apply {
-            isEnabled = uiState.isValidComment
-        }
-
-        if (uiState.isCommentCreateSuccess) {
-            viewModel.fetchComments()
             adapter.submitList(uiState.comments)
-        }
 
-    }
+            if (postDetail != null) {
+                title.text = postDetail.title
+                content.text = postDetail.content
+                nickName.text =
+                    getString(R.string.post_id_nickName, postDetail.writerNick, postDetail.writerId)
+                date.text = postDetail.date
+                takeTalent.text = getString(R.string.take_text, postDetail.takeTalent)
+                giveTalent.text = getString(R.string.give_text, postDetail.giveTalent)
+
+                //postDetailButton.isVisible = postDetail.isNotMine
+            }
+
+            if (uiState.userMessage != null) {
+                showSnackBar(uiState.userMessage)
+                viewModel.userMessageShown()
+            }
+
+            createCommentButton.apply {
+                isEnabled = uiState.isValidComment
+            }
+
+        }
 
     private fun showSnackBar(message: String) {
         Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()

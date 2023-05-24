@@ -2,6 +2,7 @@ package com.example.data.api
 
 import com.example.data.model.comment.CommentsDto
 import com.example.data.model.comment.CreateCommentRequestBody
+import com.example.data.model.comment.CreateCommentResponseBody
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -16,7 +17,7 @@ interface CommentApi {
     suspend fun createComment(
         @Path("postId") postId: Int,
         @Body createCommentRequestBody: CreateCommentRequestBody
-    ): Response<Unit>
+    ): Response<CreateCommentResponseBody>
 
     @HTTP(method = "DELETE", path = "/{postId}/comment/delete/{commentId}", hasBody = true)
     suspend fun deleteComment(

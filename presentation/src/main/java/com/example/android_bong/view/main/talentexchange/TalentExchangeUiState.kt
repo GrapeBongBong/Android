@@ -7,20 +7,8 @@ import java.io.Serializable
 data class TalentExchangeUiState(
     val userMessage: String? = null,
     val posts: List<TalentExchangeItemUiState> = emptyList(),
-    val comments: List<CommentItemUiState> = emptyList(),
-    val isLoadingSuccess: Boolean = false,
-    val isCommentLoadingSuccess: Boolean = false,
-    val isCommentCreateSuccess: Boolean = false,
-    val postDetail: TalentExchangeItemUiState? = null,
-
-    val postId: Int? = null,
-    val postContent: String = "",
-    val commentId: Int? = null
-
-) {
-    val isValidComment: Boolean
-        get() = postContent.isNotEmpty()
-}
+    val isLoadingSuccess: Boolean = false
+)
 
 data class TalentExchangeItemUiState(
     val availableTime: AvailableTime,
@@ -40,12 +28,3 @@ data class TalentExchangeItemUiState(
     val status: Boolean,
     val isMine: Boolean
 ) : Serializable
-
-data class CommentItemUiState(
-    val commentId: Int,
-    val postId: Int,
-    val content: String,
-    val date: String,
-    val userId: Int,
-    val isMine: Boolean
-)

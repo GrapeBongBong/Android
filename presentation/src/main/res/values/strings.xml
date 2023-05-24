@@ -47,8 +47,8 @@
     <string name="see_email">이메일 : %s</string>
     <string name="see_id">아이디 : %s</string>
     <string name="see_password">비밀번호 : %s</string>
-    <string name="take_text">Take : %s</string>
-    <string name="give_text">Give : %s</string>
+    <string name="take_text">Take : %s • (%s)</string>
+    <string name="give_text">Give : %s • (%s)</string>
     <string name="updating">정보 수정하기</string>
     <string name="yearMonthDay">생년월일</string>
     <string name="post_id_nickName">%s(%s)</string>
@@ -83,10 +83,11 @@
     <string name="find_password">비밀번호 찾기</string>
     <string name="write_post">게시물 쓰기</string>
     <string name="loading">로딩중…</string>
+
     <string-array name="talent_array">
-        <item>코딩</item>
-        <item>헬스</item>
-        <item>강낭콩</item>
-        <item>담쟁이</item>
+        <item>IT</item>
+        <item>운동</item>
+        <item>음악</item>
     </string-array>
+
 </resources>

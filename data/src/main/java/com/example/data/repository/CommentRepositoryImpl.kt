@@ -16,8 +16,7 @@ class CommentRepositoryImpl @Inject constructor(
             val response = commentRemoteDataSource.getAll(postId = postId)
             val responseBody = response.body()
             if (responseBody != null && response.code() == 200) {
-
-                val data = responseBody.contents.map {
+                val data = responseBody.comments!!.map {
                     it.toEntity()
                 }
                 Result.success(data)
@@ -31,15 +30,15 @@ class CommentRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun createComment(postId: Int, content: String): Result<Unit> {
+    override suspend fun createComment(postId: Int, content: String): Result<String> {
         return try {
             val response = commentRemoteDataSource.createComment(
                 postId = postId,
                 createCommentRequestBody = CreateCommentRequestBody(content = content)
             )
             val responseBody = response.body()
-            if (responseBody != null && response.code() == 200) {
-                Result.success(Unit)
+            if (responseBody != null && response.code() == 201) {
+                Result.success(response.body()!!.message)
             } else if (response.code() == 401) {
                 throw Exception("유효하지 않은 토큰입니다.")
             } else if (response.code() == 403) {

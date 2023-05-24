@@ -30,10 +30,12 @@ class TalentExchangeViewHolder(
 
         takeTalent.text = root.context.getString(
             R.string.take_text,
+            uiState.takeCate,
             uiState.takeTalent
         )
         giveTalent.text = root.context.getString(
             R.string.give_text,
+            uiState.giveCate,
             uiState.giveTalent
         )
 
