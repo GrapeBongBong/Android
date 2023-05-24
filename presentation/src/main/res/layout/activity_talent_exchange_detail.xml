@@ -25,8 +25,8 @@
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/post_detail_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:layout_gravity="end"
                 android:layout_marginEnd="16dp"
                 android:src="@drawable/ic_baseline_settings_24" />
@@ -157,8 +157,7 @@
                 style="?attr/textAppearanceBodyMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
+                android:layout_margin="20dp"
                 android:padding="10dp"
                 android:textSize="16sp"
                 tools:text="내용이 들어가는 공간" />
@@ -174,25 +173,46 @@
                 android:background="@color/md_theme_light_outline"
                 android:ellipsize="end" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/commentInputLayout"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:layout_marginBottom="10dp">
 
-                <EditText
-                    android:id="@+id/comment"
-                    android:layout_width="match_parent"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/commentInputLayout"
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:hint="@string/input_comment"
-                    android:inputType="textEmailAddress"
-                    android:maxLines="1"
-                    android:textColorHint="#757575"
-                    tools:ignore="Autofill,TextFields,TouchTargetSizeCheck,TouchTargetSizeCheck" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <EditText
+                        android:id="@+id/comment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/input_comment"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:textColorHint="#757575"
+                        tools:ignore="Autofill,TextFields,TouchTargetSizeCheck,TouchTargetSizeCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/create_comment_button"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_baseline_send_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/commentInputLayout"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

@@ -11,6 +11,7 @@ import android.widget.PopupMenu
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -60,7 +61,7 @@ class TalentExchangeDetailActivity :
         val postId = getPostId()
         Log.d("postId", postId.toString())
         viewModel.postDetailBind(postId)
-        viewModel.fetchComments(postId)
+        viewModel.fetchComments()
 
         val adapter = CommentAdapter()
         initRecyclerView(adapter)
@@ -106,6 +107,16 @@ class TalentExchangeDetailActivity :
                 }
             }
         }
+
+        createCommentButton.setOnClickListener {
+            viewModel.createComment()
+        }
+
+        comment.addTextChangedListener {
+            if (it != null) {
+                viewModel.updateContent(it.toString())
+            }
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -145,6 +156,14 @@ class TalentExchangeDetailActivity :
             viewModel.userMessageShown()
         }
 
+        createCommentButton.apply {
+            isEnabled = uiState.isValidComment
+        }
+
+        if (uiState.isCommentCreateSuccess) {
+            viewModel.fetchComments()
+            adapter.submitList(uiState.comments)
+        }
 
     }
 

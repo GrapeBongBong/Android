@@ -17,10 +17,14 @@ class CommentRemoteDataSourceImpl @Inject constructor(
     ): Response<Unit> =
         api.createComment(postId, createCommentRequestBody)
 
-    override suspend fun deleteComment(postId: Int, userId: Int): Response<Unit> =
-        api.deleteComment(postId, userId)
+    override suspend fun deleteComment(postId: Int, commentId: Int): Response<Unit> =
+        api.deleteComment(postId, commentId)
 
-    override suspend fun updateComment(postId: Int, userId: Int): Response<Unit> =
-        api.updateComment(postId, userId)
+    override suspend fun updateComment(
+        postId: Int,
+        commentId: Int,
+        createCommentRequestBody: CreateCommentRequestBody
+    ): Response<Unit> =
+        api.updateComment(postId, commentId, createCommentRequestBody)
 
 }

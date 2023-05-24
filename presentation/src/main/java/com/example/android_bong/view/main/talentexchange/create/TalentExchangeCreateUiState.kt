@@ -16,27 +16,27 @@ data class TalentExchangeCreateUiState(
         get() = isValidTitle && isValidContent && isValidGiveCate && isValidTakeCate && isValidGiveTalent && isValidTakeTalent && isValidDays && isValidTimeZone
 
     private val isValidTitle: Boolean
-        get() = title.length >= 0
+        get() = title.isNotEmpty()
 
     private val isValidContent: Boolean
-        get() = content.length >= 0
+        get() = content.isNotEmpty()
 
     private val isValidGiveCate: Boolean
-        get() = giveCate.length >= 0
+        get() = giveCate.isNotEmpty()
 
     private val isValidTakeCate: Boolean
-        get() = takeCate.length >= 0
+        get() = takeCate.isNotEmpty()
 
     private val isValidGiveTalent: Boolean
-        get() = giveTalent.length >= 0
+        get() = giveTalent.isNotEmpty()
 
     private val isValidTakeTalent: Boolean
-        get() = takeTalent.length >= 0
+        get() = takeTalent.isNotEmpty()
 
     private val isValidDays: Boolean
         get() = possibleDays.isNotEmpty()
 
     private val isValidTimeZone: Boolean
-        get() = possibleTimeZone.length >= 0
+        get() = possibleTimeZone.isNotEmpty()
 
 }

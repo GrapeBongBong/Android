@@ -10,8 +10,17 @@ data class TalentExchangeUiState(
     val comments: List<CommentItemUiState> = emptyList(),
     val isLoadingSuccess: Boolean = false,
     val isCommentLoadingSuccess: Boolean = false,
-    val postDetail: TalentExchangeItemUiState? = null
-)
+    val isCommentCreateSuccess: Boolean = false,
+    val postDetail: TalentExchangeItemUiState? = null,
+
+    val postId: Int? = null,
+    val postContent: String = "",
+    val commentId: Int? = null
+
+) {
+    val isValidComment: Boolean
+        get() = postContent.isNotEmpty()
+}
 
 data class TalentExchangeItemUiState(
     val availableTime: AvailableTime,

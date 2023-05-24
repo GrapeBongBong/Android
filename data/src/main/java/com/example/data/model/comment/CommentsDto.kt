@@ -1,5 +1,5 @@
 package com.example.data.model.comment
 
 data class CommentsDto(
-    val contents: List<CommentDto>? = emptyList()
+    val contents: List<CommentDto>
 )

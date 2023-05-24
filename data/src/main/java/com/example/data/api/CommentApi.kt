@@ -27,7 +27,8 @@ interface CommentApi {
     @PUT("/{postId}/comment/{commentId}")
     suspend fun updateComment(
         @Path("postId") postId: Int,
-        @Path("commentId") commentId: Int
+        @Path("commentId") commentId: Int,
+        @Body createCommentRequestBody: CreateCommentRequestBody
     ): Response<Unit>
 
 }

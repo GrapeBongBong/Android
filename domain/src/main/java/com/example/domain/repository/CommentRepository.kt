@@ -6,4 +6,13 @@ interface CommentRepository {
 
     suspend fun getAll(postId: Int): Result<List<Comment>>
 
+    suspend fun createComment(
+        postId: Int,
+        content: String
+    ): Result<Unit>
+
+    suspend fun deleteComment(postId: Int, commentId: Int): Result<Unit>
+
+    suspend fun updateComment(postId: Int, commentId: Int, content: String): Result<Unit>
+
 }
