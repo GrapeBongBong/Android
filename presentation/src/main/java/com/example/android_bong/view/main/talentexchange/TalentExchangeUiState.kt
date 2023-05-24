@@ -7,7 +7,9 @@ import java.io.Serializable
 data class TalentExchangeUiState(
     val userMessage: String? = null,
     val posts: List<TalentExchangeItemUiState> = emptyList(),
+    val comments: List<CommentItemUiState> = emptyList(),
     val isLoadingSuccess: Boolean = false,
+    val isCommentLoadingSuccess: Boolean = false,
     val postDetail: TalentExchangeItemUiState? = null
 )
 
@@ -26,5 +28,15 @@ data class TalentExchangeItemUiState(
     val uid: Int,
     val writerId: String,
     val writerNick: String,
-    val status: Boolean
+    val status: Boolean,
+    val isMine: Boolean
 ) : Serializable
+
+data class CommentItemUiState(
+    val commentId: Int,
+    val postId: Int,
+    val content: String,
+    val date: String,
+    val userId: Int,
+    val isMine: Boolean
+)

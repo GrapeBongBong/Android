@@ -29,4 +29,10 @@ abstract class RemoteModule {
     abstract fun bindUserRemoteDataSource(
         userRemoteDataSourceImpl: UserRemoteDataSourceImpl
     ): UserRemoteDataSource
+
+    @Singleton
+    @Binds
+    abstract fun bindCommentRemoteDataSource(
+        commentRemoteDataSourceImpl: CommentRemoteDataSourceImpl
+    ): CommentRemoteDataSource
 }

@@ -28,8 +28,8 @@
     <string name="launch">점심</string>
     <string name="afternoon">오후</string>
     <string name="dinner">저녁</string>
-    <string name="times">시간대</string>
-    <string name="days">요일</string>
+    <string name="times">시간대(중복불가)</string>
+    <string name="days">요일(중복가능)</string>
     <string name="do_signup">회원 가입하기</string>
     <string name="profile_temperature">나의 온도는 %s도에요.</string>
     <string name="profile_userNickName">%s님</string>
@@ -56,10 +56,13 @@
     <string name="failed_to_load">불러오기에 실패했습니다.</string>
     <string name="fail_to_connect">연결에 실패하였습니다.</string>
     <string name="middle_dot">\u0020•\u0020</string>
-    <string name="content">내용</string>
+    <string name="content">내용\n\n</string>
     <string name="empty">텅</string>
     <string name="retry">재시도</string>
     <string name="posting">등록하기</string>
+    <string name="edit">수정</string>
+    <string name="delete">삭제</string>
+    <string name="isMinePost">글쓴이(나)</string>
     <string name="input_comment">댓글 추가..</string>
     <string name="photo">사진은 3장까지 등록가능해요.</string>
     <string name="unable_to_retrieve_member_information">회원정보를 불러올 수 없습니다.</string>
@@ -80,4 +83,10 @@
     <string name="find_password">비밀번호 찾기</string>
     <string name="write_post">게시물 쓰기</string>
     <string name="loading">로딩중…</string>
+    <string-array name="talent_array">
+        <item>코딩</item>
+        <item>헬스</item>
+        <item>강낭콩</item>
+        <item>담쟁이</item>
+    </string-array>
 </resources>

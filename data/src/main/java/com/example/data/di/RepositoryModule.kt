@@ -1,9 +1,11 @@
 package com.example.data.di
 
 import com.example.data.repository.AuthRepositoryImpl
+import com.example.data.repository.CommentRepositoryImpl
 import com.example.data.repository.ExchangePostRepositoryImpl
 import com.example.data.repository.UserRepositoryImpl
 import com.example.domain.repository.AuthRepository
+import com.example.domain.repository.CommentRepository
 import com.example.domain.repository.ExchangePostRepository
 import com.example.domain.repository.UserRepository
 import dagger.Binds
@@ -33,5 +35,11 @@ abstract class RepositoryModule {
     abstract fun bindsUserRepository(
         userRepositoryImpl: UserRepositoryImpl
     ): UserRepository
+
+    @Singleton
+    @Binds
+    abstract fun bindsCommentRepository(
+        commentRepositoryImpl: CommentRepositoryImpl
+    ): CommentRepository
 
 }

@@ -1,6 +1,6 @@
-package com.example.domain.model.comment
+package com.example.data.model.comment
 
-data class Comment(
+data class CommentDto(
     val commentId: Int,
     val postId: Int,
     val content: String,

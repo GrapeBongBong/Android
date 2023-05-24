@@ -206,5 +206,4 @@ class SignUpActivity : ViewBindingActivity<ActivitySignUpBinding>() {
         Snackbar.make(this, binding.root, message, Snackbar.LENGTH_LONG).show()
     }
 
-
 }

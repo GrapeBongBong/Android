@@ -13,11 +13,17 @@ class TalentExchangeViewHolder(
     fun bind(uiState: TalentExchangeItemUiState) = with(binding) {
         val glide = Glide.with(root)
 
-        userNickName.text = root.context.getString(
-            R.string.post_id_nickName,
-            uiState.writerNick,
-            uiState.writerNick
-        )
+        if (uiState.isMine) {
+            userNickName.text = root.context.getString(
+                R.string.isMinePost
+            )
+        } else {
+            userNickName.text = root.context.getString(
+                R.string.post_id_nickName,
+                uiState.writerNick,
+                uiState.writerNick
+            )
+        }
 
         title.text = uiState.title
         content.text = uiState.content
