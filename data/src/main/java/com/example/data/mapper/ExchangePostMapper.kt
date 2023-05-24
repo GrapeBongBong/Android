@@ -8,12 +8,12 @@ import com.example.domain.model.exchange.ExchangePost
 import com.example.domain.model.exchange.Image
 
 fun ExchangePostDto.toEntity() = ExchangePost(
-    availableTime = availableTimeDto.toEntity(),
+    availableTime = availableTime.toEntity(),
     content = content,
     date = date,
     giveCate = giveCate,
     giveTalent = giveTalent,
-    images = imageDtos.map { it.toEntity() },
+    images = image?.map { it.toEntity() },
     pid = pid,
     postType = postType,
     takeCate = takeCate,
@@ -21,7 +21,8 @@ fun ExchangePostDto.toEntity() = ExchangePost(
     title = title,
     uid = uid,
     writerId = writerId,
-    writerNick = writerNick
+    writerNick = writerNick,
+    status = status
 )
 
 fun AvailableTimeDto.toEntity() = AvailableTime(

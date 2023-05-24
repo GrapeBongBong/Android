@@ -68,22 +68,31 @@ class TalentExchangeFragment : ViewBindingFragment<FragmentTalentExchangeBinding
 
     }
 
-    private fun updateUi(uiState: TalentExchangeUiState, adapter: TalentExchangeAdapter) {
-        binding.loadState.emptyText.isVisible =
-            uiState.posts.isEmpty()
+    private fun updateUi(uiState: TalentExchangeUiState, adapter: TalentExchangeAdapter) =
+        with(binding) {
+            binding.loadState.emptyText.isVisible =
+                uiState.posts.isEmpty()
 
-        adapter.submitList(uiState.posts)
+            if (uiState.isLoadingSuccess) {
+                loadState.retryButton.isVisible = false
+                loadState.errorMsg.isVisible = false
+            }
 
-        if (uiState.userMessage != null) {
-            showSnackBar(uiState.userMessage)
-            Log.d("error", uiState.userMessage)
-            viewModel.userMessageShown()
+            adapter.submitList(uiState.posts)
+
+            if (uiState.userMessage != null) {
+                showSnackBar(uiState.userMessage)
+                Log.d("error", uiState.userMessage)
+                viewModel.userMessageShown()
+            }
         }
-    }
 
     private fun initEventListeners() {
         binding.fab.setOnClickListener {
             navigateToCreate()
+        }
+        binding.loadState.retryButton.setOnClickListener {
+            viewModel.fetchPosts()
         }
     }
 

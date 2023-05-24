@@ -17,5 +17,6 @@ fun ExchangePost.toUiState() = TalentExchangeItemUiState(
     title = title,
     uid = uid,
     writerId = writerId,
-    writerNick = writerNick
+    writerNick = writerNick,
+    status = status
 )

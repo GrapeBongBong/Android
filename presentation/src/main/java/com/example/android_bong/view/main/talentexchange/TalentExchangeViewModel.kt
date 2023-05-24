@@ -33,7 +33,10 @@ class TalentExchangeViewModel @Inject constructor(
             val result = getAllExchangePostUseCase()
             if (result.isSuccess) {
                 _uiState.update { data ->
-                    data.copy(posts = result.getOrNull()!!.map { it.toUiState() })
+                    data.copy(
+                        posts = result.getOrNull()!!.map { it.toUiState() },
+                        isLoadingSuccess = true
+                    )
                 }
             } else {
                 _uiState.update {
