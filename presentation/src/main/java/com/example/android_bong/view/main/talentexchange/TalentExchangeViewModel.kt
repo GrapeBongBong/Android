@@ -23,8 +23,21 @@ class TalentExchangeViewModel @Inject constructor(
 
     private var fetchJob: Job? = null
 
-    init {
-        fetchPosts()
+    fun postDetailBind(postId: Int) {
+        fetchJob?.cancel()
+        fetchJob = viewModelScope.launch {
+            val result = getAllExchangePostUseCase()
+            val foundPost = result.getOrNull()!!.find { it.pid == postId }
+
+            _uiState.update {
+                if (foundPost != null) {
+                    it.copy(postDetail = foundPost.toUiState())
+                } else {
+                    it.copy(userMessage = "해당 포스트를 찾지 못하였습니다.")
+                }
+            }
+
+        }
     }
 
     fun fetchPosts() {

@@ -36,9 +36,8 @@ class TalentExchangeFragment : ViewBindingFragment<FragmentTalentExchangeBinding
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        viewModel.fetchPosts()
         val adapter = TalentExchangeAdapter(::onClickPost)
-
         initRecyclerView(adapter)
         initEventListeners()
 
@@ -108,10 +107,9 @@ class TalentExchangeFragment : ViewBindingFragment<FragmentTalentExchangeBinding
 
     private fun onClickPost(talentExchangeItemUiState: TalentExchangeItemUiState) {
         val intent =
-            TalentExchangeDetailActivity.getIntent(requireContext(), talentExchangeItemUiState)
+            TalentExchangeDetailActivity.getIntent(requireContext(), talentExchangeItemUiState.pid)
         launcher?.launch(intent)
     }
-
 
     @Suppress("UNUSED_PARAMETER")
     fun onScrollChangeListener(
