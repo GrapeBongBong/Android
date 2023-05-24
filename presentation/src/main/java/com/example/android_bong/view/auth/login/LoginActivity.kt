@@ -3,6 +3,7 @@ package com.example.android_bong.view.auth.login
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.viewModels
@@ -15,8 +16,8 @@ import com.example.android_bong.R
 import com.example.android_bong.common.ViewBindingActivity
 import com.example.android_bong.databinding.ActivityLoginBinding
 import com.example.android_bong.extension.RefreshStateContract
-import com.example.android_bong.view.main.MainActivity
 import com.example.android_bong.view.auth.signUp.SignUpActivity
+import com.example.android_bong.view.main.MainActivity
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -75,6 +76,7 @@ class LoginActivity : ViewBindingActivity<ActivityLoginBinding>() {
         }
         if (uiState.userMessage != null) {
             showSnackBar(uiState.userMessage)
+            Log.d("error", uiState.userMessage)
             viewModel.userMessageShown()
         }
         binding.signInButton.apply {
@@ -84,6 +86,7 @@ class LoginActivity : ViewBindingActivity<ActivityLoginBinding>() {
     }
 
     private fun initEventListeners() = with(binding) {
+
         id.addTextChangedListener {
             if (it != null) {
                 viewModel.updateID(it.toString())
@@ -100,6 +103,7 @@ class LoginActivity : ViewBindingActivity<ActivityLoginBinding>() {
         signUpText.setOnClickListener {
             navigateSignUpActivity()
         }
+
     }
 
     private fun navigateMainActivity() {

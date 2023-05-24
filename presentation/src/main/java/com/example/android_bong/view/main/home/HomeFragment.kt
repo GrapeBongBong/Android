@@ -41,9 +41,6 @@ class HomeFragment : ViewBindingFragment<FragmentHomeBinding>() {
         userTemperature.text =
             getString(R.string.user_temperature, uiState.userTemperature.toString())
 
-        val extendedFab = requireActivity().findViewById<ExtendedFloatingActionButton>(R.id.fab)
-        extendedFab.isVisible = false
-
         if (uiState.userMessage != null) {
             showSnackBar(uiState.userMessage.toString())
             viewModel.userMessageShown()

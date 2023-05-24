@@ -1,5 +1,7 @@
 package com.example.domain.model.user
 
+import java.io.Serializable
+
 data class User(
     val activated: Boolean,
     val address: String,
@@ -15,4 +17,4 @@ data class User(
     val roles: List<Any>,
     val temperature: Double,
     val uid: Int
-)
+) : Serializable

@@ -7,14 +7,15 @@ import retrofit2.Response
 val <T> Response<ResponseBody<T>>.errorMessage: String?
     get() {
         if (isSuccessful) throw IllegalStateException()
-
-        return try {
-            message()
-            val errorBodyJson = requireNotNull(errorBody()).string()
-            val responseBody = Gson().fromJson(errorBodyJson, ResponseBody::class.java)
-            responseBody.message
-        } catch (e: Exception) {
-            e.message
+        else {
+            return try {
+                message()
+                val errorBodyJson = requireNotNull(errorBody()).string()
+                val responseBody = Gson().fromJson(errorBodyJson, ResponseBody::class.java)
+                responseBody.message
+            } catch (e: Exception) {
+                e.message
+            }
         }
     }
 

@@ -199,7 +199,7 @@
                 android:text="@string/times"
                 android:textStyle="bold" />
 
-            <LinearLayout
+            <RadioGroup
                 android:id="@+id/timeGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -207,15 +207,15 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <CheckBox
+                <RadioButton
                     android:id="@+id/dawn_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="5dp"
-                    android:checked="false"
+                    android:checked="true"
                     android:text="@string/dawn" />
 
-                <CheckBox
+                <RadioButton
                     android:id="@+id/morning_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -223,7 +223,7 @@
                     android:checked="false"
                     android:text="@string/morning" />
 
-                <CheckBox
+                <RadioButton
                     android:id="@+id/lunch_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -231,8 +231,7 @@
                     android:checked="false"
                     android:text="@string/launch" />
 
-
-                <CheckBox
+                <RadioButton
                     android:id="@+id/afternoon_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -240,21 +239,20 @@
                     android:checked="false"
                     android:text="@string/afternoon" />
 
-
-                <CheckBox
+                <RadioButton
                     android:id="@+id/dinner_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
                     android:text="@string/dinner" />
 
-            </LinearLayout>
+            </RadioGroup>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/photo"
                 android:layout_marginBottom="10dp"
+                android:text="@string/photo"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -284,21 +282,15 @@
 
             </LinearLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/contentTextInputLayout"
+            <EditText
+                android:id="@+id/content"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_marginBottom="10dp">
-
-                <EditText
-                    android:id="@+id/content"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/memo_style"
-                    android:hint="@string/content"
-                    tools:ignore="Autofill,TextFields,SpeakableTextPresentCheck,SpeakableTextPresentCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/memo_style"
+                android:hint="@string/content"
+                android:padding="10dp"
+                tools:ignore="Autofill,TextFields,SpeakableTextPresentCheck,SpeakableTextPresentCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
             <Button
                 android:id="@+id/create_button"

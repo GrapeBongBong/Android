@@ -1,14 +1,12 @@
 package com.example.data.model.exchangePost
 
-import com.example.domain.model.exchange.AvailableTime
-
 data class ExchangePostDto(
-    val availableTime: AvailableTime,
+    val availableTime: AvailableTimeDto,
     val content: String,
     val date: String,
     val giveCate: String,
     val giveTalent: String,
-    val images: List<Any>,
+    val image: List<ImageDto>? = emptyList(),
     val pid: Int,
     val postType: String,
     val takeCate: String,
@@ -16,5 +14,16 @@ data class ExchangePostDto(
     val title: String,
     val uid: Int,
     val writerId: String,
-    val writerNick: String
+    val writerNick: String,
+    val status: Boolean
+)
+
+data class AvailableTimeDto(
+    val days: List<String>? = emptyList(),
+    val timezone: String? = null
+)
+
+data class ImageDto(
+    val fileUrl: String,
+    val id: Int
 )

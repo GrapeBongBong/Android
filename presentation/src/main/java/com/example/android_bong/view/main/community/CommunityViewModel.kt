@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CommunityViewModel @Inject constructor(
-
+    
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(CommunityUiState())

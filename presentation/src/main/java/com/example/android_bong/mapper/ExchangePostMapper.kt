@@ -3,7 +3,7 @@ package com.example.android_bong.mapper
 import com.example.android_bong.view.main.talentexchange.TalentExchangeItemUiState
 import com.example.domain.model.exchange.ExchangePost
 
-fun ExchangePost.toUiState() = TalentExchangeItemUiState(
+fun ExchangePost.toUiState(userId: Int) = TalentExchangeItemUiState(
     availableTime = availableTime,
     content = content,
     date = date,
@@ -17,5 +17,7 @@ fun ExchangePost.toUiState() = TalentExchangeItemUiState(
     title = title,
     uid = uid,
     writerId = writerId,
-    writerNick = writerNick
+    writerNick = writerNick,
+    status = status,
+    isMine = (uid == userId)
 )

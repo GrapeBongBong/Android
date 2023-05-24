@@ -1,9 +1,24 @@
 package com.example.domain.repository
 
-import androidx.paging.PagingData
 import com.example.domain.model.exchange.ExchangePost
-import kotlinx.coroutines.flow.Flow
 
 interface ExchangePostRepository {
-    fun getAll(): Flow<PagingData<ExchangePost>>
+
+    suspend fun getAll(): Result<List<ExchangePost>>
+
+    suspend fun deleteExchangePost(postId: Int): Result<Unit>
+
+    suspend fun createExchangePost(
+        title: String,
+        content: String,
+        giveCate: String,
+        takeCate: String,
+        giveTalent: String,
+        takeTalent: String,
+        days: MutableList<String>,
+        timeZone: String
+    ): Result<Unit>
+
+    suspend fun updateExchangePost(postId: Int): Result<Unit>
+
 }
