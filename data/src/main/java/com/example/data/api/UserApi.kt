@@ -14,5 +14,6 @@ interface UserApi {
         @Path("userId") userId: Int,
         @Body profileUpdateRequestBody: ProfileUpdateRequestBody
     ): Response<ResponseBody>
+    
 
 }
