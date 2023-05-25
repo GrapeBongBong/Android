@@ -72,10 +72,11 @@ class TalentExchangeFragment : ViewBindingFragment<FragmentTalentExchangeBinding
             binding.loadState.emptyText.isVisible =
                 uiState.posts.isEmpty()
 
-            if (uiState.isLoadingSuccess) {
-                loadState.retryButton.isVisible = false
-                loadState.errorMsg.isVisible = false
-            }
+            loadState.retryButton.isVisible = !uiState.isLoadingSuccess
+            loadState.errorMsg.isVisible = !uiState.isLoadingSuccess
+
+            loadState.progressBar.isVisible = uiState.isLoading
+            recyclerView.isVisible = !uiState.isLoading
 
             adapter.submitList(uiState.posts)
 

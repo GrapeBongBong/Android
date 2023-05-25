@@ -1,5 +1,6 @@
 package com.example.data.api
 
+import com.example.data.model.ResponseBody
 import com.example.data.model.exchangePost.CreateExchangePostRequestBody
 import com.example.data.model.exchangePost.ExchangePostDto
 import retrofit2.Response
@@ -13,16 +14,16 @@ interface ExchangePostApi {
     @HTTP(method = "DELETE", path = "/exchange/delete/{postId}", hasBody = false)
     suspend fun deleteExchangePost(
         @Path("postId") postId: Int
-    ): Response<Unit>
+    ): Response<ResponseBody>
 
     @PUT("/exchange/post/{postId}")
     suspend fun updateExchangePost(
         @Path("postId") postId: Int
-    ): Response<Unit>
+    ): Response<ResponseBody>
 
     @POST("/exchange/post")
     suspend fun createExchangePost(
         @Body createExchangePostRequestBody: CreateExchangePostRequestBody
-    ): Response<Unit>
+    ): Response<ResponseBody>
 
 }

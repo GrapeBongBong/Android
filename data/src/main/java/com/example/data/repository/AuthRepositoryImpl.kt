@@ -1,6 +1,5 @@
 package com.example.data.repository
 
-import com.example.data.extension.getDataOrThrowMessage
 import com.example.data.mapper.toEntity
 import com.example.data.model.auth.AuthLocalData
 import com.example.data.model.auth.LoginRequestBody
@@ -63,9 +62,9 @@ class AuthRepositoryImpl @Inject constructor(
         phoneNum: String,
         address: String,
         gender: String
-    ): Result<Unit> {
-        return runCatching {
-            val response = remoteDataSource.signUp(
+    ): Result<String> {
+        return try {
+            val result = remoteDataSource.signUp(
                 SignUpRequestBody(
                     id = id,
                     password = password,
@@ -78,7 +77,14 @@ class AuthRepositoryImpl @Inject constructor(
                     gender = gender
                 )
             )
-            response.getDataOrThrowMessage()
+            if (result.body() != null) {
+                Result.success(result.body()!!.message)
+            } else {
+                throw Exception(result.errorBody().toString())
+            }
+
+        } catch (e: Exception) {
+            Result.failure(e)
         }
     }
 

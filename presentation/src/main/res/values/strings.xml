@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Android_Bong</string>
+    <string name="app_name">Bong#</string>
     <string name="login">로그인</string>
     <string name="password">비밀번호</string>
     <string name="id">아이디</string>
@@ -83,6 +83,7 @@
     <string name="find_password">비밀번호 찾기</string>
     <string name="write_post">게시물 쓰기</string>
     <string name="loading">로딩중…</string>
+    <string name="application_button_text">신청하기</string>
 
     <string-array name="talent_array">
         <item>IT</item>

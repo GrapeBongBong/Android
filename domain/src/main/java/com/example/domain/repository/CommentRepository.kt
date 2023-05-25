@@ -11,8 +11,8 @@ interface CommentRepository {
         content: String
     ): Result<String>
 
-    suspend fun deleteComment(postId: Int, commentId: Int): Result<Unit>
+    suspend fun deleteComment(postId: Int, commentId: Int): Result<String>
 
-    suspend fun updateComment(postId: Int, commentId: Int, content: String): Result<Unit>
+    suspend fun updateComment(postId: Int, commentId: Int, content: String): Result<String>
 
 }

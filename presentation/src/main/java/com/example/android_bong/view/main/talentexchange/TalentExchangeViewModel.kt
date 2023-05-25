@@ -30,18 +30,23 @@ class TalentExchangeViewModel @Inject constructor(
     fun fetchPosts() {
         fetchJob?.cancel()
         fetchJob = viewModelScope.launch {
+            _uiState.update { it.copy(isLoading = true) }
             val result = getAllExchangePostUseCase()
             val userId = getUserUseCase()!!.uid
             if (result.isSuccess) {
                 _uiState.update { data ->
                     data.copy(
                         posts = result.getOrNull()!!.map { it.toUiState(userId) },
-                        isLoadingSuccess = true
+                        isLoadingSuccess = true,
+                        isLoading = false
                     )
                 }
             } else {
                 _uiState.update {
-                    it.copy(userMessage = result.exceptionOrNull()!!.localizedMessage)
+                    it.copy(
+                        userMessage = result.exceptionOrNull()!!.localizedMessage,
+                        isLoading = false
+                    )
                 }
             }
         }

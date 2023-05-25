@@ -38,22 +38,16 @@ class CommentRepositoryImpl @Inject constructor(
             )
             val responseBody = response.body()
             if (responseBody != null && response.code() == 201) {
-                Result.success(response.body()!!.message)
-            } else if (response.code() == 401) {
-                throw Exception("유효하지 않은 토큰입니다.")
-            } else if (response.code() == 403) {
-                throw Exception("필수 정보가 없습니다.")
-            } else if (response.code() == 404) {
-                throw Exception("로그인이 필요합니다.")
+                Result.success(responseBody.message)
             } else {
-                throw Exception("서버에 예기치 않은 오류가 발생했습니다.")
+                throw Exception(responseBody!!.message)
             }
         } catch (e: Exception) {
             Result.failure(e)
         }
     }
 
-    override suspend fun deleteComment(postId: Int, commentId: Int): Result<Unit> {
+    override suspend fun deleteComment(postId: Int, commentId: Int): Result<String> {
         return try {
             val response = commentRemoteDataSource.deleteComment(
                 postId = postId,
@@ -61,22 +55,20 @@ class CommentRepositoryImpl @Inject constructor(
             )
             val responseBody = response.body()
             if (responseBody != null && response.code() == 200) {
-                Result.success(Unit)
-            } else if (response.code() == 401) {
-                throw Exception("해당 댓글의 작성자가 아닙니다.")
-            } else if (response.code() == 403) {
-                throw Exception("필수 정보가 없습니다.")
-            } else if (response.code() == 404) {
-                throw Exception("존재하지 않는 댓글입니다.")
+                Result.success(responseBody.message)
             } else {
-                throw Exception("서버에 예기치 않은 오류가 발생했습니다.")
+                throw Exception(responseBody!!.message)
             }
         } catch (e: Exception) {
             Result.failure(e)
         }
     }
 
-    override suspend fun updateComment(postId: Int, commentId: Int, content: String): Result<Unit> {
+    override suspend fun updateComment(
+        postId: Int,
+        commentId: Int,
+        content: String
+    ): Result<String> {
         return try {
             val response = commentRemoteDataSource.createComment(
                 postId = postId,
@@ -84,15 +76,9 @@ class CommentRepositoryImpl @Inject constructor(
             )
             val responseBody = response.body()
             if (responseBody != null && response.code() == 200) {
-                Result.success(Unit)
-            } else if (response.code() == 401) {
-                throw Exception("해당 댓글을 수정할 권한이 없습니다.")
-            } else if (response.code() == 403) {
-                throw Exception("필수 정보가 없습니다.")
-            } else if (response.code() == 404) {
-                throw Exception("로그인이 필요합니다.")
+                Result.success(responseBody.message)
             } else {
-                throw Exception("서버에 예기치 않은 오류가 발생했습니다.")
+                throw Exception(responseBody!!.message)
             }
         } catch (e: Exception) {
             Result.failure(e)

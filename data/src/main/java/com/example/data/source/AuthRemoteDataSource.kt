@@ -8,5 +8,5 @@ import retrofit2.Response
 
 interface AuthRemoteDataSource {
     suspend fun login(loginRequestBody: LoginRequestBody): Response<LoginResponseBody>
-    suspend fun signUp(signUpRequestBody: SignUpRequestBody): Response<ResponseBody<Unit>>
+    suspend fun signUp(signUpRequestBody: SignUpRequestBody): Response<ResponseBody>
 }

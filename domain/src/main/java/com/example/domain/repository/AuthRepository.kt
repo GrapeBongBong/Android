@@ -17,7 +17,7 @@ interface AuthRepository {
         phoneNum: String,
         address: String,
         gender: String
-    ): Result<Unit>
+    ): Result<String>
 
     suspend fun getUserDetail(): StateFlow<User?>
 

@@ -6,7 +6,7 @@ interface ExchangePostRepository {
 
     suspend fun getAll(): Result<List<ExchangePost>>
 
-    suspend fun deleteExchangePost(postId: Int): Result<Unit>
+    suspend fun deleteExchangePost(postId: Int): Result<String>
 
     suspend fun createExchangePost(
         title: String,
@@ -17,8 +17,8 @@ interface ExchangePostRepository {
         takeTalent: String,
         days: MutableList<String>,
         timeZone: String
-    ): Result<Unit>
+    ): Result<String>
 
-    suspend fun updateExchangePost(postId: Int): Result<Unit>
+    suspend fun updateExchangePost(postId: Int): Result<String>
 
 }

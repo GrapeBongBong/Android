@@ -13,7 +13,7 @@ class UserRepositoryImpl @Inject constructor(
         userId: Int,
         nickName: String,
         address: String
-    ): Result<Unit> {
+    ): Result<String> {
         return try {
             val response = remoteDataSource.updateUserInfo(
                 userId = userId,
@@ -24,7 +24,7 @@ class UserRepositoryImpl @Inject constructor(
             )
             val responseBody = response.body()
             if (responseBody != null && response.code() == 200) {
-                Result.success(Unit)
+                Result.success(responseBody.message)
             } else {
                 throw Exception(response.body()!!.message)
             }

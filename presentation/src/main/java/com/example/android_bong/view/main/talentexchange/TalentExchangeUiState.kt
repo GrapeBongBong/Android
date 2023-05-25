@@ -7,7 +7,8 @@ import java.io.Serializable
 data class TalentExchangeUiState(
     val userMessage: String? = null,
     val posts: List<TalentExchangeItemUiState> = emptyList(),
-    val isLoadingSuccess: Boolean = false
+    val isLoadingSuccess: Boolean = false,
+    val isLoading: Boolean = false
 )
 
 data class TalentExchangeItemUiState(

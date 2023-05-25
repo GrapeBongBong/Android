@@ -66,11 +66,21 @@ class TalentExchangeDetailActivity :
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.uiState.collect {
-                    updateUi(it, adapter)
+                viewModel.talentExchangeDetailUiState.collect {
+                    updatePostDetailUi(it)
                 }
             }
         }
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.commentUiState.collect {
+                    updateCommentsUi(it, adapter)
+                }
+            }
+        }
+
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -112,7 +122,7 @@ class TalentExchangeDetailActivity :
 
         comment.addTextChangedListener {
             if (it != null) {
-                viewModel.updateContent(it.toString())
+                viewModel.updateCommentContent(it.toString())
             }
         }
     }
@@ -124,19 +134,9 @@ class TalentExchangeDetailActivity :
         recyclerView.addDividerDecoration()
     }
 
-    private fun updateUi(uiState: TalentExchangeDetailUiState, adapter: CommentAdapter) =
+    private fun updatePostDetailUi(uiState: TalentExchangeDetailUiState) =
         with(binding) {
             val postDetail = uiState.postDetail
-
-            binding.loadState.emptyText.isVisible =
-                uiState.comments.isEmpty()
-
-            if (uiState.isCommentLoadingSuccess) {
-                loadState.retryButton.isVisible = false
-                loadState.errorMsg.isVisible = false
-            }
-
-            adapter.submitList(uiState.comments)
 
             if (postDetail != null) {
                 title.text = postDetail.title
@@ -144,22 +144,40 @@ class TalentExchangeDetailActivity :
                 nickName.text =
                     getString(R.string.post_id_nickName, postDetail.writerNick, postDetail.writerId)
                 date.text = postDetail.date
-                takeTalent.text = getString(R.string.take_text, postDetail.takeTalent)
-                giveTalent.text = getString(R.string.give_text, postDetail.giveTalent)
+                takeTalent.text =
+                    getString(R.string.take_text, postDetail.takeCate, postDetail.takeTalent)
+                giveTalent.text =
+                    getString(R.string.give_text, postDetail.giveCate, postDetail.giveTalent)
 
                 //postDetailButton.isVisible = postDetail.isNotMine
             }
 
             if (uiState.userMessage != null) {
                 showSnackBar(uiState.userMessage)
-                viewModel.userMessageShown()
+                viewModel.postDetailUserMessageShown()
             }
-
-            createCommentButton.apply {
-                isEnabled = uiState.isValidComment
-            }
-
         }
+
+    private fun updateCommentsUi(uiState: CommentUiState, adapter: CommentAdapter) = with(binding) {
+        binding.loadState.emptyText.isVisible =
+            uiState.comments.isEmpty()
+
+        loadState.retryButton.isVisible = !uiState.isLoadingSuccess
+        loadState.errorMsg.isVisible = !uiState.isLoadingSuccess
+
+        loadState.progressBar.isVisible = uiState.isLoading
+        recyclerView.isVisible = !uiState.isLoading
+        adapter.submitList(uiState.comments)
+
+        createCommentButton.apply {
+            isEnabled = uiState.isValidComment
+        }
+
+        if (uiState.userMessage != null) {
+            showSnackBar(uiState.userMessage)
+            viewModel.commentUserMessageShown()
+        }
+    }
 
     private fun showSnackBar(message: String) {
         Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()

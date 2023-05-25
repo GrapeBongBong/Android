@@ -80,7 +80,13 @@ class SignUpViewModel @Inject constructor(
                 gender = gender
             )
             if (result.isSuccess) {
-                _uiState.update { it.copy(successToSignUp = true, isLoading = false) }
+                _uiState.update {
+                    it.copy(
+                        successToSignUp = true,
+                        isLoading = false,
+                        userMessage = result.getOrNull()
+                    )
+                }
             } else {
                 _uiState.update {
                     it.copy(

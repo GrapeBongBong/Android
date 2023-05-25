@@ -1,6 +1,7 @@
 package com.example.data.source
 
 import com.example.data.api.ExchangePostApi
+import com.example.data.model.ResponseBody
 import com.example.data.model.exchangePost.CreateExchangePostRequestBody
 import com.example.data.model.exchangePost.ExchangePostDto
 import com.example.domain.model.exchange.AvailableTime
@@ -12,7 +13,8 @@ class ExchangePostRemoteDataSourceImpl @Inject constructor(
 ) : ExchangePostRemoteDataSource {
 
     override suspend fun getAll(): Response<List<ExchangePostDto>> = api.getAll()
-    override suspend fun deleteExchangePost(postId: Int): Response<Unit> =
+
+    override suspend fun deleteExchangePost(postId: Int): Response<ResponseBody> =
         api.deleteExchangePost(postId = postId)
 
     override suspend fun createExchangePost(
@@ -23,7 +25,7 @@ class ExchangePostRemoteDataSourceImpl @Inject constructor(
         giveTalent: String,
         takeTalent: String,
         availableTime: AvailableTime
-    ): Response<Unit> = api.createExchangePost(
+    ): Response<ResponseBody> = api.createExchangePost(
         CreateExchangePostRequestBody(
             title = title,
             content = content,

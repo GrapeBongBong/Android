@@ -30,15 +30,14 @@ class ExchangePostRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun deleteExchangePost(postId: Int): Result<Unit> {
+    override suspend fun deleteExchangePost(postId: Int): Result<String> {
         return try {
             val response = exchangePostRemoteDataSource.deleteExchangePost(postId)
-            if (response.isSuccessful && response.code() == 200) {
-                Result.success(Unit)
-            } else if (response.code() == 401) {
-                throw Exception("유효하지 않은 토큰입니다.")
+            val responseBody = response.body()
+            if (responseBody != null && response.code() == 200) {
+                Result.success(responseBody.message)
             } else {
-                throw Exception("서버에 예기치 않은 오류가 발생했습니다.")
+                throw Exception(responseBody!!.message)
             }
         } catch (e: Exception) {
             Result.failure(e)
@@ -54,7 +53,7 @@ class ExchangePostRepositoryImpl @Inject constructor(
         takeTalent: String,
         days: MutableList<String>,
         timeZone: String
-    ): Result<Unit> {
+    ): Result<String> {
         return try {
             val response = exchangePostRemoteDataSource.createExchangePost(
                 title = title,
@@ -68,23 +67,18 @@ class ExchangePostRepositoryImpl @Inject constructor(
                     timezone = timeZone
                 )
             )
-            if (response.isSuccessful && response.code() == 200) {
-                Result.success(Unit)
-            } else if (response.code() == 401) {
-                throw Exception("유효하지 않은 토큰입니다.")
-            } else if (response.code() == 403) {
-                throw Exception("필수 정보가 없습니다.")
-            } else if (response.code() == 404) {
-                throw Exception("회원이 아닙니다.")
+            val responseBody = response.body()
+            if (responseBody != null && response.code() == 200) {
+                Result.success(responseBody.message)
             } else {
-                throw Exception("서버에 예기치 않은 오류가 발생합니다.")
+                throw Exception(responseBody!!.message)
             }
         } catch (e: Exception) {
             Result.failure(e)
         }
     }
 
-    override suspend fun updateExchangePost(postId: Int): Result<Unit> {
-        return Result.success(Unit)
+    override suspend fun updateExchangePost(postId: Int): Result<String> {
+        return Result.success("adad")
     }
 }
