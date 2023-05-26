@@ -1,6 +1,6 @@
 package com.example.android_bong.mapper
 
-import com.example.android_bong.view.main.talentexchange.detail.CommentItemUiState
+import com.example.android_bong.view.main.comment.CommentItemUiState
 import com.example.domain.model.comment.Comment
 
 fun Comment.toUiState(uid: Int) = CommentItemUiState(

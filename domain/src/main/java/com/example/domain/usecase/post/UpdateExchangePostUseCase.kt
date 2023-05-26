@@ -1,4 +1,10 @@
 package com.example.domain.usecase.post
 
-class UpdateExchangePostUseCase {
+import com.example.domain.repository.ExchangePostRepository
+import javax.inject.Inject
+
+class UpdateExchangePostUseCase @Inject constructor(
+    private val repository: ExchangePostRepository
+) {
+
 }

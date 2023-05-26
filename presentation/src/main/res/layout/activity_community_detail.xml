@@ -35,9 +35,6 @@
             android:id="@+id/content_layout1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
             android:gravity="center"
             android:orientation="vertical"
             tools:ignore="UselessParent">
@@ -47,6 +44,9 @@
                 style="?attr/textAppearanceTitleLarge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
                 android:textStyle="bold"
                 tools:text="제목이 들어가는 공간" />
 
@@ -55,7 +55,9 @@
                 style="?attr/textAppearanceLabelMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
                 android:text="@string/anonymous" />
 
             <TextView
@@ -63,13 +65,17 @@
                 style="?attr/textAppearanceLabelMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
                 tools:text="날짜가 들어가는 공간" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
                 android:layout_marginBottom="10dp"
                 android:alpha="0.6"
                 android:background="@color/md_theme_light_outline"
@@ -80,40 +86,76 @@
                 style="?attr/textAppearanceBodyMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
                 android:background="@drawable/memo_style"
+                android:padding="10dp"
                 android:textSize="16sp"
-                tools:text="내용이 들어가는 공간\n\n\n\n\n\n\n" />
+                tools:text="내용이 들어가는 공간" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
                 android:layout_marginBottom="10dp"
                 android:alpha="0.6"
                 android:background="@color/md_theme_light_outline"
                 android:ellipsize="end" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/commentInputLayout"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp">
 
-                <EditText
-                    android:id="@+id/comment"
-                    android:layout_width="match_parent"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/commentInputLayout"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:hint="@string/input_comment"
-                    android:inputType="textEmailAddress"
-                    android:maxLines="1"
-                    android:textColorHint="#757575"
-                    tools:ignore="Autofill,TextFields,TouchTargetSizeCheck,TouchTargetSizeCheck" />
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="0.8"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <EditText
+                        android:id="@+id/comment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/input_comment"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:textColorHint="#757575"
+                        tools:ignore="Autofill,TextFields,TouchTargetSizeCheck,TouchTargetSizeCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/create_comment_button"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_baseline_send_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/commentInputLayout"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
                 android:clipToPadding="false"
                 tools:listitem="@layout/item_comment" />
 

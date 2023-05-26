@@ -8,7 +8,8 @@ data class TalentExchangeUiState(
     val userMessage: String? = null,
     val posts: List<TalentExchangeItemUiState> = emptyList(),
     val isLoadingSuccess: Boolean = false,
-    val isLoading: Boolean = false
+    val isLoading: Boolean = false,
+    val userId: Int? = null
 )
 
 data class TalentExchangeItemUiState(

@@ -90,7 +90,7 @@ class SignUpViewModel @Inject constructor(
             } else {
                 _uiState.update {
                     it.copy(
-                        userMessage = result.exceptionOrNull()!!.localizedMessage,
+                        userMessage = result.getOrNull(),
                         isLoading = false
                     )
                 }

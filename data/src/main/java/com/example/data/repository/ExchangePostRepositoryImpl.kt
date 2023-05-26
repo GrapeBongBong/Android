@@ -69,9 +69,11 @@ class ExchangePostRepositoryImpl @Inject constructor(
             )
             val responseBody = response.body()
             if (responseBody != null && response.code() == 200) {
-                Result.success(responseBody.message)
+                val message = responseBody.message
+                Result.success(message)
             } else {
-                throw Exception(responseBody!!.message)
+                val message = responseBody!!.message
+                throw Exception(message)
             }
         } catch (e: Exception) {
             Result.failure(e)

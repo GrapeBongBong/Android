@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.widget.PopupMenu
@@ -21,6 +20,7 @@ import com.example.android_bong.common.ViewBindingActivity
 import com.example.android_bong.databinding.ActivityTalentExchangeDetailBinding
 import com.example.android_bong.extension.addDividerDecoration
 import com.example.android_bong.view.main.comment.CommentAdapter
+import com.example.android_bong.view.main.comment.CommentUiState
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -57,9 +57,7 @@ class TalentExchangeDetailActivity :
         initEvent()
 
         val postId = getPostId()
-        Log.d("postId", postId.toString())
-        viewModel.postDetailBind(postId)
-        viewModel.fetchComments()
+        viewModel.bind(postId)
 
         val adapter = CommentAdapter()
         initRecyclerView(adapter)
@@ -79,8 +77,6 @@ class TalentExchangeDetailActivity :
                 }
             }
         }
-
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

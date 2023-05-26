@@ -4,7 +4,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.android_bong.R
 import com.example.android_bong.databinding.ItemCommentBinding
-import com.example.android_bong.view.main.talentexchange.detail.CommentItemUiState
 
 class CommentViewHolder(
     private val binding: ItemCommentBinding

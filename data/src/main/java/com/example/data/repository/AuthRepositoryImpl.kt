@@ -21,7 +21,7 @@ class AuthRepositoryImpl @Inject constructor(
 
     private val isReady = MutableStateFlow(false)
 
-    override suspend fun getUserDetail(): StateFlow<User?> {
+    override fun getUserDetail(): StateFlow<User?> {
         return currentUserState
     }
 
@@ -77,10 +77,13 @@ class AuthRepositoryImpl @Inject constructor(
                     gender = gender
                 )
             )
-            if (result.body() != null) {
-                Result.success(result.body()!!.message)
+            val responseBody = result.body()
+            if (responseBody != null && result.code() == 200) {
+                val message = responseBody.message
+                Result.success(message)
             } else {
-                throw Exception(result.errorBody().toString())
+                val message = responseBody!!.message
+                throw Exception(message)
             }
 
         } catch (e: Exception) {

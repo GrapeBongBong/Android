@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.example.android_bong.databinding.ItemCommentBinding
-import com.example.android_bong.view.main.talentexchange.detail.CommentItemUiState
 
 class CommentAdapter :
     ListAdapter<CommentItemUiState, CommentViewHolder>(diffCallback) {

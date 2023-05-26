@@ -19,7 +19,7 @@ interface AuthRepository {
         gender: String
     ): Result<String>
 
-    suspend fun getUserDetail(): StateFlow<User?>
+    fun getUserDetail(): StateFlow<User?>
 
     fun syncCurrentUser(
         nickName: String, address: String
