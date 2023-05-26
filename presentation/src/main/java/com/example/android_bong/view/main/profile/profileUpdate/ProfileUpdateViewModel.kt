@@ -68,7 +68,11 @@ class ProfileUpdateViewModel @Inject constructor(
             )
             if (result.isSuccess) {
                 _uiState.update {
-                    it.copy(updatingIsSuccess = true, isLoading = false)
+                    it.copy(
+                        updatingIsSuccess = true,
+                        isLoading = false,
+                        userMessage = result.getOrNull()
+                    )
                 }
             } else {
                 _uiState.update {

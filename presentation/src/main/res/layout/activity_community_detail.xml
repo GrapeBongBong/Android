@@ -148,7 +148,7 @@
                     android:id="@+id/create_comment_button"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.2"
+                    android:layout_weight="0.1"
                     android:padding="4dp"
                     android:src="@drawable/ic_baseline_send_24"
                     app:layout_constraintBottom_toBottomOf="parent"

@@ -1,10 +1,11 @@
 package com.example.android_bong.view.main.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
+import androidx.activity.result.ActivityResultLauncher
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -12,8 +13,9 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.example.android_bong.R
 import com.example.android_bong.common.ViewBindingFragment
 import com.example.android_bong.databinding.FragmentProfileBinding
+import com.example.android_bong.extension.RefreshStateContract
+import com.example.android_bong.view.main.MainViewModel
 import com.example.android_bong.view.main.profile.profileUpdate.ProfileUpdateActivity
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 
@@ -22,16 +24,25 @@ class ProfileFragment : ViewBindingFragment<FragmentProfileBinding>() {
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentProfileBinding
         get() = FragmentProfileBinding::inflate
 
-    private val viewModel: ProfileViewModel by activityViewModels()
+    private val viewModel: MainViewModel by activityViewModels()
+
+    private lateinit var launcher: ActivityResultLauncher<Intent>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.uiState.collect {
+                viewModel.profileUiState.collect {
                     updateUi(it)
                 }
+            }
+        }
+
+        launcher = registerForActivityResult(RefreshStateContract()) {
+            if (it != null) {
+                viewModel.fetchUserTemperature()
+                it.message?.let { message -> showSnackBar(message) }
             }
         }
     }
@@ -49,7 +60,7 @@ class ProfileFragment : ViewBindingFragment<FragmentProfileBinding>() {
 
         if (uiState.userMessage != null) {
             showSnackBar(getString(uiState.userMessage))
-            viewModel.userMessageShown()
+            viewModel.userProfileMessageShown()
         }
         updatingButton.setOnClickListener {
             navigateToProfileUpdateActivity()
@@ -59,7 +70,7 @@ class ProfileFragment : ViewBindingFragment<FragmentProfileBinding>() {
 
     private fun navigateToProfileUpdateActivity() {
         val intent = ProfileUpdateActivity.getIntent(requireContext())
-        startActivity(intent)
+        launcher.launch(intent)
     }
 
     private fun showSnackBar(message: String) {

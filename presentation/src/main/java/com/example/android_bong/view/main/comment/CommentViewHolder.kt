@@ -23,7 +23,7 @@ class CommentViewHolder(
         }
 
         commentMenuButton.setOnClickListener {
-
+            onClickMenu(uiState)
         }
 
         date.text = uiState.date
