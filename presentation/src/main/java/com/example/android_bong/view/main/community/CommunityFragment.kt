@@ -101,7 +101,7 @@ class CommunityFragment : ViewBindingFragment<FragmentCommunityBinding>() {
 
     private fun navigateToCreate() {
         val intent = CommunityCreateActivity.getIntent(requireContext())
-        startActivity(intent)
+        launcher?.launch(intent)
     }
 
     private fun onClickPost(communityItemUiState: CommunityItemUiState) {

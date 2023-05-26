@@ -3,12 +3,22 @@ package com.example.android_bong.view.main.community.create
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
+import androidx.activity.viewModels
+import androidx.core.widget.addTextChangedListener
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.android_bong.R
 import com.example.android_bong.common.ViewBindingActivity
 import com.example.android_bong.databinding.ActivityCommunityCreateBinding
+import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class CommunityCreateActivity : ViewBindingActivity<ActivityCommunityCreateBinding>() {
 
     override val bindingInflater: (LayoutInflater) -> ActivityCommunityCreateBinding
@@ -21,12 +31,23 @@ class CommunityCreateActivity : ViewBindingActivity<ActivityCommunityCreateBindi
         }
     }
 
+    private val viewModel: CommunityCreateViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.toolbar.setTitle(R.string.community_posting)
         setSupportActionBar(binding.toolbar)
         val ab = supportActionBar!!
         ab.setDisplayHomeAsUpEnabled(true)
+        initEvent()
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiState.collect {
+                    updateUi(it)
+                }
+            }
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -37,6 +58,46 @@ class CommunityCreateActivity : ViewBindingActivity<ActivityCommunityCreateBindi
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun updateUi(uiState: CommunityCreateUiState) = with(binding) {
+
+        if (uiState.userMessage != null) {
+            showSnackBar(uiState.userMessage)
+            Log.d("error", uiState.userMessage)
+            viewModel.userMessageShown()
+        }
+
+        if (uiState.isSuccessPosting) {
+            finish()
+        }
+
+        createButton.apply {
+            isEnabled = uiState.isInputValid
+        }
+    }
+
+    private fun initEvent() = with(binding) {
+
+        title.addTextChangedListener {
+            if (it != null) {
+                viewModel.updateTitle(it.toString())
+            }
+        }
+
+        content.addTextChangedListener {
+            if (it != null) {
+                viewModel.updateContent(it.toString())
+            }
+        }
+
+        createButton.setOnClickListener {
+            viewModel.createPost()
+        }
+    }
+
+    private fun showSnackBar(message: String) {
+        Snackbar.make(this, binding.root, message, Snackbar.LENGTH_LONG).show()
     }
 
 }

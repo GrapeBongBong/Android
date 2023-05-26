@@ -64,7 +64,6 @@ class ProfileUpdateActivity : ViewBindingActivity<ActivityProfileUpdateBinding>(
             val user = uiState.currentUser
             nickName.setText(user.nickName)
             phoneNumber.setText(user.phone_num)
-            password.setText(user.password)
             email.setText(user.email)
 
             nameText.text = getString(R.string.see_name, user.name)
@@ -116,7 +115,7 @@ class ProfileUpdateActivity : ViewBindingActivity<ActivityProfileUpdateBinding>(
 
         binding.updatingButton.apply {
             isEnabled = uiState.isInputValid && !uiState.isLoading
-            setText(if (uiState.isLoading) R.string.loading else R.string.login)
+            setText(if (uiState.isLoading) R.string.loading else R.string.updating)
         }
     }
 

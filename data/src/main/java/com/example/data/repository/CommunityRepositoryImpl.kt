@@ -1,6 +1,7 @@
 package com.example.data.repository
 
 import com.example.data.mapper.toEntity
+import com.example.data.model.community.CommunityRequestBody
 import com.example.data.source.CommunityRemoteDataSource
 import com.example.domain.model.community.CommunityPost
 import com.example.domain.repository.CommunityRepository
@@ -34,7 +35,23 @@ class CommunityRepositoryImpl @Inject constructor(
     }
 
     override suspend fun createPost(title: String, content: String): Result<String> {
-        TODO("Not yet implemented")
+        return try {
+            val response = communityRemoteDataSource.createPost(
+                CommunityRequestBody(
+                    title = title,
+                    content = content
+                ),
+                null
+            )
+            val responseBody = response.body()
+            if (responseBody != null && response.code() == 200) {
+                Result.success(responseBody.message)
+            } else {
+                throw Exception(responseBody!!.message)
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
     }
 
     override suspend fun updatePost(postId: Int): Result<String> {

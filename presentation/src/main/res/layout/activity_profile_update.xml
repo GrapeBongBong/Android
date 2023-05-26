@@ -39,8 +39,7 @@
             android:gravity="center"
             android:orientation="vertical">
 
-
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/imageView"
                 android:layout_width="96sp"
                 android:layout_height="96sp"
