@@ -12,14 +12,18 @@ class UserRepositoryImpl @Inject constructor(
     override suspend fun updateUserInfo(
         userId: Int,
         nickName: String,
-        address: String
+        email: String,
+        phoneNumber: String,
+        password: String
     ): Result<String> {
         return try {
             val response = remoteDataSource.updateUserInfo(
                 userId = userId,
                 profileUpdateRequestBody = ProfileUpdateRequestBody(
                     nickName = nickName,
-                    address = address
+                    email = email,
+                    phoneNumber = phoneNumber,
+                    password = password
                 )
             )
             val responseBody = response.body()

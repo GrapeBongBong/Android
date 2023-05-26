@@ -8,13 +8,27 @@ class UpdateUserInfoUseCase @Inject constructor(
     private val userRepository: UserRepository,
     private val authRepository: AuthRepository
 ) {
-    suspend operator fun invoke(userId: Int, nickName: String, address: String): Result<String> {
+    suspend operator fun invoke(
+        userId: Int,
+        nickName: String,
+        email: String,
+        phoneNumber: String,
+        password: String
+    ): Result<String> {
         val result =
-            userRepository.updateUserInfo(nickName = nickName, address = address, userId = userId)
+            userRepository.updateUserInfo(
+                nickName = nickName,
+                email = email,
+                phoneNumber = phoneNumber,
+                password = password,
+                userId = userId
+            )
         if (result.isSuccess) {
             authRepository.syncCurrentUser(
                 nickName = nickName,
-                address = address
+                email = email,
+                phoneNumber = phoneNumber,
+                password = password,
             )
         }
         return result

@@ -20,6 +20,7 @@ import com.example.android_bong.common.ViewBindingActivity
 import com.example.android_bong.databinding.ActivityTalentExchangeDetailBinding
 import com.example.android_bong.extension.addDividerDecoration
 import com.example.android_bong.view.main.comment.CommentAdapter
+import com.example.android_bong.view.main.comment.CommentItemUiState
 import com.example.android_bong.view.main.comment.CommentUiState
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -59,7 +60,7 @@ class TalentExchangeDetailActivity :
         val postId = getPostId()
         viewModel.bind(postId)
 
-        val adapter = CommentAdapter()
+        val adapter = CommentAdapter(::onClickCommentMenu)
         initRecyclerView(adapter)
 
         lifecycleScope.launch {
@@ -173,6 +174,10 @@ class TalentExchangeDetailActivity :
             showSnackBar(uiState.userMessage)
             viewModel.commentUserMessageShown()
         }
+    }
+
+    private fun onClickCommentMenu(uiState: CommentItemUiState) {
+
     }
 
     private fun showSnackBar(message: String) {

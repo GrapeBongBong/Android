@@ -37,7 +37,7 @@
     <string name="update_profile">프로필 수정</string>
     <string name="exchange_talent">재능 교환</string>
     <string name="exchange_talent_posting">재능 교환 게시물 등록</string>
-    <string name="community_posting">게시판 게시물 등록</string>
+    <string name="community_posting">커뮤니티 게시물 등록</string>
     <string name="anonymous">익명</string>
     <string name="date">2018년 5월 18일</string>
     <string name="see_name">이름 : %s</string>
@@ -84,6 +84,7 @@
     <string name="write_post">게시물 쓰기</string>
     <string name="loading">로딩중…</string>
     <string name="application_button_text">신청하기</string>
+    <string name="user_info">사용자 정보</string>
 
     <string-array name="talent_array">
         <item>IT</item>

@@ -31,8 +31,16 @@ class ProfileUpdateViewModel @Inject constructor(
         _uiState.update { it.copy(nickName = nickName) }
     }
 
-    fun updateAddress(address: String) {
-        _uiState.update { it.copy(address = address) }
+    fun updateEmail(email: String) {
+        _uiState.update { it.copy(email = email) }
+    }
+
+    fun updatePhoneNumber(phoneNumber: String) {
+        _uiState.update { it.copy(phoneNumber = phoneNumber) }
+    }
+
+    fun updatePassword(password: String) {
+        _uiState.update { it.copy(password = password) }
     }
 
     private fun bind() {
@@ -46,13 +54,17 @@ class ProfileUpdateViewModel @Inject constructor(
 
     fun updateProfile() {
         val nickName = uiState.value.nickName
-        val address = uiState.value.address
+        val email = uiState.value.email
+        val phoneNumber = uiState.value.phoneNumber
+        val password = uiState.value.password
         _uiState.update { it.copy(isLoading = true) }
         viewModelScope.launch {
             val result = updateUserInfoUseCase(
                 userId = uiState.value.currentUser!!.uid,
                 nickName = nickName,
-                address = address
+                email = email,
+                phoneNumber = phoneNumber,
+                password = password,
             )
             if (result.isSuccess) {
                 _uiState.update {

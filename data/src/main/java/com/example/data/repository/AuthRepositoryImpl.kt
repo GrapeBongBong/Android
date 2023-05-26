@@ -92,13 +92,18 @@ class AuthRepositoryImpl @Inject constructor(
     }
 
     override fun syncCurrentUser(
-        nickName: String, address: String
+        nickName: String,
+        email: String,
+        phoneNumber: String,
+        password: String
     ) {
         val currentUserStateValue = currentUserState.value
         if (currentUserStateValue != null) {
             currentUserState.value = currentUserStateValue.copy(
                 nickName = nickName,
-                address = address
+                email = email,
+                phone_num = phoneNumber,
+                password = password
             )
         }
     }

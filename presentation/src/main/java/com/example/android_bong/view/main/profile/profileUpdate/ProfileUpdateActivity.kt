@@ -63,12 +63,13 @@ class ProfileUpdateActivity : ViewBindingActivity<ActivityProfileUpdateBinding>(
         if (uiState.currentUser != null) {
             val user = uiState.currentUser
             nickName.setText(user.nickName)
-            address.setText(user.address)
+            phoneNumber.setText(user.phone_num)
+            password.setText(user.password)
+            email.setText(user.email)
+
             nameText.text = getString(R.string.see_name, user.name)
             birthText.text = getString(R.string.see_birth, user.birth)
             sexText.text = getString(R.string.see_gender, user.gender)
-            phoneNumberText.text = getString(R.string.see_phoneNumber, user.phone_num)
-            emailText.text = getString(R.string.see_email, user.email)
             IdText.text = getString(R.string.see_id, user.id)
         }
     }
@@ -85,8 +86,37 @@ class ProfileUpdateActivity : ViewBindingActivity<ActivityProfileUpdateBinding>(
             finish()
         }
 
-        updatingButton.apply {
-            isEnabled = !uiState.isLoading
+        binding.emailInputLayout.apply {
+            isErrorEnabled = uiState.showEmailError
+            error = if (uiState.showEmailError) {
+                context.getString(R.string.email_is_not_valid)
+            } else null
+        }
+
+        binding.nickNameInputLayout.apply {
+            isErrorEnabled = uiState.showNickNameError
+            error = if (uiState.showNickNameError) {
+                context.getString(R.string.nickName_is_not_valid)
+            } else null
+        }
+
+        binding.passwordInputLayout.apply {
+            isErrorEnabled = uiState.showPasswordError
+            error = if (uiState.showPasswordError) {
+                context.getString(R.string.password_is_not_valid)
+            } else null
+        }
+
+        binding.phoneNumberInputLayout.apply {
+            isErrorEnabled = uiState.showPhoneNumberError
+            error = if (uiState.showPhoneNumberError) {
+                context.getString(R.string.phone_is_not_valid)
+            } else null
+        }
+
+        binding.updatingButton.apply {
+            isEnabled = uiState.isInputValid && !uiState.isLoading
+            setText(if (uiState.isLoading) R.string.loading else R.string.login)
         }
     }
 
@@ -101,9 +131,21 @@ class ProfileUpdateActivity : ViewBindingActivity<ActivityProfileUpdateBinding>(
             }
         }
 
-        address.addTextChangedListener {
+        password.addTextChangedListener {
             if (it != null) {
-                viewModel.updateAddress(it.toString())
+                viewModel.updatePassword(it.toString())
+            }
+        }
+
+        email.addTextChangedListener {
+            if (it != null) {
+                viewModel.updateEmail(it.toString())
+            }
+        }
+
+        phoneNumber.addTextChangedListener {
+            if (it != null) {
+                viewModel.updatePhoneNumber(it.toString())
             }
         }
 

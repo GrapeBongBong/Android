@@ -3,6 +3,7 @@ package com.example.android_bong.view.main.community.detail
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android_bong.mapper.toUiState
+import com.example.android_bong.view.main.comment.CommentUiState
 import com.example.domain.usecase.comment.CreateCommentUseCase
 import com.example.domain.usecase.comment.DeleteCommentUseCase
 import com.example.domain.usecase.comment.GetAllCommentUseCase
@@ -31,12 +32,15 @@ class CommunityDetailViewModel @Inject constructor(
     private val _communityDetailUiState = MutableStateFlow(CommunityDetailUiState())
     val communityDetailUiState = _communityDetailUiState.asStateFlow()
 
+    private val _commentUiState = MutableStateFlow(CommentUiState())
+    val commentUiState = _commentUiState.asStateFlow()
 
     private var postFetchJob: Job? = null
     private var commentFetchJob: Job? = null
 
     fun bind(postId: Int) {
         postDetailBind(postId)
+        commentsBind(postId)
     }
 
     private fun postDetailBind(postId: Int) {
@@ -63,6 +67,64 @@ class CommunityDetailViewModel @Inject constructor(
 
     fun postDetailUserMessageShown() {
         _communityDetailUiState.update { it.copy(userMessage = null) }
+    }
+
+    /**
+     * 댓글 부분
+     */
+
+    private fun commentsBind(postId: Int) {
+        commentFetchJob?.cancel()
+        commentFetchJob = viewModelScope.launch {
+            _commentUiState.update {
+                it.copy(
+                    isLoading = true, postId = postId
+                )
+            }
+            val result = getAllCommentUseCase(postId = postId)
+            val userId = getUserUseCase()!!.uid
+            if (result.isSuccess) {
+                _commentUiState.update { data ->
+                    data.copy(
+                        comments = result.getOrNull()!!.map { it.toUiState(userId) },
+                        isLoadingSuccess = true,
+                        isLoading = false
+                    )
+                }
+            } else {
+                _commentUiState.update {
+                    it.copy(
+                        userMessage = result.exceptionOrNull()!!.localizedMessage,
+                        isLoading = false
+                    )
+                }
+            }
+        }
+    }
+
+    fun createComment() {
+        val content = commentUiState.value.commentContent
+        val postId = commentUiState.value.postId!!
+        viewModelScope.launch {
+            val result = createCommentUseCase(postId = postId, content = content)
+            if (result.isSuccess) {
+                commentsBind(postId)
+            } else {
+                _commentUiState.update {
+                    it.copy(
+                        userMessage = result.getOrNull()!!
+                    )
+                }
+            }
+        }
+    }
+
+    fun updateCommentContent(content: String) {
+        _commentUiState.update { it.copy(commentContent = content) }
+    }
+
+    fun commentUserMessageShown() {
+        _commentUiState.update { it.copy(userMessage = null) }
     }
 
 

@@ -22,7 +22,10 @@ interface AuthRepository {
     fun getUserDetail(): StateFlow<User?>
 
     fun syncCurrentUser(
-        nickName: String, address: String
+        nickName: String,
+        email: String,
+        phoneNumber: String,
+        password: String
     )
 
 }
