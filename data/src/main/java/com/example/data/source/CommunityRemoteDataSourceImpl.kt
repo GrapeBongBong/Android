@@ -3,10 +3,11 @@ package com.example.data.source
 import com.example.data.api.CommunityApi
 import com.example.data.model.ResponseBody
 import com.example.data.model.community.CommunityDto
-import com.example.data.model.community.CommunityRequestBody
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Response
 import java.io.File
 import javax.inject.Inject
@@ -16,7 +17,7 @@ class CommunityRemoteDataSourceImpl @Inject constructor(
 ) : CommunityRemoteDataSource {
 
     companion object {
-        private const val IMAGE_KEY = "image"
+        private const val IMAGE_KEY = "images"
     }
 
     override suspend fun getAll(): Response<List<CommunityDto>> = api.getAll()
@@ -26,23 +27,23 @@ class CommunityRemoteDataSourceImpl @Inject constructor(
         content: String,
         postImages: File?
     ): Response<ResponseBody> {
-        val images = if (postImages != null) {
-            MultipartBody.Part.createFormData(
-                IMAGE_KEY,
-                postImages.name,
-                postImages.asRequestBody("multipart/form-data".toMediaTypeOrNull())
-            )
-        } else {
-            MultipartBody.Part.createFormData(IMAGE_KEY, "")
+
+        val titleRequestBody: RequestBody = title.toRequestBody()
+        val contentRequestBody: RequestBody = content.toRequestBody()
+
+        val imagePart: MultipartBody.Part? = postImages?.let {
+            val requestFile: RequestBody =
+                it.asRequestBody("image/*".toMediaTypeOrNull())
+            MultipartBody.Part.createFormData(IMAGE_KEY, it.name, requestFile)
         }
+
         return api.createPost(
-            CommunityRequestBody(
-                content = content,
-                title = title
-            ),
-            images = null
+            titleRequestBody,
+            contentRequestBody,
+            imagePart
         )
     }
+
 
     override suspend fun deletePost(postId: Int): Response<ResponseBody> =
         api.deletePosts(postId = postId)

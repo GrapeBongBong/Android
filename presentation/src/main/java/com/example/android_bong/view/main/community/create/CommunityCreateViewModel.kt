@@ -46,7 +46,7 @@ class CommunityCreateViewModel @Inject constructor(
                 }
             } else {
                 _uiState.update {
-                    it.copy(userMessage = result.getOrNull())
+                    it.copy(userMessage = result.exceptionOrNull()!!.localizedMessage)
                 }
             }
         }

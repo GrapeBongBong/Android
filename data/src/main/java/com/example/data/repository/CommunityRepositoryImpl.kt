@@ -1,5 +1,6 @@
 package com.example.data.repository
 
+import android.util.Log
 import com.example.data.mapper.toEntity
 import com.example.data.source.CommunityRemoteDataSource
 import com.example.domain.model.community.CommunityPost
@@ -40,6 +41,7 @@ class CommunityRepositoryImpl @Inject constructor(
                 content = content,
                 null
             )
+            Log.d("repositoryError1", "여기")
             val responseBody = response.body()
             if (responseBody != null && response.code() == 200) {
                 Result.success(responseBody.message)
@@ -47,6 +49,8 @@ class CommunityRepositoryImpl @Inject constructor(
                 throw Exception(responseBody!!.message)
             }
         } catch (e: Exception) {
+            Log.d("repositoryError2", "여기")
+            Log.d("repositoryError2Exception", e.toString())
             Result.failure(e)
         }
     }

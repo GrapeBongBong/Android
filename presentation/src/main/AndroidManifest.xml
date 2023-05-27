@@ -18,13 +18,10 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".TalentExchangeEditActivity"
+            android:name=".view.main.talentexchange.edit.TalentExchangeEditActivity"
             android:exported="false" />
         <activity
-            android:name=".CommunityEditActivity"
-            android:exported="false" />
-        <activity
-            android:name=".CommentEditActivity"
+            android:name=".view.main.community.edit.CommunityEditActivity"
             android:exported="false" />
         <activity
             android:name=".view.main.community.create.CommunityCreateActivity"

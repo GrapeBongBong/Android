@@ -16,6 +16,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.android_bong.R
 import com.example.android_bong.common.ViewBindingActivity
 import com.example.android_bong.databinding.ActivityTalentExchangeDetailBinding
@@ -160,6 +161,17 @@ class TalentExchangeDetailActivity :
                     getString(R.string.give_text, postDetail.giveCate, postDetail.giveTalent)
 
                 postDetailButton.isVisible = postDetail.isMine
+
+                val glide = Glide.with(root)
+
+                if (uiState.postDetail.images != null) {
+                    for (image in uiState.postDetail.images) {
+                        glide.load(image.fileUrl)
+                            .override(96, 96)
+                            .fallback(R.drawable.ic_baseline_add_24)
+                            .into(imageView1)
+                    }
+                }
             }
 
             if (uiState.userMessage != null) {

@@ -1,4 +1,5 @@
 package com.example.android_bong.view.main.talentexchange.edit
 
-class TalentExchangeEditUiState {
-}
+data class TalentExchangeEditUiState(
+    val userMessage: String? = null
+)

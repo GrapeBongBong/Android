@@ -13,7 +13,7 @@ data class TalentExchangeCreateUiState(
     val isSuccessPosting: Boolean = false
 ) {
     val isInputValid: Boolean
-        get() = isValidTitle && isValidContent && isValidGiveCate && isValidTakeCate && isValidGiveTalent && isValidTakeTalent && isValidDays && isValidTimeZone
+        get() = isValidTitle && isValidContent && isValidGiveCate && isValidTakeCate && isValidGiveTalent && isValidTakeTalent
 
     private val isValidTitle: Boolean
         get() = title.isNotEmpty()

@@ -21,6 +21,7 @@ interface ExchangePostApi {
         @Path("postId") postId: Int
     ): Response<ResponseBody>
 
+    @Multipart
     @POST("/exchange/post")
     suspend fun createExchangePost(
         @Body createExchangePostRequestBody: CreateExchangePostRequestBody

@@ -83,7 +83,7 @@ class TalentExchangeCreateViewModel @Inject constructor(
                 }
             } else {
                 _uiState.update {
-                    it.copy(userMessage = result.exceptionOrNull()!!.localizedMessage)
+                    it.copy(userMessage = result.exceptionOrNull()?.localizedMessage)
                 }
             }
         }

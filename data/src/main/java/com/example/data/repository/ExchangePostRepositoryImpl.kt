@@ -1,5 +1,6 @@
 package com.example.data.repository
 
+import android.util.Log
 import com.example.data.mapper.toEntity
 import com.example.data.source.ExchangePostRemoteDataSource
 import com.example.domain.model.exchange.AvailableTime
@@ -19,6 +20,7 @@ class ExchangePostRepositoryImpl @Inject constructor(
                 val data = responseBody.map {
                     it.toEntity()
                 }
+                Log.d("data", data.toString())
                 Result.success(data)
             } else if (response.code() == 401) {
                 throw Exception("유효하지 않은 토큰입니다.")
