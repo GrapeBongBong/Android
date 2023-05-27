@@ -16,6 +16,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.example.android_bong.R
 import com.example.android_bong.common.ViewBindingActivity
 import com.example.android_bong.databinding.ActivityTalentExchangeCreateBinding
+import com.example.android_bong.extension.setResultRefresh
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -64,6 +65,7 @@ class TalentExchangeCreateActivity : ViewBindingActivity<ActivityTalentExchangeC
     private fun updateUi(uiState: TalentExchangeCreateUiState) = with(binding) {
 
         if (uiState.isSuccessPosting) {
+            setResultRefresh()
             finish()
         }
 

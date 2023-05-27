@@ -1,7 +1,6 @@
 package com.example.data.repository
 
 import com.example.data.mapper.toEntity
-import com.example.data.model.community.CommunityRequestBody
 import com.example.data.source.CommunityRemoteDataSource
 import com.example.domain.model.community.CommunityPost
 import com.example.domain.repository.CommunityRepository
@@ -37,10 +36,8 @@ class CommunityRepositoryImpl @Inject constructor(
     override suspend fun createPost(title: String, content: String): Result<String> {
         return try {
             val response = communityRemoteDataSource.createPost(
-                CommunityRequestBody(
-                    title = title,
-                    content = content
-                ),
+                title = title,
+                content = content,
                 null
             )
             val responseBody = response.body()

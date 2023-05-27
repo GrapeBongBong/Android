@@ -3,6 +3,7 @@ package com.example.data.api
 import com.example.data.model.ResponseBody
 import com.example.data.model.community.CommunityDto
 import com.example.data.model.community.CommunityRequestBody
+import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -12,9 +13,11 @@ interface CommunityApi {
     suspend fun getAll(
     ): Response<List<CommunityDto>>
 
+    @Multipart
     @POST("/anonymous/post")
     suspend fun createPost(
-        @Body communityRequestBody: CommunityRequestBody
+        @Body communityRequestBody: CommunityRequestBody,
+        @Part images: MultipartBody.Part?
     ): Response<ResponseBody>
 
     @HTTP(method = "DELETE", path = "/anonymous/delete/{postId}", hasBody = true)
@@ -26,6 +29,5 @@ interface CommunityApi {
     suspend fun updatePost(
         @Path("postId") postId: Int
     ): Response<ResponseBody>
-
 
 }

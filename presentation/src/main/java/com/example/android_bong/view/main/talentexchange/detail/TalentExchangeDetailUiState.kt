@@ -5,5 +5,6 @@ import com.example.android_bong.view.main.talentexchange.TalentExchangeItemUiSta
 data class TalentExchangeDetailUiState(
     val userMessage: String? = null,
     val postId: Int? = null,
-    val postDetail: TalentExchangeItemUiState? = null
+    val postDetail: TalentExchangeItemUiState? = null,
+    val postDeletingSuccess: Boolean = false
 )

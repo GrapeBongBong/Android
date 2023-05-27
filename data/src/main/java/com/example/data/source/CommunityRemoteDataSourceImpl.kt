@@ -22,20 +22,25 @@ class CommunityRemoteDataSourceImpl @Inject constructor(
     override suspend fun getAll(): Response<List<CommunityDto>> = api.getAll()
 
     override suspend fun createPost(
-        communityRequestBody: CommunityRequestBody,
-        profileImage: File?
+        title: String,
+        content: String,
+        postImages: File?
     ): Response<ResponseBody> {
-        val image = if (profileImage != null) {
+        val images = if (postImages != null) {
             MultipartBody.Part.createFormData(
                 IMAGE_KEY,
-                profileImage.name,
-                profileImage.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+                postImages.name,
+                postImages.asRequestBody("multipart/form-data".toMediaTypeOrNull())
             )
         } else {
             MultipartBody.Part.createFormData(IMAGE_KEY, "")
         }
         return api.createPost(
-            communityRequestBody = communityRequestBody
+            CommunityRequestBody(
+                content = content,
+                title = title
+            ),
+            images = null
         )
     }
 

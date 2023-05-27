@@ -3,11 +3,12 @@ package com.example.android_bong.view.main.community.detail
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android_bong.mapper.toUiState
+import com.example.android_bong.view.main.comment.CommentItemUiState
 import com.example.android_bong.view.main.comment.CommentUiState
 import com.example.domain.usecase.comment.CreateCommentUseCase
 import com.example.domain.usecase.comment.DeleteCommentUseCase
 import com.example.domain.usecase.comment.GetAllCommentUseCase
-import com.example.domain.usecase.comment.UpdateCommentUseCase
+import com.example.domain.usecase.community.DeleteCommunityPostUseCase
 import com.example.domain.usecase.community.GetAllCommunityPostUseCase
 import com.example.domain.usecase.user.GetUserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,11 +22,11 @@ import javax.inject.Inject
 @HiltViewModel
 class CommunityDetailViewModel @Inject constructor(
     private val getAllCommunityPostUseCase: GetAllCommunityPostUseCase,
+    private val deleteCommunityPostUseCase: DeleteCommunityPostUseCase,
     private val getUserUseCase: GetUserUseCase,
 
     private val getAllCommentUseCase: GetAllCommentUseCase,
     private val deleteCommentUseCase: DeleteCommentUseCase,
-    private val updateCommentUseCase: UpdateCommentUseCase,
     private val createCommentUseCase: CreateCommentUseCase
 ) : ViewModel() {
 
@@ -59,6 +60,21 @@ class CommunityDetailViewModel @Inject constructor(
                     it.copy(postDetail = foundPost.toUiState(userId))
                 } else {
                     it.copy(userMessage = "해당 포스트를 찾지 못하였습니다.")
+                }
+            }
+        }
+    }
+
+    fun deletePost(postId: Int) {
+        viewModelScope.launch {
+            val result = deleteCommunityPostUseCase(postId = postId)
+            if (result.isSuccess) {
+                _communityDetailUiState.update {
+                    it.copy(userMessage = "삭제 되었습니다.", postDeletingSuccess = true)
+                }
+            } else {
+                _communityDetailUiState.update {
+                    it.copy(userMessage = result.getOrNull())
                 }
             }
         }
@@ -107,6 +123,23 @@ class CommunityDetailViewModel @Inject constructor(
         val postId = commentUiState.value.postId!!
         viewModelScope.launch {
             val result = createCommentUseCase(postId = postId, content = content)
+            if (result.isSuccess) {
+                commentsBind(postId)
+            } else {
+                _commentUiState.update {
+                    it.copy(
+                        userMessage = result.getOrNull()!!
+                    )
+                }
+            }
+        }
+    }
+
+    fun deleteComment(uiState: CommentItemUiState) {
+        val postId = commentUiState.value.postId!!
+        val commentId = uiState.commentId
+        viewModelScope.launch {
+            val result = deleteCommentUseCase(postId = postId, commentId = commentId)
             if (result.isSuccess) {
                 commentsBind(postId)
             } else {

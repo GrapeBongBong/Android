@@ -72,16 +72,15 @@ class TalentExchangeDetailViewModel @Inject constructor(
     }
 
     fun deletePost(postId: Int) {
-
         viewModelScope.launch {
             val result = deleteExchangePostUseCase(postId = postId)
             if (result.isSuccess) {
                 _talentExchangeDetailUiState.update {
-                    it.copy(userMessage = "삭제 되었습니다.")
+                    it.copy(userMessage = "삭제 되었습니다.", postDeletingSuccess = true)
                 }
             } else {
                 _talentExchangeDetailUiState.update {
-                    it.copy(userMessage = result.exceptionOrNull()!!.localizedMessage)
+                    it.copy(userMessage = result.getOrNull())
                 }
             }
         }
@@ -151,13 +150,16 @@ class TalentExchangeDetailViewModel @Inject constructor(
         val postId = commentUiState.value.postId!!
         val commentId = uiState.commentId
         viewModelScope.launch {
-
-        }
-    }
-
-    fun updateComment(uiState: CommentItemUiState) {
-        viewModelScope.launch {
-
+            val result = deleteCommentUseCase(postId = postId, commentId = commentId)
+            if (result.isSuccess) {
+                commentsBind(postId)
+            } else {
+                _commentUiState.update {
+                    it.copy(
+                        userMessage = result.getOrNull()!!
+                    )
+                }
+            }
         }
     }
 

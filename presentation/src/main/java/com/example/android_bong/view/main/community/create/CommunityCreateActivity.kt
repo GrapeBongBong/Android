@@ -14,6 +14,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.example.android_bong.R
 import com.example.android_bong.common.ViewBindingActivity
 import com.example.android_bong.databinding.ActivityCommunityCreateBinding
+import com.example.android_bong.extension.setResultRefresh
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -69,6 +70,7 @@ class CommunityCreateActivity : ViewBindingActivity<ActivityCommunityCreateBindi
         }
 
         if (uiState.isSuccessPosting) {
+            setResultRefresh()
             finish()
         }
 

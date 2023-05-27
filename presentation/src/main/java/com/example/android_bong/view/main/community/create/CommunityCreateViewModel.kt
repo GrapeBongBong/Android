@@ -3,7 +3,6 @@ package com.example.android_bong.view.main.community.create
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.usecase.community.CreateCommunityPostUseCase
-import com.example.domain.usecase.community.UpdateCommunityPostUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,8 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CommunityCreateViewModel @Inject constructor(
-    private val createCommunityPostUseCase: CreateCommunityPostUseCase,
-    private val updateCommunityPostUseCase: UpdateCommunityPostUseCase
+    private val createCommunityPostUseCase: CreateCommunityPostUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(CommunityCreateUiState())
@@ -43,12 +41,12 @@ class CommunityCreateViewModel @Inject constructor(
             if (result.isSuccess) {
                 _uiState.update {
                     it.copy(
-                        userMessage = "게시물이 생성되었습니다.", isSuccessPosting = true
+                        userMessage = result.getOrNull(), isSuccessPosting = true
                     )
                 }
             } else {
                 _uiState.update {
-                    it.copy(userMessage = result.exceptionOrNull()!!.localizedMessage)
+                    it.copy(userMessage = result.getOrNull())
                 }
             }
         }

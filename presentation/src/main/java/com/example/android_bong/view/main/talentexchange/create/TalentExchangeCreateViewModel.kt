@@ -3,7 +3,6 @@ package com.example.android_bong.view.main.talentexchange.create
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.usecase.post.CreateExchangePostUseCase
-import com.example.domain.usecase.post.UpdateExchangePostUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -13,8 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TalentExchangeCreateViewModel @Inject constructor(
-    private val createExchangePostUseCase: CreateExchangePostUseCase,
-    private val updateExchangePostUseCase: UpdateExchangePostUseCase
+    private val createExchangePostUseCase: CreateExchangePostUseCase
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(TalentExchangeCreateUiState())
     val uiState = _uiState.asStateFlow()
