@@ -222,13 +222,17 @@ class TalentExchangeDetailActivity :
             setMessage(R.string.are_you_sure_you_want_to_update)
             setNegativeButton(R.string.cancel) { _, _ -> }
             setPositiveButton(R.string.update) { _, _ ->
-
+                navigateToEditActivity()
             }
         }.show()
     }
 
     private fun showSnackBar(message: String) {
         Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
+    }
+
+    private fun navigateToEditActivity() {
+
     }
 
 }

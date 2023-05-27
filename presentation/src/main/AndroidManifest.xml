@@ -18,6 +18,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".TalentExchangeEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CommunityEditActivity"
+            android:exported="false" />
+        <activity
             android:name=".CommentEditActivity"
             android:exported="false" />
         <activity
