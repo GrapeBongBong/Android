@@ -212,7 +212,7 @@ class CommunityDetailActivity : ViewBindingActivity<ActivityCommunityDetailBindi
             setMessage(R.string.are_you_sure_you_want_to_delete)
             setNegativeButton(R.string.cancel) { _, _ -> }
             setPositiveButton(R.string.delete) { _, _ ->
-                viewModel
+                viewModel.deletePost(uiState.postId!!)
             }
         }.show()
     }
