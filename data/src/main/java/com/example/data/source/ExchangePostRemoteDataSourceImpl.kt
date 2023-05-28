@@ -5,6 +5,12 @@ import com.example.data.model.ResponseBody
 import com.example.data.model.exchangePost.CreateExchangePostRequestBody
 import com.example.data.model.exchangePost.ExchangePostDto
 import com.example.domain.model.exchange.AvailableTime
+import com.google.gson.Gson
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -25,8 +31,9 @@ class ExchangePostRemoteDataSourceImpl @Inject constructor(
         giveTalent: String,
         takeTalent: String,
         availableTime: AvailableTime
-    ): Response<ResponseBody> = api.createExchangePost(
-        CreateExchangePostRequestBody(
+    ): Response<ResponseBody> {
+
+        val data = CreateExchangePostRequestBody(
             title = title,
             content = content,
             giveCate = giveCate,
@@ -35,6 +42,17 @@ class ExchangePostRemoteDataSourceImpl @Inject constructor(
             takeTalent = takeTalent,
             availableTime = availableTime
         )
-    )
+
+        // Gson을 사용하여 객체를 JSON 형식의 문자열로 변환
+        val gson = Gson()
+        val json = gson.toJson(data)
+
+        val jsonRequestBody: RequestBody =
+            json.toRequestBody("application/json".toMediaTypeOrNull())
+
+        return api.createExchangePost(
+            jsonRequestBody
+        )
+    }
 
 }

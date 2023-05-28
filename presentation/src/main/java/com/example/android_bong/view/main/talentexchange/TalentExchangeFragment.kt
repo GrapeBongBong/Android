@@ -103,7 +103,7 @@ class TalentExchangeFragment : ViewBindingFragment<FragmentTalentExchangeBinding
 
     private fun navigateToCreate() {
         val intent = TalentExchangeCreateActivity.getIntent(requireContext())
-        startActivity(intent)
+        launcher?.launch(intent)
     }
 
     private fun onClickPost(talentExchangeItemUiState: TalentExchangeItemUiState) {

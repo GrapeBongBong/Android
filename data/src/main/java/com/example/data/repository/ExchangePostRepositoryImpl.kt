@@ -70,7 +70,7 @@ class ExchangePostRepositoryImpl @Inject constructor(
                 )
             )
             val responseBody = response.body()
-            if (responseBody != null && response.code() == 200) {
+            if (responseBody != null && response.code() == 201) {
                 val message = responseBody.message
                 Result.success(message)
             } else {

@@ -3,7 +3,6 @@ package com.example.android_bong.view.main.community.create
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import androidx.activity.viewModels
@@ -65,7 +64,6 @@ class CommunityCreateActivity : ViewBindingActivity<ActivityCommunityCreateBindi
 
         if (uiState.userMessage != null) {
             showSnackBar(uiState.userMessage)
-            Log.d("error", uiState.userMessage)
             viewModel.userMessageShown()
         }
 
@@ -75,7 +73,7 @@ class CommunityCreateActivity : ViewBindingActivity<ActivityCommunityCreateBindi
         }
 
         createButton.apply {
-            isEnabled = uiState.isInputValid
+            isEnabled = uiState.isInputValid && !uiState.isLoading
             setText(if (uiState.isLoading) R.string.loading else R.string.posting)
         }
     }

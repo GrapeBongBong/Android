@@ -84,7 +84,7 @@ class TalentExchangeCreateActivity : ViewBindingActivity<ActivityTalentExchangeC
         }
 
         createButton.apply {
-            isEnabled = uiState.isInputValid
+            isEnabled = uiState.isInputValid && !uiState.isLoading
             setText(if (uiState.isLoading) R.string.loading else R.string.posting)
         }
     }

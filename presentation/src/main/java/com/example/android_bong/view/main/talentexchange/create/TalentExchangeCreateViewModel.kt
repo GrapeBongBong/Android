@@ -62,7 +62,6 @@ class TalentExchangeCreateViewModel @Inject constructor(
 
 
     fun createPost() {
-
         val title = uiState.value.title
         val content = uiState.value.content
         val giveCate = uiState.value.giveCate
@@ -87,7 +86,11 @@ class TalentExchangeCreateViewModel @Inject constructor(
             )
             if (result.isSuccess) {
                 _uiState.update {
-                    it.copy(userMessage = "게시물이 생성되었습니다.", isLoading = false)
+                    it.copy(
+                        userMessage = "게시물이 생성되었습니다.",
+                        isLoading = false,
+                        isSuccessPosting = true
+                    )
                 }
             } else {
                 _uiState.update {

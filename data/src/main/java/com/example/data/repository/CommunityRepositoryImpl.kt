@@ -41,7 +41,7 @@ class CommunityRepositoryImpl @Inject constructor(
                 null
             )
             val responseBody = response.body()
-            if (responseBody != null && response.code() == 200) {
+            if (responseBody != null && response.code() == 201) {
                 Result.success(responseBody.message)
             } else {
                 throw Exception(responseBody!!.message)
