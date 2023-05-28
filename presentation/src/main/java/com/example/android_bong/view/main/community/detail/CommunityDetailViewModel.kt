@@ -1,5 +1,7 @@
 package com.example.android_bong.view.main.community.detail
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android_bong.mapper.toUiState
@@ -17,6 +19,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 @HiltViewModel
@@ -88,7 +92,6 @@ class CommunityDetailViewModel @Inject constructor(
     /**
      * 댓글 부분
      */
-
     private fun commentsBind(postId: Int) {
         commentFetchJob?.cancel()
         commentFetchJob = viewModelScope.launch {
@@ -100,9 +103,16 @@ class CommunityDetailViewModel @Inject constructor(
             val result = getAllCommentUseCase(postId = postId)
             val userId = getUserUseCase()!!.uid
             if (result.isSuccess) {
+                val comments = result.getOrNull()!!.map {
+                    it.toUiState(userId)
+                }
+                val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss") // 날짜 별로 정렬
+                val sortedList = comments.sortedByDescending {
+                    LocalDateTime.parse(it.date, formatter)
+                }
                 _commentUiState.update { data ->
                     data.copy(
-                        comments = result.getOrNull()!!.map { it.toUiState(userId) },
+                        comments = sortedList,
                         isLoadingSuccess = true,
                         isLoading = false
                     )

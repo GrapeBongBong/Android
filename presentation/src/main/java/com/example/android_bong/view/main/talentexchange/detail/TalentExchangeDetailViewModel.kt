@@ -1,6 +1,5 @@
 package com.example.android_bong.view.main.talentexchange.detail
 
-import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android_bong.mapper.toUiState
@@ -9,7 +8,6 @@ import com.example.android_bong.view.main.comment.CommentUiState
 import com.example.domain.usecase.comment.CreateCommentUseCase
 import com.example.domain.usecase.comment.DeleteCommentUseCase
 import com.example.domain.usecase.comment.GetAllCommentUseCase
-import com.example.domain.usecase.comment.UpdateCommentUseCase
 import com.example.domain.usecase.post.DeleteExchangePostUseCase
 import com.example.domain.usecase.post.GetAllExchangePostUseCase
 import com.example.domain.usecase.user.GetUserUseCase
@@ -19,6 +17,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 @HiltViewModel
@@ -29,7 +29,6 @@ class TalentExchangeDetailViewModel @Inject constructor(
 
     private val getAllCommentUseCase: GetAllCommentUseCase,
     private val deleteCommentUseCase: DeleteCommentUseCase,
-    private val updateCommentUseCase: UpdateCommentUseCase,
     private val createCommentUseCase: CreateCommentUseCase
 ) : ViewModel() {
 
@@ -106,10 +105,17 @@ class TalentExchangeDetailViewModel @Inject constructor(
             }
             val result = getAllCommentUseCase(postId = postId)
             val userId = getUserUseCase()!!.uid
+            val comments = result.getOrNull()!!.map {
+                it.toUiState(userId)
+            }
+            val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss") // 날짜 별로 정렬
+            val sortedList = comments.sortedByDescending {
+                LocalDateTime.parse(it.date, formatter)
+            }
             if (result.isSuccess) {
                 _commentUiState.update { data ->
                     data.copy(
-                        comments = result.getOrNull()!!.map { it.toUiState(userId) },
+                        comments = sortedList,
                         isLoadingSuccess = true,
                         isLoading = false
                     )

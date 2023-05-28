@@ -8,17 +8,17 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.widget.PopupMenu
 import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
+import androidx.core.net.toUri
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 import com.example.android_bong.R
+import com.example.android_bong.common.GlideApp
 import com.example.android_bong.common.ViewBindingActivity
 import com.example.android_bong.databinding.ActivityTalentExchangeDetailBinding
 import com.example.android_bong.extension.RefreshStateContract
@@ -56,7 +56,6 @@ class TalentExchangeDetailActivity :
 
     private var launcher: ActivityResultLauncher<Intent>? = null
 
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.toolbar.title = ""
@@ -139,7 +138,6 @@ class TalentExchangeDetailActivity :
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
     private fun initRecyclerView(adapter: CommentAdapter) = with(binding) {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this@TalentExchangeDetailActivity)
@@ -163,12 +161,11 @@ class TalentExchangeDetailActivity :
 
                 postDetailButton.isVisible = postDetail.isMine
 
-                val glide = Glide.with(root)
+                val glide = GlideApp.with(this@TalentExchangeDetailActivity)
 
                 if (uiState.postDetail.images != null) {
                     for (image in uiState.postDetail.images) {
-                        glide.load(image.fileUrl)
-                            .override(96, 96)
+                        glide.load(image.fileUrl!!.toUri())
                             .fallback(R.drawable.ic_baseline_add_24)
                             .into(imageView1)
                     }

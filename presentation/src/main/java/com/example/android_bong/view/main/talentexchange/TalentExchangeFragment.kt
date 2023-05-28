@@ -1,14 +1,12 @@
 package com.example.android_bong.view.main.talentexchange
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
-import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
@@ -33,7 +31,6 @@ class TalentExchangeFragment : ViewBindingFragment<FragmentTalentExchangeBinding
 
     private var launcher: ActivityResultLauncher<Intent>? = null
 
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.fetchPosts()
@@ -58,7 +55,6 @@ class TalentExchangeFragment : ViewBindingFragment<FragmentTalentExchangeBinding
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
     private fun initRecyclerView(adapter: TalentExchangeAdapter) = with(binding) {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -77,6 +73,7 @@ class TalentExchangeFragment : ViewBindingFragment<FragmentTalentExchangeBinding
 
             loadState.progressBar.isVisible = uiState.isLoading
             recyclerView.isVisible = !uiState.isLoading
+
 
             adapter.submitList(uiState.posts)
 

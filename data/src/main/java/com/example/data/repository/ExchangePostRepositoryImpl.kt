@@ -20,7 +20,6 @@ class ExchangePostRepositoryImpl @Inject constructor(
                 val data = responseBody.map {
                     it.toEntity()
                 }
-                Log.d("data", data.toString())
                 Result.success(data)
             } else if (response.code() == 401) {
                 throw Exception("유효하지 않은 토큰입니다.")

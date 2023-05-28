@@ -53,7 +53,6 @@ class CommunityDetailActivity : ViewBindingActivity<ActivityCommunityDetailBindi
 
     private val viewModel: CommunityDetailViewModel by viewModels()
 
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.toolbar.title = ""
@@ -138,7 +137,6 @@ class CommunityDetailActivity : ViewBindingActivity<ActivityCommunityDetailBindi
     }
 
 
-    @RequiresApi(Build.VERSION_CODES.M)
     private fun initRecyclerView(adapter: CommentAdapter) = with(binding) {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this@CommunityDetailActivity)
