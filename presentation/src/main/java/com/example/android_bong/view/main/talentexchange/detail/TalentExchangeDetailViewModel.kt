@@ -1,5 +1,6 @@
 package com.example.android_bong.view.main.talentexchange.detail
 
+import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android_bong.mapper.toUiState

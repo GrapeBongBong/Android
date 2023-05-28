@@ -1,5 +1,6 @@
 package com.example.android_bong.view.main.talentexchange.create
 
+import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.usecase.post.CreateExchangePostUseCase
@@ -55,6 +56,11 @@ class TalentExchangeCreateViewModel @Inject constructor(
         }
     }
 
+    fun selectImage(uri: Uri) {
+        _uiState.update { it.copy(selectedImage = uri) }
+    }
+
+
     fun createPost() {
 
         val title = uiState.value.title
@@ -65,7 +71,9 @@ class TalentExchangeCreateViewModel @Inject constructor(
         val takeTalent = uiState.value.takeTalent
         val days = uiState.value.possibleDays
         val timeZone = uiState.value.possibleTimeZone
-
+        _uiState.update {
+            it.copy(isLoading = true)
+        }
         viewModelScope.launch {
             val result = createExchangePostUseCase(
                 title = title,
@@ -79,11 +87,14 @@ class TalentExchangeCreateViewModel @Inject constructor(
             )
             if (result.isSuccess) {
                 _uiState.update {
-                    it.copy(userMessage = "게시물이 생성되었습니다.")
+                    it.copy(userMessage = "게시물이 생성되었습니다.", isLoading = false)
                 }
             } else {
                 _uiState.update {
-                    it.copy(userMessage = result.exceptionOrNull()?.localizedMessage)
+                    it.copy(
+                        userMessage = result.exceptionOrNull()?.localizedMessage,
+                        isLoading = false
+                    )
                 }
             }
         }

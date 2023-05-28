@@ -8,6 +8,8 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Lifecycle
@@ -34,6 +36,13 @@ class TalentExchangeCreateActivity : ViewBindingActivity<ActivityTalentExchangeC
     }
 
     private val viewModel: TalentExchangeCreateViewModel by viewModels()
+
+    private val pickMedia =
+        registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { imageUri ->
+            if (imageUri != null) {
+                val bitmap = imageUri
+            }
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,6 +85,7 @@ class TalentExchangeCreateActivity : ViewBindingActivity<ActivityTalentExchangeC
 
         createButton.apply {
             isEnabled = uiState.isInputValid
+            setText(if (uiState.isLoading) R.string.loading else R.string.posting)
         }
     }
 
@@ -223,6 +233,22 @@ class TalentExchangeCreateActivity : ViewBindingActivity<ActivityTalentExchangeC
             viewModel.createPost()
         }
 
+        imageView1.setOnClickListener {
+            showImagePicker()
+        }
+
+        imageView2.setOnClickListener {
+            showImagePicker()
+        }
+
+        imageView3.setOnClickListener {
+            showImagePicker()
+        }
+
+    }
+
+    private fun showImagePicker() {
+        pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
     }
 
     private fun showSnackBar(message: String) {

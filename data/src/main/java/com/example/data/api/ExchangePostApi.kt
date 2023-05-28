@@ -27,4 +27,6 @@ interface ExchangePostApi {
         @Body createExchangePostRequestBody: CreateExchangePostRequestBody
     ): Response<ResponseBody>
 
+    // ExchangePostDTO
+
 }

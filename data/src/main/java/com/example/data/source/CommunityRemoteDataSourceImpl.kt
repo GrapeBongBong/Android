@@ -3,6 +3,8 @@ package com.example.data.source
 import com.example.data.api.CommunityApi
 import com.example.data.model.ResponseBody
 import com.example.data.model.community.CommunityDto
+import com.example.data.model.community.CommunityRequestBody
+import com.google.gson.Gson
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -27,20 +29,29 @@ class CommunityRemoteDataSourceImpl @Inject constructor(
         content: String,
         postImages: File?
     ): Response<ResponseBody> {
+        val data = CommunityRequestBody(title = title, content = content)
 
-        val titleRequestBody: RequestBody = title.toRequestBody()
-        val contentRequestBody: RequestBody = content.toRequestBody()
+        // Gson을 사용하여 객체를 JSON 형식의 문자열로 변환
+        val gson = Gson()
+        val json = gson.toJson(data)
 
-        val imagePart: MultipartBody.Part? = postImages?.let {
-            val requestFile: RequestBody =
-                it.asRequestBody("image/*".toMediaTypeOrNull())
-            MultipartBody.Part.createFormData(IMAGE_KEY, it.name, requestFile)
+        val jsonRequestBody: RequestBody =
+            json.toRequestBody("application/json".toMediaTypeOrNull())
+
+        val multipartBuilder = MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("anonymousPostDto", null, jsonRequestBody)
+
+        postImages?.let { imageFile ->
+            val imageRequestBody: RequestBody =
+                imageFile.asRequestBody("image/*".toMediaTypeOrNull())
+            val imagePart: MultipartBody.Part =
+                MultipartBody.Part.createFormData("image", imageFile.name, imageRequestBody)
+            multipartBuilder.addPart(imagePart)
         }
 
         return api.createPost(
-            titleRequestBody,
-            contentRequestBody,
-            imagePart
+            jsonRequestBody
         )
     }
 

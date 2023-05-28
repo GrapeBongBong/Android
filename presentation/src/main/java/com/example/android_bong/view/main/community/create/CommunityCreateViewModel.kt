@@ -32,6 +32,9 @@ class CommunityCreateViewModel @Inject constructor(
     fun createPost() {
         val title = uiState.value.title
         val content = uiState.value.content
+        _uiState.update {
+            it.copy(isLoading = true)
+        }
         fetchJob?.cancel()
         fetchJob = viewModelScope.launch {
             val result = createCommunityPostUseCase(
@@ -41,12 +44,15 @@ class CommunityCreateViewModel @Inject constructor(
             if (result.isSuccess) {
                 _uiState.update {
                     it.copy(
-                        userMessage = result.getOrNull(), isSuccessPosting = true
+                        userMessage = result.getOrNull(), isSuccessPosting = true, isLoading = false
                     )
                 }
             } else {
                 _uiState.update {
-                    it.copy(userMessage = result.exceptionOrNull()!!.localizedMessage)
+                    it.copy(
+                        userMessage = result.exceptionOrNull()!!.localizedMessage,
+                        isLoading = false
+                    )
                 }
             }
         }

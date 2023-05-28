@@ -1,5 +1,7 @@
 package com.example.android_bong.view.main.talentexchange.create
 
+import android.net.Uri
+
 data class TalentExchangeCreateUiState(
     val userMessage: String? = null,
     val title: String = "",
@@ -10,7 +12,9 @@ data class TalentExchangeCreateUiState(
     val takeTalent: String = "",
     val possibleDays: MutableList<String> = mutableListOf(),
     val possibleTimeZone: String = "",
-    val isSuccessPosting: Boolean = false
+    val selectedImage: Uri? = null,
+    val isSuccessPosting: Boolean = false,
+    val isLoading: Boolean = false
 ) {
     val isInputValid: Boolean
         get() = isValidTitle && isValidContent && isValidGiveCate && isValidTakeCate && isValidGiveTalent && isValidTakeTalent

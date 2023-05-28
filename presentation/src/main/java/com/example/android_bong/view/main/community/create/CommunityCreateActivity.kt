@@ -76,6 +76,7 @@ class CommunityCreateActivity : ViewBindingActivity<ActivityCommunityCreateBindi
 
         createButton.apply {
             isEnabled = uiState.isInputValid
+            setText(if (uiState.isLoading) R.string.loading else R.string.posting)
         }
     }
 

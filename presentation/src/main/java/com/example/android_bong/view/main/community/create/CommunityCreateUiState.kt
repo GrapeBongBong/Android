@@ -4,7 +4,8 @@ data class CommunityCreateUiState(
     val userMessage: String? = null,
     val title: String = "",
     val content: String = "",
-    val isSuccessPosting: Boolean = false
+    val isSuccessPosting: Boolean = false,
+    val isLoading: Boolean = false
 ) {
 
     val isInputValid: Boolean
