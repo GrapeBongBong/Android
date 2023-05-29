@@ -70,4 +70,10 @@ class CommunityRemoteDataSourceImpl @Inject constructor(
         )
     }
 
+    override suspend fun clickLikeCommunity(postId: Int): Response<ResponseBody> =
+        api.clickLikeCommunity(postId = postId)
+
+    override suspend fun clickUnLikeCommunity(postId: Int): Response<ResponseBody> =
+        api.clickUnLikeCommunity(postId = postId)
+
 }

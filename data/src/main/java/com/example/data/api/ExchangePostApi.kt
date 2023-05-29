@@ -29,4 +29,14 @@ interface ExchangePostApi {
         @Part("exchangePostDTO") requestBody: RequestBody
     ): Response<ResponseBody>
 
+    @POST("/exchange/{postId}/like")
+    suspend fun clickLikeExchange(
+        @Path("postId") postId: Int
+    ): Response<ResponseBody>
+
+    @POST("/exchange/{postId}/unlike")
+    suspend fun clickUnLikeExchange(
+        @Path("postId") postId: Int
+    ): Response<ResponseBody>
+
 }

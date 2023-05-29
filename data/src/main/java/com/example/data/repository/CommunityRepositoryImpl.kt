@@ -79,4 +79,36 @@ class CommunityRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun clickLike(postId: Int): Result<String> {
+        return try {
+            val response = communityRemoteDataSource.clickLikeCommunity(
+                postId = postId
+            )
+            val responseBody = response.body()
+            if (responseBody != null && response.code() == 200) {
+                Result.success(responseBody.message)
+            } else {
+                throw Exception(responseBody!!.message)
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    override suspend fun clickUnLike(postId: Int): Result<String> {
+        return try {
+            val response = communityRemoteDataSource.clickUnLikeCommunity(
+                postId = postId
+            )
+            val responseBody = response.body()
+            if (responseBody != null && response.code() == 200) {
+                Result.success(responseBody.message)
+            } else {
+                throw Exception(responseBody!!.message)
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
 }

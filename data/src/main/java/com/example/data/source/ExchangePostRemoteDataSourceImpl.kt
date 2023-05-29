@@ -77,4 +77,11 @@ class ExchangePostRemoteDataSourceImpl @Inject constructor(
         )
     }
 
+    override suspend fun clickLikeExchange(postId: Int): Response<ResponseBody> =
+        api.clickLikeExchange(postId = postId)
+
+    override suspend fun clickUnLikeExchange(postId: Int): Response<ResponseBody> =
+        api.clickUnLikeExchange(postId = postId)
+
+
 }

@@ -30,4 +30,15 @@ interface CommunityApi {
         @Body communityRequestBody: CommunityRequestBody
     ): Response<ResponseBody>
 
+
+    @POST("/anonymous/{postId}/like")
+    suspend fun clickLikeCommunity(
+        @Path("postId") postId: Int
+    ): Response<ResponseBody>
+
+    @POST("/anonymous/{postId}/unlike")
+    suspend fun clickUnLikeCommunity(
+        @Path("postId") postId: Int
+    ): Response<ResponseBody>
+
 }

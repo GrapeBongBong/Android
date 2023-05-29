@@ -8,6 +8,8 @@ import com.example.android_bong.view.main.comment.CommentUiState
 import com.example.domain.usecase.comment.CreateCommentUseCase
 import com.example.domain.usecase.comment.DeleteCommentUseCase
 import com.example.domain.usecase.comment.GetAllCommentUseCase
+import com.example.domain.usecase.like.ExchangeClickLikeUseCase
+import com.example.domain.usecase.like.ExchangeClickUnLikeUseCase
 import com.example.domain.usecase.post.DeleteExchangePostUseCase
 import com.example.domain.usecase.post.GetAllExchangePostUseCase
 import com.example.domain.usecase.user.GetUserUseCase
@@ -29,7 +31,10 @@ class TalentExchangeDetailViewModel @Inject constructor(
 
     private val getAllCommentUseCase: GetAllCommentUseCase,
     private val deleteCommentUseCase: DeleteCommentUseCase,
-    private val createCommentUseCase: CreateCommentUseCase
+    private val createCommentUseCase: CreateCommentUseCase,
+
+    private val clickUnLikeUseCase: ExchangeClickUnLikeUseCase,
+    private val clickLikeUseCase: ExchangeClickLikeUseCase
 ) : ViewModel() {
 
     private val _talentExchangeDetailUiState = MutableStateFlow(TalentExchangeDetailUiState())
@@ -45,6 +50,7 @@ class TalentExchangeDetailViewModel @Inject constructor(
         postDetailBind(postId)
         commentsBind(postId)
     }
+
 
     /**
      * 포스트 디테일 부분
@@ -90,6 +96,38 @@ class TalentExchangeDetailViewModel @Inject constructor(
         _talentExchangeDetailUiState.update { it.copy(userMessage = null) }
     }
 
+    fun clickLike() {
+        val postId = talentExchangeDetailUiState.value.postId!!
+        if (talentExchangeDetailUiState.value.postDetail!!.liked) {
+            viewModelScope.launch {
+                val result = clickUnLikeUseCase(postId = postId)
+                if (result.isSuccess) {
+                    _talentExchangeDetailUiState.update {
+                        it.copy(userMessage = result.getOrNull())
+                    }
+                    postDetailBind(postId)
+                } else {
+                    _talentExchangeDetailUiState.update {
+                        it.copy(userMessage = result.getOrNull())
+                    }
+                }
+            }
+        } else {
+            viewModelScope.launch {
+                val result = clickLikeUseCase(postId = postId)
+                if (result.isSuccess) {
+                    _talentExchangeDetailUiState.update {
+                        it.copy(userMessage = result.getOrNull())
+                    }
+                    postDetailBind(postId)
+                } else {
+                    _talentExchangeDetailUiState.update {
+                        it.copy(userMessage = result.getOrNull())
+                    }
+                }
+            }
+        }
+    }
 
     /**
      * 댓글 부분

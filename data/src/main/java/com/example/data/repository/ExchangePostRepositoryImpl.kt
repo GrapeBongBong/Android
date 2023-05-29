@@ -117,4 +117,36 @@ class ExchangePostRepositoryImpl @Inject constructor(
             Result.failure(e)
         }
     }
+
+    override suspend fun clickLike(postId: Int): Result<String> {
+        return try {
+            val response = exchangePostRemoteDataSource.clickLikeExchange(
+                postId = postId
+            )
+            val responseBody = response.body()
+            if (responseBody != null && response.code() == 200) {
+                Result.success(responseBody.message)
+            } else {
+                throw Exception(responseBody!!.message)
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    override suspend fun clickUnLike(postId: Int): Result<String> {
+        return try {
+            val response = exchangePostRemoteDataSource.clickUnLikeExchange(
+                postId = postId
+            )
+            val responseBody = response.body()
+            if (responseBody != null && response.code() == 200) {
+                Result.success(responseBody.message)
+            } else {
+                throw Exception(responseBody!!.message)
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
 }

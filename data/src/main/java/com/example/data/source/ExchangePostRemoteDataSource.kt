@@ -32,4 +32,8 @@ interface ExchangePostRemoteDataSource {
         availableTime: AvailableTime
     ): Response<ResponseBody>
 
+    suspend fun clickLikeExchange(postId: Int): Response<ResponseBody>
+
+    suspend fun clickUnLikeExchange(postId: Int): Response<ResponseBody>
+
 }

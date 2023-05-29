@@ -1,7 +1,5 @@
 package com.example.android_bong.view.main.community.detail
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android_bong.mapper.toUiState
@@ -12,6 +10,8 @@ import com.example.domain.usecase.comment.DeleteCommentUseCase
 import com.example.domain.usecase.comment.GetAllCommentUseCase
 import com.example.domain.usecase.community.DeleteCommunityPostUseCase
 import com.example.domain.usecase.community.GetAllCommunityPostUseCase
+import com.example.domain.usecase.like.CommunityClickLikeUseCase
+import com.example.domain.usecase.like.CommunityClickUnLikeUseCase
 import com.example.domain.usecase.user.GetUserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
@@ -31,7 +31,10 @@ class CommunityDetailViewModel @Inject constructor(
 
     private val getAllCommentUseCase: GetAllCommentUseCase,
     private val deleteCommentUseCase: DeleteCommentUseCase,
-    private val createCommentUseCase: CreateCommentUseCase
+    private val createCommentUseCase: CreateCommentUseCase,
+
+    private val clickLikeUseCase: CommunityClickLikeUseCase,
+    private val clickUnLikeUseCase: CommunityClickUnLikeUseCase
 ) : ViewModel() {
 
     private val _communityDetailUiState = MutableStateFlow(CommunityDetailUiState())

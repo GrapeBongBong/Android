@@ -23,4 +23,8 @@ interface CommunityRemoteDataSource {
         content: String,
     ): Response<ResponseBody>
 
+    suspend fun clickLikeCommunity(postId: Int): Response<ResponseBody>
+
+    suspend fun clickUnLikeCommunity(postId: Int): Response<ResponseBody>
+
 }

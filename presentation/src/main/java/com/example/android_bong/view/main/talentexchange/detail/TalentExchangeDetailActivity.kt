@@ -135,6 +135,10 @@ class TalentExchangeDetailActivity :
                 viewModel.updateCommentContent(it.toString())
             }
         }
+
+        likeImage.setOnClickListener {
+            viewModel.clickLike()
+        }
     }
 
     private fun initRecyclerView(adapter: CommentAdapter) = with(binding) {
@@ -160,6 +164,16 @@ class TalentExchangeDetailActivity :
                     getString(R.string.give_text, postDetail.giveCate, postDetail.giveTalent)
 
                 postDetailButton.isVisible = postDetail.isMine
+
+                if (uiState.postDetail.liked) {
+                    glide.load(R.drawable.ic_baseline_like_filled_24)
+                        .into(likeImage)
+                } else {
+                    glide.load(R.drawable.ic_baseline_like_border_24)
+                        .into(likeImage)
+                }
+
+                likedCount.text = uiState.postDetail.likeCount.toString()
 
                 /**
                  *   for (image in uiState.postDetail.images) {

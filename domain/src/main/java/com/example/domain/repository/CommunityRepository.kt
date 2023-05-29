@@ -18,4 +18,12 @@ interface CommunityRepository {
         content: String
     ): Result<String>
 
+    suspend fun clickLike(
+        postId: Int
+    ): Result<String>
+
+    suspend fun clickUnLike(
+        postId: Int
+    ): Result<String>
+
 }
