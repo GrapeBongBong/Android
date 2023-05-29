@@ -2,9 +2,7 @@ package com.example.android_bong.view.main.community.edit
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.domain.usecase.community.GetAllCommunityPostUseCase
 import com.example.domain.usecase.community.UpdateCommunityPostUseCase
-import com.example.domain.usecase.user.GetUserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,9 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CommunityEditViewModel @Inject constructor(
-    private val updateCommunityPostUseCase: UpdateCommunityPostUseCase,
-    private val getAllCommunityPostUseCase: GetAllCommunityPostUseCase,
-    private val getUserUseCase: GetUserUseCase
+    private val updateCommunityPostUseCase: UpdateCommunityPostUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(CommunityEditUiState())

@@ -19,5 +19,8 @@ fun ExchangePost.toUiState(userId: Int) = TalentExchangeItemUiState(
     writerId = writerId,
     writerNick = writerNick,
     status = status,
-    isMine = (uid == userId)
+    isMine = (uid == userId),
+    writerImageURL = writerImageURL,
+    liked = liked,
+    likeCount = likeCount
 )

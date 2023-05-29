@@ -27,7 +27,10 @@ class CommunityEditActivity :
 
     companion object {
         fun getIntent(
-            context: Context, postId: Int, title: String, content: String
+            context: Context,
+            postId: Int,
+            title: String,
+            content: String
         ): Intent {
             return Intent(context, CommunityEditActivity::class.java).apply {
                 putExtra("postId", postId)
@@ -60,7 +63,10 @@ class CommunityEditActivity :
         viewModel.bind(getPostId())
 
         initEvent()
-        initSetting(title = getPostTitle(), content = getPostContent())
+        initSetting(
+            title = getPostTitle(),
+            content = getPostContent()
+        )
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -82,7 +88,11 @@ class CommunityEditActivity :
         return super.onOptionsItemSelected(item)
     }
 
-    private fun initSetting(title: String, content: String) = with(binding) {
+    private fun initSetting(
+        title: String,
+        content: String
+    ) = with(binding) {
+
         binding.title.setText(title)
         binding.content.setText(content)
         viewModel.updateContent(title)

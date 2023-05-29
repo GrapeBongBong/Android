@@ -12,4 +12,7 @@ data class CommunityDto(
     val uid: Int,
     val writerId: String,
     val writerNick: String,
+    val writerImageURL: String? = null,
+    val liked: Boolean,
+    val likeCount: Int
 )

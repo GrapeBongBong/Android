@@ -157,7 +157,7 @@ class TalentExchangeCreateActivity : ViewBindingActivity<ActivityTalentExchangeC
 
         }
 
-        saturdayButton.setOnCheckedChangeListener { buttonView, isChecked ->
+        saturdayButton.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 viewModel.updatePossibleDay(getString(R.string.saturday))
             } else {
@@ -169,7 +169,7 @@ class TalentExchangeCreateActivity : ViewBindingActivity<ActivityTalentExchangeC
             if (isChecked) {
                 viewModel.updatePossibleDay(getString(R.string.sunday))
             } else {
-                viewModel.updateImPossibleDay(getString(R.string.saturday))
+                viewModel.updateImPossibleDay(getString(R.string.sunday))
             }
         }
 

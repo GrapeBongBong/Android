@@ -2,15 +2,12 @@ package com.example.android_bong.view.main.talentexchange.detail
 
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.widget.PopupMenu
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.viewModels
-import androidx.annotation.RequiresApi
-import androidx.core.net.toUri
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Lifecycle
@@ -27,6 +24,7 @@ import com.example.android_bong.extension.setResultRefresh
 import com.example.android_bong.view.main.comment.CommentAdapter
 import com.example.android_bong.view.main.comment.CommentItemUiState
 import com.example.android_bong.view.main.comment.CommentUiState
+import com.example.android_bong.view.main.talentexchange.edit.TalentExchangeEditActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -148,6 +146,7 @@ class TalentExchangeDetailActivity :
     private fun updatePostDetailUi(uiState: TalentExchangeDetailUiState) =
         with(binding) {
             val postDetail = uiState.postDetail
+            val glide = GlideApp.with(this@TalentExchangeDetailActivity)
 
             if (postDetail != null) {
                 title.text = postDetail.title
@@ -162,15 +161,18 @@ class TalentExchangeDetailActivity :
 
                 postDetailButton.isVisible = postDetail.isMine
 
-                val glide = GlideApp.with(this@TalentExchangeDetailActivity)
-
-                if (uiState.postDetail.images != null) {
-                    for (image in uiState.postDetail.images) {
-                        glide.load(image.fileUrl!!.toUri())
-                            .fallback(R.drawable.ic_baseline_add_24)
-                            .into(imageView1)
-                    }
+                /**
+                 *   for (image in uiState.postDetail.images) {
+                glide.load(image.fileUrl!!.toUri())
+                .fallback(R.drawable.ic_baseline_add_24)
+                .override(200, 200)
+                .into(imageView1)
                 }
+                 *
+                 */
+
+                imageLinearLayout.isVisible = false
+
             }
 
             if (uiState.userMessage != null) {
@@ -233,7 +235,7 @@ class TalentExchangeDetailActivity :
             setMessage(R.string.are_you_sure_you_want_to_update)
             setNegativeButton(R.string.cancel) { _, _ -> }
             setPositiveButton(R.string.update) { _, _ ->
-                navigateToEditActivity()
+                navigateToEditActivity(uiState)
             }
         }.show()
     }
@@ -242,8 +244,29 @@ class TalentExchangeDetailActivity :
         Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
     }
 
-    private fun navigateToEditActivity() {
+    private fun navigateToEditActivity(uiState: TalentExchangeDetailUiState) {
+        if (uiState.postId != null && uiState.postDetail != null) {
+            var possibleDays: String = ""
 
+            for (day in uiState.postDetail.availableTime.days) {
+                possibleDays += ("$day/")
+            }
+            val intent = TalentExchangeEditActivity.getIntent(
+                context = this,
+                postId = uiState.postId,
+                title = uiState.postDetail.title,
+                content = uiState.postDetail.content,
+                giveCate = uiState.postDetail.giveCate,
+                takeCate = uiState.postDetail.takeCate,
+                giveTalent = uiState.postDetail.giveTalent,
+                takeTalent = uiState.postDetail.takeTalent,
+                possibleDays = possibleDays,
+                possibleTimeZone = uiState.postDetail.availableTime.timezone!!,
+            )
+            possibleDays = ""
+            launcher?.launch(intent)
+
+        }
     }
 
 }

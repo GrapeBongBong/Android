@@ -13,4 +13,7 @@ fun CommunityDto.toEntity() = CommunityPost(
     uid = uid,
     writerId = writerId,
     writerNick = writerNick,
+    writerImageURL = writerImageURL,
+    liked = liked,
+    likeCount = likeCount
 )

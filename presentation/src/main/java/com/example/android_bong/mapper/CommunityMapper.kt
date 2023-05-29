@@ -13,5 +13,8 @@ fun CommunityPost.toUiState(userId: Int) = CommunityItemUiState(
     uid = uid,
     writerId = writerId,
     writerNick = writerNick,
-    isMine = (uid == userId)
+    isMine = (uid == userId),
+    writerImageURL = writerImageURL,
+    liked = liked,
+    likeCount = likeCount
 )

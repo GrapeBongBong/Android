@@ -22,7 +22,10 @@ fun ExchangePostDto.toEntity() = ExchangePost(
     uid = uid,
     writerId = writerId,
     writerNick = writerNick,
-    status = status
+    status = status,
+    writerImageURL = writerImageURL,
+    likeCount = likeCount,
+    liked = liked
 )
 
 fun AvailableTimeDto.toEntity() = AvailableTime(

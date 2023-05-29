@@ -37,10 +37,4 @@ data class TalentExchangeCreateUiState(
     private val isValidTakeTalent: Boolean
         get() = takeTalent.isNotEmpty()
 
-    private val isValidDays: Boolean
-        get() = possibleDays.isNotEmpty()
-
-    private val isValidTimeZone: Boolean
-        get() = possibleTimeZone.isNotEmpty()
-
 }

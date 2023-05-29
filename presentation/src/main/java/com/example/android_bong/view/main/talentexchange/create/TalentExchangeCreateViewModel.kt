@@ -1,10 +1,10 @@
 package com.example.android_bong.view.main.talentexchange.create
 
-import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.usecase.post.CreateExchangePostUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -17,6 +17,8 @@ class TalentExchangeCreateViewModel @Inject constructor(
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(TalentExchangeCreateUiState())
     val uiState = _uiState.asStateFlow()
+
+    private var fetchJob: Job? = null
 
     fun updateTitle(title: String) {
         _uiState.update { it.copy(title = title) }
@@ -56,10 +58,6 @@ class TalentExchangeCreateViewModel @Inject constructor(
         }
     }
 
-    fun selectImage(uri: Uri) {
-        _uiState.update { it.copy(selectedImage = uri) }
-    }
-
 
     fun createPost() {
         val title = uiState.value.title
@@ -73,7 +71,8 @@ class TalentExchangeCreateViewModel @Inject constructor(
         _uiState.update {
             it.copy(isLoading = true)
         }
-        viewModelScope.launch {
+        fetchJob?.cancel()
+        fetchJob = viewModelScope.launch {
             val result = createExchangePostUseCase(
                 title = title,
                 content = content,
