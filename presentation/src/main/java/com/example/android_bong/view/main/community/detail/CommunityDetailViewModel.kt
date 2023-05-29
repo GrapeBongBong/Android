@@ -87,6 +87,39 @@ class CommunityDetailViewModel @Inject constructor(
         }
     }
 
+    fun clickLike() {
+        val postId = communityDetailUiState.value.postId!!
+        if (communityDetailUiState.value.postDetail!!.liked) {
+            viewModelScope.launch {
+                val result = clickUnLikeUseCase(postId = postId)
+                if (result.isSuccess) {
+                    _communityDetailUiState.update {
+                        it.copy(userMessage = result.getOrNull())
+                    }
+                    postDetailBind(postId)
+                } else {
+                    _communityDetailUiState.update {
+                        it.copy(userMessage = result.getOrNull())
+                    }
+                }
+            }
+        } else {
+            viewModelScope.launch {
+                val result = clickLikeUseCase(postId = postId)
+                if (result.isSuccess) {
+                    _communityDetailUiState.update {
+                        it.copy(userMessage = result.getOrNull())
+                    }
+                    postDetailBind(postId)
+                } else {
+                    _communityDetailUiState.update {
+                        it.copy(userMessage = result.getOrNull())
+                    }
+                }
+            }
+        }
+    }
+
 
     fun postDetailUserMessageShown() {
         _communityDetailUiState.update { it.copy(userMessage = null) }

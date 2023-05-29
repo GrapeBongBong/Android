@@ -134,6 +134,10 @@ class CommunityDetailActivity : ViewBindingActivity<ActivityCommunityDetailBindi
                 viewModel.updateCommentContent(it.toString())
             }
         }
+
+        likeImage.setOnClickListener {
+            viewModel.clickLike()
+        }
     }
 
 
