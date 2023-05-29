@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.MenuItem
 import androidx.activity.viewModels
@@ -48,6 +49,11 @@ class ProfileUpdateActivity : ViewBindingActivity<ActivityProfileUpdateBinding>(
                 viewModel.uiState.collect(::updateUi)
             }
         }
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        setResultRefresh()
+        return super.onKeyDown(keyCode, event)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

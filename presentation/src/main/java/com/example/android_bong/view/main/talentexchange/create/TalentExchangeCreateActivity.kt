@@ -3,6 +3,7 @@ package com.example.android_bong.view.main.talentexchange.create
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -70,6 +71,11 @@ class TalentExchangeCreateActivity : ViewBindingActivity<ActivityTalentExchangeC
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        setResultRefresh()
+        return super.onKeyDown(keyCode, event)
     }
 
     private fun updateUi(uiState: TalentExchangeCreateUiState) = with(binding) {

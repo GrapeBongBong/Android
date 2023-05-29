@@ -3,6 +3,7 @@ package com.example.android_bong.view.main.talentexchange.detail
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.widget.PopupMenu
@@ -20,6 +21,7 @@ import com.example.android_bong.common.ViewBindingActivity
 import com.example.android_bong.databinding.ActivityTalentExchangeDetailBinding
 import com.example.android_bong.extension.RefreshStateContract
 import com.example.android_bong.extension.addDividerDecoration
+import com.example.android_bong.extension.convertDateTimeFormat
 import com.example.android_bong.extension.setResultRefresh
 import com.example.android_bong.view.main.comment.CommentAdapter
 import com.example.android_bong.view.main.comment.CommentItemUiState
@@ -103,6 +105,11 @@ class TalentExchangeDetailActivity :
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        setResultRefresh()
+        return super.onKeyDown(keyCode, event)
+    }
+
     private fun initEvent() = with(binding) {
         postDetailButton.setOnClickListener { view ->
             val popupMenu = PopupMenu(applicationContext, view)
@@ -157,7 +164,7 @@ class TalentExchangeDetailActivity :
                 content.text = postDetail.content
                 nickName.text =
                     getString(R.string.post_id_nickName, postDetail.writerNick, postDetail.writerId)
-                date.text = postDetail.date
+                date.text = convertDateTimeFormat(postDetail.date)
                 takeTalent.text =
                     getString(R.string.take_text, postDetail.takeCate, postDetail.takeTalent)
                 giveTalent.text =

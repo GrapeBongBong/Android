@@ -4,6 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.android_bong.R
 import com.example.android_bong.common.GlideApp
 import com.example.android_bong.databinding.ItemCommunityPostBinding
+import com.example.android_bong.extension.convertDateTimeFormat
 
 class CommunityViewHolder(
     private val binding: ItemCommunityPostBinding,
@@ -15,7 +16,8 @@ class CommunityViewHolder(
 
         title.text = uiState.title
         content.text = uiState.content
-        date.text = uiState.date
+
+        date.text = convertDateTimeFormat(uiState.date)
 
         if (uiState.liked) {
             glide.load(R.drawable.ic_baseline_like_filled_24)

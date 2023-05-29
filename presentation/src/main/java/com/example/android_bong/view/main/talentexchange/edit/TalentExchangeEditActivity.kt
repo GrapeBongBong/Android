@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -133,6 +134,11 @@ class TalentExchangeEditActivity : ViewBindingActivity<ActivityTalentExchangeEdi
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        setResultRefresh()
+        return super.onKeyDown(keyCode, event)
+    }
+
     private fun initSetting(
         title: String,
         content: String,
@@ -154,32 +160,14 @@ class TalentExchangeEditActivity : ViewBindingActivity<ActivityTalentExchangeEdi
 
         for (day in days) {
             Log.d("day", day)
-            if (day == getString(R.string.monday)) {
-                mondayButton.isChecked = true
-            }
-
-            if (day == getString(R.string.tuesday)) {
-                tuesdayButton.isChecked = true
-            }
-
-            if (day == getString(R.string.wednesday)) {
-                wednesdayButton.isChecked = true
-            }
-
-            if (day == getString(R.string.thursday)) {
-                thursdayButton.isChecked = true
-            }
-
-            if (day == getString(R.string.friday)) {
-                fridayButton.isChecked = true
-            }
-
-            if (day == getString(R.string.saturday)) {
-                saturdayButton.isChecked = true
-            }
-
-            if (day == getString(R.string.sunday)) {
-                sundayButton.isChecked = true
+            when (day) {
+                getString(R.string.monday) -> mondayButton.isChecked = true
+                getString(R.string.tuesday) -> tuesdayButton.isChecked = true
+                getString(R.string.wednesday) -> wednesdayButton.isChecked = true
+                getString(R.string.thursday) -> thursdayButton.isChecked = true
+                getString(R.string.friday) -> fridayButton.isChecked = true
+                getString(R.string.saturday) -> saturdayButton.isChecked = true
+                getString(R.string.sunday) -> sundayButton.isChecked = true
             }
         }
 
