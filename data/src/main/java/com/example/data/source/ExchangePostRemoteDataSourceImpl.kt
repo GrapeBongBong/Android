@@ -7,9 +7,7 @@ import com.example.data.model.exchangePost.ExchangePostDto
 import com.example.domain.model.exchange.AvailableTime
 import com.google.gson.Gson
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Response
 import javax.inject.Inject
@@ -52,6 +50,30 @@ class ExchangePostRemoteDataSourceImpl @Inject constructor(
 
         return api.createExchangePost(
             jsonRequestBody
+        )
+    }
+
+    override suspend fun updateExchangePost(
+        postId: Int,
+        title: String,
+        content: String,
+        giveCate: String,
+        takeCate: String,
+        giveTalent: String,
+        takeTalent: String,
+        availableTime: AvailableTime
+    ): Response<ResponseBody> {
+        return api.updateExchangePost(
+            postId = postId,
+            CreateExchangePostRequestBody(
+                title = title,
+                content = content,
+                giveCate = giveCate,
+                takeCate = takeCate,
+                giveTalent = giveTalent,
+                takeTalent = takeTalent,
+                availableTime = availableTime
+            )
         )
     }
 

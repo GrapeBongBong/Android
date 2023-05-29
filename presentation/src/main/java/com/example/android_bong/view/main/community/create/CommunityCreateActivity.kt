@@ -53,6 +53,7 @@ class CommunityCreateActivity : ViewBindingActivity<ActivityCommunityCreateBindi
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
+                setResultRefresh()
                 finish()
                 return true
             }

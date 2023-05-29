@@ -2,6 +2,7 @@ package com.example.data.api
 
 import com.example.data.model.ResponseBody
 import com.example.data.model.community.CommunityDto
+import com.example.data.model.community.CommunityRequestBody
 import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.*
@@ -25,7 +26,8 @@ interface CommunityApi {
 
     @PUT("/anonymous/post/{postId}")
     suspend fun updatePost(
-        @Path("postId") postId: Int
+        @Path("postId") postId: Int,
+        @Body communityRequestBody: CommunityRequestBody
     ): Response<ResponseBody>
 
 }

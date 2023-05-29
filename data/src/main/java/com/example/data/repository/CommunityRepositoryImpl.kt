@@ -30,7 +30,17 @@ class CommunityRepositoryImpl @Inject constructor(
     }
 
     override suspend fun deletePost(postId: Int): Result<String> {
-        TODO("Not yet implemented")
+        return try {
+            val response = communityRemoteDataSource.deletePost(postId = postId)
+            val responseBody = response.body()
+            if (responseBody != null && response.code() == 200) {
+                Result.success(responseBody.message)
+            } else {
+                throw Exception(responseBody!!.message)
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
     }
 
     override suspend fun createPost(title: String, content: String): Result<String> {
@@ -51,8 +61,22 @@ class CommunityRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun updatePost(postId: Int): Result<String> {
-        TODO("Not yet implemented")
+    override suspend fun updatePost(postId: Int, title: String, content: String): Result<String> {
+        return try {
+            val response = communityRemoteDataSource.updatePost(
+                postId = postId,
+                title = title,
+                content = content
+            )
+            val responseBody = response.body()
+            if (responseBody != null && response.code() == 200) {
+                Result.success(responseBody.message)
+            } else {
+                throw Exception(responseBody!!.message)
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
     }
 
 }

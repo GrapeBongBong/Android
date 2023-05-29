@@ -12,6 +12,10 @@ interface CommunityRepository {
         content: String
     ): Result<String>
 
-    suspend fun updatePost(postId: Int): Result<String>
+    suspend fun updatePost(
+        postId: Int,
+        title: String,
+        content: String
+    ): Result<String>
 
 }

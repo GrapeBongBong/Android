@@ -18,7 +18,9 @@ interface CommunityRemoteDataSource {
     suspend fun deletePost(postId: Int): Response<ResponseBody>
 
     suspend fun updatePost(
-        postId: Int
+        postId: Int,
+        title: String,
+        content: String,
     ): Response<ResponseBody>
 
 }

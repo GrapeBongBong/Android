@@ -1,6 +1,7 @@
 package com.example.data.api
 
 import com.example.data.model.ResponseBody
+import com.example.data.model.exchangePost.CreateExchangePostRequestBody
 import com.example.data.model.exchangePost.ExchangePostDto
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -18,7 +19,8 @@ interface ExchangePostApi {
 
     @PUT("/exchange/post/{postId}")
     suspend fun updateExchangePost(
-        @Path("postId") postId: Int
+        @Path("postId") postId: Int,
+        @Body createExchangePostRequestBody: CreateExchangePostRequestBody
     ): Response<ResponseBody>
 
     @Multipart

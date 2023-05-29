@@ -2,24 +2,22 @@ package com.example.android_bong.view.auth.signUp
 
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.viewModels
-import androidx.annotation.RequiresApi
 import androidx.core.view.WindowCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.ui.AppBarConfiguration
 import com.example.android_bong.R
 import com.example.android_bong.common.ViewBindingActivity
 import com.example.android_bong.databinding.ActivitySignUpBinding
 import com.example.android_bong.extension.RefreshStateContract
+import com.example.android_bong.extension.setResultRefresh
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -41,7 +39,6 @@ class SignUpActivity : ViewBindingActivity<ActivitySignUpBinding>() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, true)
         super.onCreate(savedInstanceState)
@@ -71,6 +68,7 @@ class SignUpActivity : ViewBindingActivity<ActivitySignUpBinding>() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
+                setResultRefresh()
                 finish()
                 return true
             }
@@ -78,7 +76,6 @@ class SignUpActivity : ViewBindingActivity<ActivitySignUpBinding>() {
         return super.onOptionsItemSelected(item)
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun initEventListeners() = with(binding) {
         signUpButton.setOnClickListener {
             viewModel.signUp()

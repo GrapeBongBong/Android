@@ -1,6 +1,5 @@
 package com.example.data.repository
 
-import android.util.Log
 import com.example.data.mapper.toEntity
 import com.example.data.source.ExchangePostRemoteDataSource
 import com.example.domain.model.exchange.AvailableTime
@@ -81,7 +80,41 @@ class ExchangePostRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun updateExchangePost(postId: Int): Result<String> {
-        return Result.success("adad")
+    override suspend fun updateExchangePost(
+        postId: Int,
+        title: String,
+        content: String,
+        giveCate: String,
+        takeCate: String,
+        giveTalent: String,
+        takeTalent: String,
+        days: MutableList<String>,
+        timeZone: String
+    ): Result<String> {
+        return try {
+            val response = exchangePostRemoteDataSource.updateExchangePost(
+                postId = postId,
+                title = title,
+                content = content,
+                giveCate = giveCate,
+                takeCate = takeCate,
+                giveTalent = giveTalent,
+                takeTalent = takeTalent,
+                availableTime = AvailableTime(
+                    days = days,
+                    timezone = timeZone
+                )
+            )
+            val responseBody = response.body()
+            if (responseBody != null && response.code() == 201) {
+                val message = responseBody.message
+                Result.success(message)
+            } else {
+                val message = responseBody!!.message
+                throw Exception(message)
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
     }
 }

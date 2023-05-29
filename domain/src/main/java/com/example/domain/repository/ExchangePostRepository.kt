@@ -19,6 +19,16 @@ interface ExchangePostRepository {
         timeZone: String
     ): Result<String>
 
-    suspend fun updateExchangePost(postId: Int): Result<String>
+    suspend fun updateExchangePost(
+        postId: Int,
+        title: String,
+        content: String,
+        giveCate: String,
+        takeCate: String,
+        giveTalent: String,
+        takeTalent: String,
+        days: MutableList<String>,
+        timeZone: String
+    ): Result<String>
 
 }

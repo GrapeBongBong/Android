@@ -2,14 +2,12 @@ package com.example.android_bong.view.main.community.detail
 
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.widget.PopupMenu
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.viewModels
-import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Lifecycle
@@ -25,6 +23,7 @@ import com.example.android_bong.extension.setResultRefresh
 import com.example.android_bong.view.main.comment.CommentAdapter
 import com.example.android_bong.view.main.comment.CommentItemUiState
 import com.example.android_bong.view.main.comment.CommentUiState
+import com.example.android_bong.view.main.community.edit.CommunityEditActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -95,6 +94,7 @@ class CommunityDetailActivity : ViewBindingActivity<ActivityCommunityDetailBindi
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
+                setResultRefresh()
                 finish()
                 return true
             }
@@ -221,7 +221,7 @@ class CommunityDetailActivity : ViewBindingActivity<ActivityCommunityDetailBindi
             setMessage(R.string.are_you_sure_you_want_to_update)
             setNegativeButton(R.string.cancel) { _, _ -> }
             setPositiveButton(R.string.update) { _, _ ->
-                navigateToEditActivity()
+                navigateToEditActivity(uiState)
             }
         }.show()
     }
@@ -230,8 +230,14 @@ class CommunityDetailActivity : ViewBindingActivity<ActivityCommunityDetailBindi
         Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
     }
 
-    private fun navigateToEditActivity() {
-
+    private fun navigateToEditActivity(uiState: CommunityDetailUiState) {
+        val intent = CommunityEditActivity.getIntent(
+            context = this,
+            postId = uiState.postId!!,
+            title = uiState.postDetail!!.title,
+            content = uiState.postDetail.content
+        )
+        launcher?.launch(intent)
     }
 
 

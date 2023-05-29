@@ -59,7 +59,15 @@ class CommunityRemoteDataSourceImpl @Inject constructor(
     override suspend fun deletePost(postId: Int): Response<ResponseBody> =
         api.deletePosts(postId = postId)
 
-    override suspend fun updatePost(postId: Int): Response<ResponseBody> =
-        api.updatePost(postId = postId)
+    override suspend fun updatePost(
+        postId: Int,
+        title: String,
+        content: String
+    ): Response<ResponseBody> {
+        return api.updatePost(
+            postId = postId,
+            CommunityRequestBody(title = title, content = content)
+        )
+    }
 
 }
