@@ -13,7 +13,7 @@ fun ExchangePostDto.toEntity() = ExchangePost(
     date = date,
     giveCate = giveCate,
     giveTalent = giveTalent,
-    images = image?.map { it.toEntity() },
+    images = images?.map { it.toEntity() },
     pid = pid,
     postType = postType,
     takeCate = takeCate,
@@ -22,7 +22,10 @@ fun ExchangePostDto.toEntity() = ExchangePost(
     uid = uid,
     writerId = writerId,
     writerNick = writerNick,
-    status = status
+    status = status,
+    writerImageURL = writerImageURL,
+    likeCount = likeCount,
+    liked = liked
 )
 
 fun AvailableTimeDto.toEntity() = AvailableTime(

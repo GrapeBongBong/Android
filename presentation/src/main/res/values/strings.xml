@@ -12,13 +12,27 @@
     <string name="signUp">회원 가입</string>
     <string name="man">남</string>
     <string name="woman">여</string>
+    <string name="cancel">취소</string>
+    <string name="delete_post">게시글 삭제</string>
+    <string name="update_post">게시글 수정</string>
+    <string name="delete_comment">댓글 삭제</string>
+    <string name="update_comment">댓글 수정</string>
+    <string name="delete_update">수정/삭제</string>
+    <string name="delete_or_update">수정하거나 삭제할 수 있습니다.</string>
     <string name="anonymous_community">익명게시판</string>
+    <string name="are_you_sure_you_want_to_delete">정말로 삭제할까요?</string>
     <string name="title">제목</string>
     <string name="take">Take</string>
     <string name="give">Give</string>
     <string name="monday">월</string>
     <string name="tuesday">화</string>
     <string name="wednesday">수</string>
+    <string name="trading">교환 원해요!</string>
+    <string name="possibleTimeZone">가능한 시간대 : %s</string>
+    <string name="possibleDays">가능한 날짜 : %s</string>
+    <string name="trading_completed">교환 완료!</string>
+    <string name="checkExchangePost">내가 작성한 재능교환 게시물 목록</string>
+    <string name="checkCommunityPost">내가 작성한 재능교환 게시물 목록</string>
     <string name="thursday">목</string>
     <string name="friday">금</string>
     <string name="saturday">토</string>
@@ -34,10 +48,15 @@
     <string name="profile_temperature">나의 온도는 %s도에요.</string>
     <string name="profile_userNickName">%s님</string>
     <string name="or">Or</string>
+    <string name="update">수정</string>정
+    <string name="doing_update">수정하기</string>
+    <string name="are_you_sure_you_want_to_update">정말로 수정할까요? \n (이미지는 수정할 수 없어요.)</string>
     <string name="update_profile">프로필 수정</string>
     <string name="exchange_talent">재능 교환</string>
     <string name="exchange_talent_posting">재능 교환 게시물 등록</string>
-    <string name="community_posting">게시판 게시물 등록</string>
+    <string name="community_posting">커뮤니티 게시물 등록</string>
+    <string name="community_updating">커뮤니티 게시물 수정</string>
+    <string name="exchange_updating">재능교환 게시물 수정</string>
     <string name="anonymous">익명</string>
     <string name="date">2018년 5월 18일</string>
     <string name="see_name">이름 : %s</string>
@@ -64,7 +83,7 @@
     <string name="delete">삭제</string>
     <string name="isMinePost">글쓴이(나)</string>
     <string name="input_comment">댓글 추가..</string>
-    <string name="photo">사진은 3장까지 등록가능해요.</string>
+    <string name="photo">사진은 3장까지 등록가능해요.\n사진은 추후에 수정이 불가능해요.</string>
     <string name="unable_to_retrieve_member_information">회원정보를 불러올 수 없습니다.</string>
     <string name="gender">성별</string>
     <string name="user_nickname">%s님의 온도는</string>
@@ -84,6 +103,12 @@
     <string name="write_post">게시물 쓰기</string>
     <string name="loading">로딩중…</string>
     <string name="application_button_text">신청하기</string>
+    <string name="user_info">사용자 정보</string>
+
+    <string-array name="image_options">
+        <item>갤러리에서 선택</item>
+        <item>기본 이미지로 변경</item>
+    </string-array>
 
     <string-array name="talent_array">
         <item>IT</item>

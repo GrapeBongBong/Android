@@ -1,25 +1,30 @@
 package com.example.data.source
 
 import com.example.data.model.ResponseBody
-import com.example.data.model.comment.CommentsDto
-import com.example.data.model.comment.CreateCommentRequestBody
+import com.example.data.model.community.CommunityDto
 import retrofit2.Response
+import java.io.File
 
 interface CommunityRemoteDataSource {
 
-    suspend fun getAll(postId: Int): Response<CommentsDto>
+    suspend fun getAll(): Response<List<CommunityDto>>
 
     suspend fun createPost(
-        postId: Int,
-        createCommentRequestBody: CreateCommentRequestBody
+        title: String,
+        content: String,
+        postImages: File?
     ): Response<ResponseBody>
 
-    suspend fun deletePost(postId: Int, commentId: Int): Response<ResponseBody>
+    suspend fun deletePost(postId: Int): Response<ResponseBody>
 
     suspend fun updatePost(
         postId: Int,
-        commentId: Int,
-        createCommentRequestBody: CreateCommentRequestBody
+        title: String,
+        content: String,
     ): Response<ResponseBody>
+
+    suspend fun clickLikeCommunity(postId: Int): Response<ResponseBody>
+
+    suspend fun clickUnLikeCommunity(postId: Int): Response<ResponseBody>
 
 }

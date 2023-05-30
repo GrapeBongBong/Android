@@ -3,6 +3,7 @@ package com.example.data.api
 import com.example.data.model.ResponseBody
 import com.example.data.model.exchangePost.CreateExchangePostRequestBody
 import com.example.data.model.exchangePost.ExchangePostDto
+import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -18,12 +19,24 @@ interface ExchangePostApi {
 
     @PUT("/exchange/post/{postId}")
     suspend fun updateExchangePost(
+        @Path("postId") postId: Int,
+        @Body createExchangePostRequestBody: CreateExchangePostRequestBody
+    ): Response<ResponseBody>
+
+    @Multipart
+    @POST("/exchange/post")
+    suspend fun createExchangePost(
+        @Part("exchangePostDTO") requestBody: RequestBody
+    ): Response<ResponseBody>
+
+    @POST("/exchange/{postId}/like")
+    suspend fun clickLikeExchange(
         @Path("postId") postId: Int
     ): Response<ResponseBody>
 
-    @POST("/exchange/post")
-    suspend fun createExchangePost(
-        @Body createExchangePostRequestBody: CreateExchangePostRequestBody
+    @POST("/exchange/{postId}/unlike")
+    suspend fun clickUnLikeExchange(
+        @Path("postId") postId: Int
     ): Response<ResponseBody>
 
 }

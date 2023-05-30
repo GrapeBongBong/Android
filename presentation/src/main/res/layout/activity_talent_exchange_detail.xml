@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -29,7 +29,7 @@
                 android:layout_height="32dp"
                 android:layout_gravity="end"
                 android:layout_marginEnd="16dp"
-                android:src="@drawable/ic_baseline_settings_24" />
+                android:src="@drawable/ic_baseline_more_vert_24" />
 
 
         </androidx.appcompat.widget.Toolbar>
@@ -40,6 +40,7 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -47,19 +48,34 @@
             android:id="@+id/content_layout1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:orientation="vertical"
             tools:ignore="UselessParent">
 
-            <TextView
-                android:id="@+id/title"
-                style="?attr/textAppearanceTitleLarge"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:textStyle="bold"
-                tools:text="제목이 들어가는 공간" />
+                android:layout_marginBottom="10dp">
+
+                <ImageView
+                    android:id="@+id/user_image"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/user"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/category" />
+
+                <TextView
+                    android:id="@+id/title"
+                    style="?attr/textAppearanceTitleLarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:textStyle="bold"
+                    tools:text="제목이 들어가는 공간" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/nickName"
@@ -79,7 +95,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="20dp"
-                tools:text="날짜가 들어가는 공간" />
+                tools:text="게시물 등록 날짜가 들어가는 공간" />
 
             <View
                 android:layout_width="match_parent"
@@ -87,37 +103,9 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
-                android:layout_marginBottom="10dp"
                 android:alpha="0.6"
                 android:background="@color/md_theme_light_outline"
                 android:ellipsize="end" />
-
-            <LinearLayout
-                android:id="@+id/imageLinearLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="96dp"
-                    android:layout_height="96dp"
-                    android:layout_marginEnd="10dp"
-                    android:src="@drawable/ic_baseline_add_24" />
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="96dp"
-                    android:layout_height="96dp"
-                    android:layout_marginEnd="10dp"
-                    android:src="@drawable/ic_baseline_add_24" />
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="96dp"
-                    android:layout_height="96dp"
-                    android:layout_marginEnd="10dp"
-                    android:src="@drawable/ic_baseline_add_24" />
-
-            </LinearLayout>
 
             <TextView
                 android:id="@+id/takeTalent"
@@ -153,6 +141,72 @@
                 app:layout_constraintTop_toBottomOf="@+id/takeTalent" />
 
             <TextView
+                android:id="@+id/possiblaDays"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp"
+                android:alpha="0.6"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/give_text"
+                android:textColor="?attr/colorOnBackground"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/takeTalent" />
+
+            <TextView
+                android:id="@+id/possibleTime"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp"
+                android:alpha="0.6"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/give_text"
+                android:textColor="?attr/colorOnBackground"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/takeTalent" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/imageLinearLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/imageView1"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:layout_marginEnd="10dp" />
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:layout_marginEnd="10dp" />
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp" />
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+            <TextView
                 android:id="@+id/content"
                 style="?attr/textAppearanceBodyMedium"
                 android:layout_width="match_parent"
@@ -161,6 +215,30 @@
                 android:padding="10dp"
                 android:textSize="16sp"
                 tools:text="내용이 들어가는 공간" />
+
+            <LinearLayout
+                android:id="@+id/LikeLinearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="5dp">
+
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/likeImage"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/leaf_border" />
+
+                <TextView
+                    android:id="@+id/likedCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:textSize="24sp"
+                    tools:text="2" />
+
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -184,7 +262,8 @@
                     android:id="@+id/commentInputLayout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.9"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="0.8"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -207,6 +286,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.1"
+                    android:padding="4dp"
                     android:src="@drawable/ic_baseline_send_24"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -237,16 +317,8 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <Button
-                android:id="@+id/application_button"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:text="@string/application_button_text" />
-
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,7 +16,7 @@ data class SignUpUiState(
     val isLoading: Boolean = false,
 ) {
     val isInputValid: Boolean
-        get() = isIdValid && isNameValid && isPasswordValid && isPasswordCheckValid && isPhoneNumberValid
+        get() = isIdValid && isNameValid && isPasswordValid && isPasswordCheckValid && isPhoneNumberValid && isEmailValid && isNickNameValid
 
     private val isNameValid: Boolean
         get() = name.length >= 3

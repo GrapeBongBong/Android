@@ -1,5 +1,6 @@
 package com.example.data.repository
 
+import androidx.core.net.toUri
 import com.example.data.mapper.toEntity
 import com.example.data.model.auth.AuthLocalData
 import com.example.data.model.auth.LoginRequestBody
@@ -10,6 +11,7 @@ import com.example.domain.model.user.User
 import com.example.domain.repository.AuthRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import java.io.File
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
@@ -21,7 +23,7 @@ class AuthRepositoryImpl @Inject constructor(
 
     private val isReady = MutableStateFlow(false)
 
-    override suspend fun getUserDetail(): StateFlow<User?> {
+    override fun getUserDetail(): StateFlow<User?> {
         return currentUserState
     }
 
@@ -77,10 +79,13 @@ class AuthRepositoryImpl @Inject constructor(
                     gender = gender
                 )
             )
-            if (result.body() != null) {
-                Result.success(result.body()!!.message)
+            val responseBody = result.body()
+            if (responseBody != null && result.code() == 200) {
+                val message = responseBody.message
+                Result.success(message)
             } else {
-                throw Exception(result.errorBody().toString())
+                val message = responseBody!!.message
+                throw Exception(message)
             }
 
         } catch (e: Exception) {
@@ -89,13 +94,20 @@ class AuthRepositoryImpl @Inject constructor(
     }
 
     override fun syncCurrentUser(
-        nickName: String, address: String
+        nickName: String,
+        email: String,
+        phoneNumber: String,
+        password: String,
+        profileImage: File?
     ) {
         val currentUserStateValue = currentUserState.value
         if (currentUserStateValue != null) {
             currentUserState.value = currentUserStateValue.copy(
                 nickName = nickName,
-                address = address
+                email = email,
+                phone_num = phoneNumber,
+                password = password,
+                profile_img = profileImage?.toUri().toString()
             )
         }
     }

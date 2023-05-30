@@ -1,13 +1,7 @@
 package com.example.data.di
 
-import com.example.data.repository.AuthRepositoryImpl
-import com.example.data.repository.CommentRepositoryImpl
-import com.example.data.repository.ExchangePostRepositoryImpl
-import com.example.data.repository.UserRepositoryImpl
-import com.example.domain.repository.AuthRepository
-import com.example.domain.repository.CommentRepository
-import com.example.domain.repository.ExchangePostRepository
-import com.example.domain.repository.UserRepository
+import com.example.data.repository.*
+import com.example.domain.repository.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -41,5 +35,11 @@ abstract class RepositoryModule {
     abstract fun bindsCommentRepository(
         commentRepositoryImpl: CommentRepositoryImpl
     ): CommentRepository
+
+    @Singleton
+    @Binds
+    abstract fun bindsCommunity(
+        communityRepositoryImpl: CommunityRepositoryImpl
+    ): CommunityRepository
 
 }

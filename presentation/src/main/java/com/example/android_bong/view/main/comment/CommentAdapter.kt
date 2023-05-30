@@ -5,15 +5,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.example.android_bong.databinding.ItemCommentBinding
-import com.example.android_bong.view.main.talentexchange.detail.CommentItemUiState
 
-class CommentAdapter :
+class CommentAdapter(
+    private val onClickMenu: (CommentItemUiState) -> Unit
+) :
     ListAdapter<CommentItemUiState, CommentViewHolder>(diffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = ItemCommentBinding.inflate(layoutInflater, parent, false)
-        return CommentViewHolder(binding)
+        return CommentViewHolder(binding, onClickMenu)
     }
 
     override fun onBindViewHolder(holder: CommentViewHolder, position: Int) {

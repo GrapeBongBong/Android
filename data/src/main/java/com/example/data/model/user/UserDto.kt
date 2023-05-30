@@ -11,8 +11,8 @@ data class UserDto(
     val nickName: String,
     val password: String,
     val phone_num: String,
-    val profile_img: Any? = null,
-    val roles: List<Any> = emptyList(),
+    val profile_img: String? = null,
+    val roles: List<String> = emptyList(),
     val temperature: Double,
     val uid: Int
 )

@@ -1,6 +1,7 @@
 package com.example.domain.repository
 
 import com.example.domain.model.exchange.ExchangePost
+import java.io.File
 
 interface ExchangePostRepository {
 
@@ -16,9 +17,29 @@ interface ExchangePostRepository {
         giveTalent: String,
         takeTalent: String,
         days: MutableList<String>,
+        timeZone: String,
+        images: MutableList<File>?
+    ): Result<String>
+
+    suspend fun updateExchangePost(
+        postId: Int,
+        title: String,
+        content: String,
+        giveCate: String,
+        takeCate: String,
+        giveTalent: String,
+        takeTalent: String,
+        days: MutableList<String>,
         timeZone: String
     ): Result<String>
 
-    suspend fun updateExchangePost(postId: Int): Result<String>
+    suspend fun clickLike(
+        postId: Int
+    ): Result<String>
+
+    suspend fun clickUnLike(
+        postId: Int
+    ): Result<String>
+
 
 }

@@ -1,6 +1,7 @@
 package com.example.domain.usecase.post
 
 import com.example.domain.repository.ExchangePostRepository
+import java.io.File
 import javax.inject.Inject
 
 class CreateExchangePostUseCase @Inject constructor(
@@ -14,7 +15,8 @@ class CreateExchangePostUseCase @Inject constructor(
         giveTalent: String,
         takeTalent: String,
         days: MutableList<String>,
-        timeZone: String
+        timeZone: String,
+        images: MutableList<File>?
     ) = repository.createExchangePost(
         title = title,
         content = content,
@@ -23,6 +25,7 @@ class CreateExchangePostUseCase @Inject constructor(
         giveTalent = giveTalent,
         takeTalent = takeTalent,
         days = days,
-        timeZone = timeZone
+        timeZone = timeZone,
+        images = images
     )
 }

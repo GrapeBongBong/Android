@@ -6,16 +6,19 @@ data class ExchangePostDto(
     val date: String,
     val giveCate: String,
     val giveTalent: String,
-    val image: List<ImageDto>? = emptyList(),
+    val images: List<ImageDto>? = emptyList(),
     val pid: Int,
     val postType: String,
     val takeCate: String,
     val takeTalent: String,
     val title: String,
     val uid: Int,
+    val writerImageURL: String? = null,
     val writerId: String,
     val writerNick: String,
-    val status: Boolean
+    val status: Boolean,
+    val liked: Boolean,
+    val likeCount: Int
 )
 
 data class AvailableTimeDto(

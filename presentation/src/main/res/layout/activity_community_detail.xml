@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".view.main.community.detail.CommunityDetailActivity">
+
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -20,7 +21,18 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?android:attr/windowBackground"
             app:layout_scrollFlags="scroll|enterAlways|snap"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/post_detail_button"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="end"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/ic_baseline_more_vert_24" />
+
+
+        </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -28,6 +40,7 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -35,10 +48,6 @@
             android:id="@+id/content_layout1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
-            android:gravity="center"
             android:orientation="vertical"
             tools:ignore="UselessParent">
 
@@ -47,6 +56,8 @@
                 style="?attr/textAppearanceTitleLarge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:textStyle="bold"
                 tools:text="제목이 들어가는 공간" />
 
@@ -55,21 +66,27 @@
                 style="?attr/textAppearanceLabelMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
-                android:text="@string/anonymous" />
+                android:layout_marginEnd="20dp"
+                tools:text="닉네임이 들어가는 공간" />
 
             <TextView
                 android:id="@+id/date"
                 style="?attr/textAppearanceLabelMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp"
                 tools:text="날짜가 들어가는 공간" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
                 android:layout_marginBottom="10dp"
                 android:alpha="0.6"
                 android:background="@color/md_theme_light_outline"
@@ -80,45 +97,114 @@
                 style="?attr/textAppearanceBodyMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/memo_style"
+                android:layout_margin="20dp"
+                android:padding="10dp"
                 android:textSize="16sp"
-                tools:text="내용이 들어가는 공간\n\n\n\n\n\n\n" />
+                tools:text="내용이 들어가는 공간" />
+
+            <LinearLayout
+                android:id="@+id/LikeLinearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="5dp">
+
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/likeImage"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/leaf_border" />
+
+                <TextView
+                    android:id="@+id/likedCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:textSize="24sp"
+                    tools:text="2" />
+
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
                 android:layout_marginBottom="10dp"
                 android:alpha="0.6"
                 android:background="@color/md_theme_light_outline"
                 android:ellipsize="end" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/commentInputLayout"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp">
 
-                <EditText
-                    android:id="@+id/comment"
-                    android:layout_width="match_parent"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/commentInputLayout"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:hint="@string/input_comment"
-                    android:inputType="textEmailAddress"
-                    android:maxLines="1"
-                    android:textColorHint="#757575"
-                    tools:ignore="Autofill,TextFields,TouchTargetSizeCheck,TouchTargetSizeCheck" />
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="0.8"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <EditText
+                        android:id="@+id/comment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/input_comment"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:textColorHint="#757575"
+                        tools:ignore="Autofill,TextFields,TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/create_comment_button"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.1"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_baseline_send_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/commentInputLayout"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </LinearLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:clipToPadding="false"
-                tools:listitem="@layout/item_comment" />
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:listitem="@layout/item_comment" />
+
+                <include
+                    android:id="@+id/load_state"
+                    layout="@layout/content_load_state"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

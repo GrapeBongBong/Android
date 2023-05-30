@@ -2,6 +2,7 @@ package com.example.domain.repository
 
 import com.example.domain.model.user.User
 import kotlinx.coroutines.flow.StateFlow
+import java.io.File
 
 interface AuthRepository {
 
@@ -19,10 +20,14 @@ interface AuthRepository {
         gender: String
     ): Result<String>
 
-    suspend fun getUserDetail(): StateFlow<User?>
+    fun getUserDetail(): StateFlow<User?>
 
     fun syncCurrentUser(
-        nickName: String, address: String
+        nickName: String,
+        email: String,
+        phoneNumber: String,
+        password: String,
+        profileImage: File?
     )
 
 }

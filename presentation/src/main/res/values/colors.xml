@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="seed">#72fe88</color>
+    <color name="doing_trading_color">#FFA500</color>
     <color name="md_theme_light_primary">#006E28</color>
     <color name="md_theme_light_onPrimary">#FFFFFF</color>
     <color name="md_theme_light_primaryContainer">#72FE88</color>

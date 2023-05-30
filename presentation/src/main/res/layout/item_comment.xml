@@ -21,27 +21,35 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/commentText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/comment_menu_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/anonymous"
+        tools:text="안녕하세요. 헬스를 얼마나 하셨는지는 모르겠지만, 몸이 너무 구리네요. 끔찍해요." />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/comment_menu_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0.5"
+        android:src="@drawable/ic_baseline_delete_forever_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:alpha="0.6"
         android:ellipsize="end"
         android:maxLines="1"
-        android:paddingBottom="12dp"
+        android:paddingTop="12dp"
         android:text="@string/date"
         android:textColor="?attr/colorOnBackground"
-        app:layout_constraintBottom_toTopOf="@id/commentText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <TextView
-        android:id="@+id/commentText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/anonymous"
-        tools:text="안녕하세요. 헬스를 얼마나 하셨는지는 모르겠지만, 몸이 너무 구리네요. 끔찍해요." />
+        app:layout_constraintTop_toBottomOf="@+id/commentText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

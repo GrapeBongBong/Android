@@ -1,9 +1,12 @@
 package com.example.android_bong.view.main.talentexchange.create
 
+import android.graphics.Bitmap
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.usecase.post.CreateExchangePostUseCase
+import com.example.domain.usecase.user.ConvertBitmapToFileUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -12,10 +15,13 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TalentExchangeCreateViewModel @Inject constructor(
-    private val createExchangePostUseCase: CreateExchangePostUseCase
+    private val createExchangePostUseCase: CreateExchangePostUseCase,
+    private val convertBitmapToFileUseCase: ConvertBitmapToFileUseCase
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(TalentExchangeCreateUiState())
     val uiState = _uiState.asStateFlow()
+
+    private var fetchJob: Job? = null
 
     fun updateTitle(title: String) {
         _uiState.update { it.copy(title = title) }
@@ -55,8 +61,11 @@ class TalentExchangeCreateViewModel @Inject constructor(
         }
     }
 
-    fun createPost() {
+    fun updateImages(image: Bitmap) {
+        _uiState.value.images!!.add(image)
+    }
 
+    fun createPost() {
         val title = uiState.value.title
         val content = uiState.value.content
         val giveCate = uiState.value.giveCate
@@ -65,8 +74,12 @@ class TalentExchangeCreateViewModel @Inject constructor(
         val takeTalent = uiState.value.takeTalent
         val days = uiState.value.possibleDays
         val timeZone = uiState.value.possibleTimeZone
-
-        viewModelScope.launch {
+        val images = uiState.value.images
+        _uiState.update {
+            it.copy(isLoading = true)
+        }
+        fetchJob?.cancel()
+        fetchJob = viewModelScope.launch {
             val result = createExchangePostUseCase(
                 title = title,
                 content = content,
@@ -75,15 +88,23 @@ class TalentExchangeCreateViewModel @Inject constructor(
                 giveTalent = giveTalent,
                 takeTalent = takeTalent,
                 days = days,
-                timeZone = timeZone
+                timeZone = timeZone,
+                images = null
             )
             if (result.isSuccess) {
                 _uiState.update {
-                    it.copy(userMessage = "게시물이 생성되었습니다.")
+                    it.copy(
+                        userMessage = "게시물이 생성되었습니다.",
+                        isLoading = false,
+                        isSuccessPosting = true
+                    )
                 }
             } else {
                 _uiState.update {
-                    it.copy(userMessage = result.exceptionOrNull()!!.localizedMessage)
+                    it.copy(
+                        userMessage = result.exceptionOrNull()?.localizedMessage,
+                        isLoading = false
+                    )
                 }
             }
         }

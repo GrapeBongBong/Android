@@ -45,6 +45,7 @@
 
     <TextView
         android:id="@+id/date"
+        style="?attr/textAppearanceLabelMedium"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:alpha="0.6"
@@ -107,9 +108,34 @@
         android:maxLines="1"
         android:textColor="?attr/colorOnBackground"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/takeTalent"
         tools:text="Give : 코딩" />
 
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/likeImage"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="12dp"
+        android:src="@drawable/leaf_border"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/giveTalent" />
+
+    <TextView
+        android:id="@+id/likedCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/likeImage"
+        tools:text="2" />
+
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="거래완료" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,7 +8,8 @@ data class TalentExchangeUiState(
     val userMessage: String? = null,
     val posts: List<TalentExchangeItemUiState> = emptyList(),
     val isLoadingSuccess: Boolean = false,
-    val isLoading: Boolean = false
+    val isLoading: Boolean = false,
+    val userId: Int? = null
 )
 
 data class TalentExchangeItemUiState(
@@ -17,7 +18,7 @@ data class TalentExchangeItemUiState(
     val date: String,
     val giveCate: String,
     val giveTalent: String,
-    val images: List<Image>?,
+    val images: List<Image>? = emptyList(),
     val pid: Int,
     val postType: String,
     val takeCate: String,
@@ -27,5 +28,8 @@ data class TalentExchangeItemUiState(
     val writerId: String,
     val writerNick: String,
     val status: Boolean,
+    val writerImageURL: String? = null,
+    val liked: Boolean,
+    val likeCount: Int,
     val isMine: Boolean
 ) : Serializable

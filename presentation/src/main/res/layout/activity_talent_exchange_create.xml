@@ -24,7 +24,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -212,7 +212,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="5dp"
-                    android:checked="true"
+                    android:checked="false"
                     android:text="@string/dawn" />
 
                 <RadioButton
@@ -263,21 +263,23 @@
 
 
                 <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/imageView1"
                     android:layout_width="96dp"
                     android:layout_height="96dp"
                     android:layout_marginEnd="10dp"
                     android:src="@drawable/ic_baseline_add_24" />
 
                 <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/imageView2"
                     android:layout_width="96dp"
                     android:layout_height="96dp"
                     android:layout_marginEnd="10dp"
                     android:src="@drawable/ic_baseline_add_24" />
 
                 <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/imageView3"
                     android:layout_width="96dp"
                     android:layout_height="96dp"
-                    android:layout_marginEnd="10dp"
                     android:src="@drawable/ic_baseline_add_24" />
 
             </LinearLayout>
@@ -301,6 +303,6 @@
 
         </LinearLayout>
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

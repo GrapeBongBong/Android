@@ -13,8 +13,8 @@ data class User(
     val nickName: String,
     val password: String,
     val phone_num: String,
-    val profile_img: Any?,
-    val roles: List<Any>,
+    val profile_img: String?,
+    val roles: List<String>,
     val temperature: Double,
     val uid: Int
 ) : Serializable

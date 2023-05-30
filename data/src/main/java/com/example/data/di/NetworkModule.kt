@@ -101,5 +101,5 @@ class NetworkModule {
     fun provideCommunityApi(retrofit: Retrofit): CommunityApi {
         return retrofit.create(CommunityApi::class.java)
     }
-
+    
 }
