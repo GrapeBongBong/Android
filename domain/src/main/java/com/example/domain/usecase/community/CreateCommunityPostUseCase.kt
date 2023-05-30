@@ -1,6 +1,7 @@
 package com.example.domain.usecase.community
 
 import com.example.domain.repository.CommunityRepository
+import java.io.File
 import javax.inject.Inject
 
 class CreateCommunityPostUseCase @Inject constructor(
@@ -8,6 +9,7 @@ class CreateCommunityPostUseCase @Inject constructor(
 ) {
     suspend operator fun invoke(
         title: String,
-        content: String
-    ) = repository.createPost(title = title, content = content)
+        content: String,
+        images: List<File?>
+    ) = repository.createPost(title = title, content = content, images = images)
 }

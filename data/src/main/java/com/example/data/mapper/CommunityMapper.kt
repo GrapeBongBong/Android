@@ -6,7 +6,7 @@ import com.example.domain.model.community.CommunityPost
 fun CommunityDto.toEntity() = CommunityPost(
     content = content,
     date = date,
-    image = image?.map { it.toEntity() },
+    images = images?.map { it.toEntity() },
     pid = pid,
     postType = postType,
     title = title,

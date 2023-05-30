@@ -180,6 +180,24 @@ class CommunityDetailActivity : ViewBindingActivity<ActivityCommunityDetailBindi
                         .into(likeImage)
                 }
 
+                val imageViews = listOf(imageView1, imageView2, imageView3)
+                if (postDetail.images!!.isEmpty()) {
+                    imageLinearLayout.isVisible = false
+                } else {
+                    postDetail.images.forEachIndexed { index, image ->
+                        val imageView = imageViews[index]
+                        val imageUrl = image.fileUrl
+
+                        if (!imageUrl.isNullOrEmpty()) {
+                            glide.load(imageUrl)
+                                .override(200, 200)
+                                .into(imageView)
+                        } else {
+                            imageView.isVisible = false
+                        }
+                    }
+                }
+
                 likedCount.text = uiState.postDetail.likeCount.toString()
             }
 

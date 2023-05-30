@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.random.Random
 
 @HiltViewModel
 class TalentExchangeCreateViewModel @Inject constructor(
@@ -106,8 +107,9 @@ class TalentExchangeCreateViewModel @Inject constructor(
                 days = days,
                 timeZone = timeZone,
                 images = images.map {
+                    val randomNumber = Random.nextInt(1, 11) // 5부터 9까지의 난수
                     it?.let {
-                        convertBitmapToFileUseCase(it, "ProfileImage.jpg")
+                        convertBitmapToFileUseCase(it, "ExchangePostImage+${randomNumber}.jpg")
                     }
                 }
             )

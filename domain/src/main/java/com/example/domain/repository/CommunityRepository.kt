@@ -1,6 +1,7 @@
 package com.example.domain.repository
 
 import com.example.domain.model.community.CommunityPost
+import java.io.File
 
 interface CommunityRepository {
     suspend fun getAllPost(): Result<List<CommunityPost>>
@@ -9,7 +10,8 @@ interface CommunityRepository {
 
     suspend fun createPost(
         title: String,
-        content: String
+        content: String,
+        images: List<File?>
     ): Result<String>
 
     suspend fun updatePost(

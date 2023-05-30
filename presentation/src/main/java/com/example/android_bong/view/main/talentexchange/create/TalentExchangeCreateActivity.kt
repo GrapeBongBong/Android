@@ -48,7 +48,6 @@ class TalentExchangeCreateActivity : ViewBindingActivity<ActivityTalentExchangeC
             }
             val glide = GlideApp.with(this)
             glide.load(imageUri)
-                .fallback(R.drawable.ic_baseline_add_24)
                 .into(binding.imageView1)
         }
 
@@ -57,10 +56,9 @@ class TalentExchangeCreateActivity : ViewBindingActivity<ActivityTalentExchangeC
             if (imageUri != null) {
                 viewModel.updateImages2(imageUri.toBitmap(this))
             }
-            Log.d("imageUri", imageUri.toString())
+            Log.d("imageUri2", imageUri.toString())
             val glide = GlideApp.with(this)
             glide.load(imageUri)
-                .fallback(R.drawable.ic_baseline_add_24)
                 .into(binding.imageView2)
         }
 
@@ -69,10 +67,9 @@ class TalentExchangeCreateActivity : ViewBindingActivity<ActivityTalentExchangeC
             if (imageUri != null) {
                 viewModel.updateImages3(imageUri.toBitmap(this))
             }
-            Log.d("imageUri", imageUri.toString())
+            Log.d("imageUri3", imageUri.toString())
             val glide = GlideApp.with(this)
             glide.load(imageUri)
-                .fallback(R.drawable.ic_baseline_add_24)
                 .into(binding.imageView3)
         }
 

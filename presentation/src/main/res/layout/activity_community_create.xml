@@ -29,8 +29,8 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         android:gravity="center"
         android:orientation="vertical"
@@ -55,6 +55,42 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/photo"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imageView1"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/ic_baseline_add_a_photo_24" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imageView2"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/ic_baseline_add_a_photo_24" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imageView3"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:src="@drawable/ic_baseline_add_a_photo_24" />
+
+        </LinearLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/contentTextInputLayout"

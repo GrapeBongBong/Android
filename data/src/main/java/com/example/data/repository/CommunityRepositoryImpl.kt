@@ -4,6 +4,7 @@ import com.example.data.mapper.toEntity
 import com.example.data.source.CommunityRemoteDataSource
 import com.example.domain.model.community.CommunityPost
 import com.example.domain.repository.CommunityRepository
+import java.io.File
 import javax.inject.Inject
 
 class CommunityRepositoryImpl @Inject constructor(
@@ -43,12 +44,16 @@ class CommunityRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun createPost(title: String, content: String): Result<String> {
+    override suspend fun createPost(
+        title: String,
+        content: String,
+        images: List<File?>
+    ): Result<String> {
         return try {
             val response = communityRemoteDataSource.createPost(
                 title = title,
                 content = content,
-                null
+                images = images
             )
             val responseBody = response.body()
             if (responseBody != null && response.code() == 201) {

@@ -12,7 +12,7 @@ interface CommunityRemoteDataSource {
     suspend fun createPost(
         title: String,
         content: String,
-        postImages: File?
+        images: List<File?>
     ): Response<ResponseBody>
 
     suspend fun deletePost(postId: Int): Response<ResponseBody>

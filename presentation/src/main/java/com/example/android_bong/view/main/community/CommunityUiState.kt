@@ -13,7 +13,7 @@ data class CommunityUiState(
 data class CommunityItemUiState(
     val content: String,
     val date: String,
-    val image: List<Image>? = emptyList(),
+    val images: List<Image>? = emptyList(),
     val pid: Int,
     val postType: String,
     val title: String,

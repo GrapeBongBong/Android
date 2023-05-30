@@ -6,7 +6,7 @@ import com.example.domain.model.community.CommunityPost
 fun CommunityPost.toUiState(userId: Int) = CommunityItemUiState(
     content = content,
     date = date,
-    image = image,
+    images = images,
     pid = pid,
     postType = postType,
     title = title,

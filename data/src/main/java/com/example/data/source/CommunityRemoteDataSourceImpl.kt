@@ -27,7 +27,7 @@ class CommunityRemoteDataSourceImpl @Inject constructor(
     override suspend fun createPost(
         title: String,
         content: String,
-        postImages: File?
+        images: List<File?>
     ): Response<ResponseBody> {
         val data = CommunityRequestBody(title = title, content = content)
 
@@ -38,20 +38,20 @@ class CommunityRemoteDataSourceImpl @Inject constructor(
         val jsonRequestBody: RequestBody =
             json.toRequestBody("application/json".toMediaTypeOrNull())
 
-        val multipartBuilder = MultipartBody.Builder()
-            .setType(MultipartBody.FORM)
-            .addFormDataPart("anonymousPostDto", null, jsonRequestBody)
-
-        postImages?.let { imageFile ->
-            val imageRequestBody: RequestBody =
-                imageFile.asRequestBody("image/*".toMediaTypeOrNull())
-            val imagePart: MultipartBody.Part =
-                MultipartBody.Part.createFormData("image", imageFile.name, imageRequestBody)
-            multipartBuilder.addPart(imagePart)
+        val imagesPart = images.map { image ->
+            if (image != null) {
+                MultipartBody.Part.createFormData(
+                    IMAGE_KEY,
+                    image.name,
+                    image.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+                )
+            } else {
+                MultipartBody.Part.createFormData(IMAGE_KEY, "")
+            }
         }
-
         return api.createPost(
-            jsonRequestBody
+            jsonRequestBody,
+            imagesPart
         )
     }
 
