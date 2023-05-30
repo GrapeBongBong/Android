@@ -5,6 +5,7 @@ import com.example.data.source.ExchangePostRemoteDataSource
 import com.example.domain.model.exchange.AvailableTime
 import com.example.domain.model.exchange.ExchangePost
 import com.example.domain.repository.ExchangePostRepository
+import java.io.File
 import javax.inject.Inject
 
 class ExchangePostRepositoryImpl @Inject constructor(
@@ -52,7 +53,8 @@ class ExchangePostRepositoryImpl @Inject constructor(
         giveTalent: String,
         takeTalent: String,
         days: MutableList<String>,
-        timeZone: String
+        timeZone: String,
+        images: MutableList<File>?
     ): Result<String> {
         return try {
             val response = exchangePostRemoteDataSource.createExchangePost(

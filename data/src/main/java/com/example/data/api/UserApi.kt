@@ -19,7 +19,7 @@ interface UserApi {
     @Multipart
     @PUT("/user/profile/image")
     suspend fun updateUserProfileImage(
-        @Part profileImage: MultipartBody.Part?
+        @Part image: MultipartBody.Part?
     ): Response<ResponseBody>
 
     @GET("/profile/anonymous")

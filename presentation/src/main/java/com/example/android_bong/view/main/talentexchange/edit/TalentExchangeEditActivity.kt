@@ -156,20 +156,21 @@ class TalentExchangeEditActivity : ViewBindingActivity<ActivityTalentExchangeEdi
         binding.giveText.setText(giveTalent)
         binding.takeText.setText(takeTalent)
 
-        val days = possibleDays.split("/")
-
-        for (day in days) {
-            Log.d("day", day)
-            when (day) {
-                getString(R.string.monday) -> mondayButton.isChecked = true
-                getString(R.string.tuesday) -> tuesdayButton.isChecked = true
-                getString(R.string.wednesday) -> wednesdayButton.isChecked = true
-                getString(R.string.thursday) -> thursdayButton.isChecked = true
-                getString(R.string.friday) -> fridayButton.isChecked = true
-                getString(R.string.saturday) -> saturdayButton.isChecked = true
-                getString(R.string.sunday) -> sundayButton.isChecked = true
-            }
+        Log.d("possibleDays", possibleDays)
+        /**
+         *    for (day in days) {
+        Log.d("day", day)
+        when (day) {
+        getString(R.string.monday) -> mondayButton.isChecked = true
+        getString(R.string.tuesday) -> tuesdayButton.isChecked = true
+        getString(R.string.wednesday) -> wednesdayButton.isChecked = true
+        getString(R.string.thursday) -> thursdayButton.isChecked = true
+        getString(R.string.friday) -> fridayButton.isChecked = true
+        getString(R.string.saturday) -> saturdayButton.isChecked = true
+        getString(R.string.sunday) -> sundayButton.isChecked = true
         }
+        }
+         */
 
         when (possibleTimeZone) {
             getString(R.string.dawn) -> dawnButton.isChecked = true
@@ -190,9 +191,12 @@ class TalentExchangeEditActivity : ViewBindingActivity<ActivityTalentExchangeEdi
         viewModel.updateGiveTalent(giveTalent)
         viewModel.updateTakeTalent(takeTalent)
 
-        for (day in days) {
-            viewModel.updatePossibleDay(day)
+        /**
+         *    for (day in days) {
+        viewModel.updatePossibleDay(day)
         }
+         */
+
 
         viewModel.updatePossibleTime(possibleTimeZone)
     }

@@ -51,7 +51,6 @@ class TalentExchangeDetailViewModel @Inject constructor(
         commentsBind(postId)
     }
 
-
     /**
      * 포스트 디테일 부분
      */

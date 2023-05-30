@@ -203,7 +203,23 @@ class TalentExchangeDetailActivity :
                  *
                  */
 
-                imageLinearLayout.isVisible = false
+                val imageViews = listOf(imageView1, imageView2, imageView3)
+                if (postDetail.images!!.isEmpty()) {
+                    imageLinearLayout.isVisible = false
+                } else {
+                    postDetail.images.forEachIndexed { index, image ->
+                        val imageView = imageViews[index]
+                        val imageUrl = image.fileUrl
+
+                        if (!imageUrl.isNullOrEmpty()) {
+                            glide.load(imageUrl)
+                                .override(200, 200)
+                                .into(imageView)
+                        } else {
+                            imageView.isVisible = false
+                        }
+                    }
+                }
 
             }
 
@@ -278,11 +294,6 @@ class TalentExchangeDetailActivity :
 
     private fun navigateToEditActivity(uiState: TalentExchangeDetailUiState) {
         if (uiState.postId != null && uiState.postDetail != null) {
-            var possibleDays: String = ""
-
-            for (day in uiState.postDetail.availableTime.days) {
-                possibleDays += ("$day/")
-            }
             val intent = TalentExchangeEditActivity.getIntent(
                 context = this,
                 postId = uiState.postId,
@@ -292,10 +303,9 @@ class TalentExchangeDetailActivity :
                 takeCate = uiState.postDetail.takeCate,
                 giveTalent = uiState.postDetail.giveTalent,
                 takeTalent = uiState.postDetail.takeTalent,
-                possibleDays = possibleDays,
+                possibleDays = uiState.postDetail.availableTime.days.toString(),
                 possibleTimeZone = uiState.postDetail.availableTime.timezone!!,
             )
-            possibleDays = ""
             launcher?.launch(intent)
 
         }

@@ -1,5 +1,6 @@
 package com.example.android_bong.view.main.talentexchange.create
 
+import android.graphics.Bitmap
 import android.net.Uri
 
 data class TalentExchangeCreateUiState(
@@ -12,6 +13,7 @@ data class TalentExchangeCreateUiState(
     val takeTalent: String = "",
     val possibleDays: MutableList<String> = mutableListOf(),
     val possibleTimeZone: String = "",
+    val images: MutableList<Bitmap>? = mutableListOf(),
     val selectedImage: Uri? = null,
     val isSuccessPosting: Boolean = false,
     val isLoading: Boolean = false

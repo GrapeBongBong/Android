@@ -2,6 +2,7 @@ package com.example.domain.repository
 
 import com.example.domain.model.user.User
 import kotlinx.coroutines.flow.StateFlow
+import java.io.File
 
 interface AuthRepository {
 
@@ -25,7 +26,8 @@ interface AuthRepository {
         nickName: String,
         email: String,
         phoneNumber: String,
-        password: String
+        password: String,
+        profileImage: File?
     )
 
 }

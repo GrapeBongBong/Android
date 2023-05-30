@@ -1,8 +1,10 @@
 package com.example.android_bong.view.main.talentexchange.create
 
+import android.graphics.Bitmap
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.usecase.post.CreateExchangePostUseCase
+import com.example.domain.usecase.user.ConvertBitmapToFileUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,7 +15,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TalentExchangeCreateViewModel @Inject constructor(
-    private val createExchangePostUseCase: CreateExchangePostUseCase
+    private val createExchangePostUseCase: CreateExchangePostUseCase,
+    private val convertBitmapToFileUseCase: ConvertBitmapToFileUseCase
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(TalentExchangeCreateUiState())
     val uiState = _uiState.asStateFlow()
@@ -58,6 +61,9 @@ class TalentExchangeCreateViewModel @Inject constructor(
         }
     }
 
+    fun updateImages(image: Bitmap) {
+        _uiState.value.images!!.add(image)
+    }
 
     fun createPost() {
         val title = uiState.value.title
@@ -68,6 +74,7 @@ class TalentExchangeCreateViewModel @Inject constructor(
         val takeTalent = uiState.value.takeTalent
         val days = uiState.value.possibleDays
         val timeZone = uiState.value.possibleTimeZone
+        val images = uiState.value.images
         _uiState.update {
             it.copy(isLoading = true)
         }
@@ -81,7 +88,8 @@ class TalentExchangeCreateViewModel @Inject constructor(
                 giveTalent = giveTalent,
                 takeTalent = takeTalent,
                 days = days,
-                timeZone = timeZone
+                timeZone = timeZone,
+                images = null
             )
             if (result.isSuccess) {
                 _uiState.update {

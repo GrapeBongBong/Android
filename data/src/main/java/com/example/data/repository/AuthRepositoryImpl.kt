@@ -1,5 +1,6 @@
 package com.example.data.repository
 
+import androidx.core.net.toUri
 import com.example.data.mapper.toEntity
 import com.example.data.model.auth.AuthLocalData
 import com.example.data.model.auth.LoginRequestBody
@@ -10,6 +11,7 @@ import com.example.domain.model.user.User
 import com.example.domain.repository.AuthRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import java.io.File
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
@@ -95,7 +97,8 @@ class AuthRepositoryImpl @Inject constructor(
         nickName: String,
         email: String,
         phoneNumber: String,
-        password: String
+        password: String,
+        profileImage: File?
     ) {
         val currentUserStateValue = currentUserState.value
         if (currentUserStateValue != null) {
@@ -103,7 +106,8 @@ class AuthRepositoryImpl @Inject constructor(
                 nickName = nickName,
                 email = email,
                 phone_num = phoneNumber,
-                password = password
+                password = password,
+                profile_img = profileImage?.toUri().toString()
             )
         }
     }

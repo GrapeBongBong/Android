@@ -32,6 +32,7 @@ class UpdateUserInfoUseCase @Inject constructor(
                 email = email,
                 phoneNumber = phoneNumber,
                 password = password,
+                profileImage = profileImage
             )
         }
         return result

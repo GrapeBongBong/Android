@@ -36,7 +36,7 @@ class UserRepositoryImpl @Inject constructor(
             )
             val imageResponseBody = imageResponse.body()
             val responseBody = response.body()
-            if (responseBody != null && response.code() == 200) {
+            if (responseBody != null && response.code() == 200 && imageResponseBody != null && imageResponse.code() == 200) {
                 Result.success(responseBody.message)
             } else {
                 throw Exception(response.body()!!.message)

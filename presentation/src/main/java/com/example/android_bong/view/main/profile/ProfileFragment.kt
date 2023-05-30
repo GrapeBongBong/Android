@@ -6,11 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
+import androidx.core.net.toUri
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.android_bong.R
+import com.example.android_bong.common.GlideApp
 import com.example.android_bong.common.ViewBindingFragment
 import com.example.android_bong.databinding.FragmentProfileBinding
 import com.example.android_bong.extension.RefreshStateContract
@@ -51,11 +53,15 @@ class ProfileFragment : ViewBindingFragment<FragmentProfileBinding>() {
     }
 
     private fun updateUi(uiState: ProfileUiState) = with(binding) {
-
         if (uiState.currentUser != null) {
+            val glide = GlideApp.with(root)
             val user = uiState.currentUser
             nicknameText.text = getString(R.string.profile_userNickName, user.nickName)
-            userImage
+
+            glide.load(uiState.currentUser.profile_img?.toUri())
+                .circleCrop()
+                .fallback(R.drawable.ic_baseline_person_24)
+                .into(imageView)
 
             profileTemperature.text =
                 getString(R.string.profile_temperature, user.temperature.toString())

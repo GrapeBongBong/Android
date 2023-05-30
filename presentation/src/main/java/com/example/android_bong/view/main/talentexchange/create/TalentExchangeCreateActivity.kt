@@ -3,6 +3,7 @@ package com.example.android_bong.view.main.talentexchange.create
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -17,9 +18,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.android_bong.R
+import com.example.android_bong.common.GlideApp
 import com.example.android_bong.common.ViewBindingActivity
 import com.example.android_bong.databinding.ActivityTalentExchangeCreateBinding
 import com.example.android_bong.extension.setResultRefresh
+import com.example.android_bong.extension.toBitmap
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -38,11 +41,40 @@ class TalentExchangeCreateActivity : ViewBindingActivity<ActivityTalentExchangeC
 
     private val viewModel: TalentExchangeCreateViewModel by viewModels()
 
-    private val pickMedia =
+    private val pickMedia1 =
         registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { imageUri ->
             if (imageUri != null) {
-                val bitmap = imageUri
+                viewModel.updateImages(imageUri.toBitmap(this))
             }
+            Log.d("imageUri", imageUri.toString())
+            val glide = GlideApp.with(this)
+            glide.load(imageUri)
+                .fallback(R.drawable.ic_baseline_add_24)
+                .into(binding.imageView1)
+        }
+
+    private val pickMedia2 =
+        registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { imageUri ->
+            if (imageUri != null) {
+                viewModel.updateImages(imageUri.toBitmap(this))
+            }
+            Log.d("imageUri", imageUri.toString())
+            val glide = GlideApp.with(this)
+            glide.load(imageUri)
+                .fallback(R.drawable.ic_baseline_add_24)
+                .into(binding.imageView2)
+        }
+
+    private val pickMedia3 =
+        registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { imageUri ->
+            if (imageUri != null) {
+                viewModel.updateImages(imageUri.toBitmap(this))
+            }
+            Log.d("imageUri", imageUri.toString())
+            val glide = GlideApp.with(this)
+            glide.load(imageUri)
+                .fallback(R.drawable.ic_baseline_add_24)
+                .into(binding.imageView3)
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -241,21 +273,29 @@ class TalentExchangeCreateActivity : ViewBindingActivity<ActivityTalentExchangeC
         }
 
         imageView1.setOnClickListener {
-            showImagePicker()
+            showImagePicker1()
         }
 
         imageView2.setOnClickListener {
-            showImagePicker()
+            showImagePicker2()
         }
 
         imageView3.setOnClickListener {
-            showImagePicker()
+            showImagePicker3()
         }
 
     }
 
-    private fun showImagePicker() {
-        pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+    private fun showImagePicker1() {
+        pickMedia1.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+    }
+
+    private fun showImagePicker2() {
+        pickMedia2.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+    }
+
+    private fun showImagePicker3() {
+        pickMedia3.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
     }
 
     private fun showSnackBar(message: String) {

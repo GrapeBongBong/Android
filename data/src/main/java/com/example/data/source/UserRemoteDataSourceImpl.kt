@@ -17,7 +17,7 @@ class UserRemoteDataSourceImpl @Inject constructor(
 ) : UserRemoteDataSource {
 
     companion object {
-        private const val IMAGE_KEY = "images"
+        private const val IMAGE_KEY = "image"
     }
 
     override suspend fun updateUserInfo(
@@ -41,7 +41,7 @@ class UserRemoteDataSourceImpl @Inject constructor(
             MultipartBody.Part.createFormData(IMAGE_KEY, "")
         }
         return api.updateUserProfileImage(
-            profileImage = image
+            image = image
         )
     }
 

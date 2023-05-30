@@ -95,6 +95,12 @@ class ProfileUpdateActivity : ViewBindingActivity<ActivityProfileUpdateBinding>(
             phoneNumber.setText(user.phone_num)
             email.setText(user.email)
 
+            val glide = GlideApp.with(this@ProfileUpdateActivity)
+            glide.load(uiState.currentUser.profile_img)
+                .circleCrop()
+                .fallback(R.drawable.ic_baseline_person_24)
+                .into(binding.imageView)
+
             nameText.text = getString(R.string.see_name, user.name)
             birthText.text = getString(R.string.see_birth, user.birth)
             sexText.text = getString(R.string.see_gender, user.gender)
