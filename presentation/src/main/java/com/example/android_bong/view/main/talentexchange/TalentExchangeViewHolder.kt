@@ -35,6 +35,8 @@ class TalentExchangeViewHolder(
                 .into(userImage)
         }
 
+
+
         title.text = uiState.title
         content.text = uiState.content
 

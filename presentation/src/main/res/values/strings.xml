@@ -28,6 +28,8 @@
     <string name="tuesday">화</string>
     <string name="wednesday">수</string>
     <string name="trading">교환 원해요!</string>
+    <string name="possibleTimeZone">가능한 시간대 : %s</string>
+    <string name="possibleDays">가능한 날짜 : %s</string>
     <string name="trading_completed">교환 완료!</string>
     <string name="checkExchangePost">내가 작성한 재능교환 게시물 목록</string>
     <string name="checkCommunityPost">내가 작성한 재능교환 게시물 목록</string>

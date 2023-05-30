@@ -172,6 +172,11 @@ class TalentExchangeDetailActivity :
 
                 postDetailButton.isVisible = postDetail.isMine
 
+                possiblaDays.text =
+                    getString(R.string.possibleDays, postDetail.availableTime.days.toString())
+                possibleTime.text =
+                    getString(R.string.possibleTimeZone, postDetail.availableTime.timezone)
+
                 if (uiState.postDetail.liked) {
                     glide.load(R.drawable.leaf_fill)
                         .into(likeImage)
