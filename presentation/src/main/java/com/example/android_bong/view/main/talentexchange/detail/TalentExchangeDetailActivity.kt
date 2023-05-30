@@ -303,7 +303,6 @@ class TalentExchangeDetailActivity :
                 takeCate = uiState.postDetail.takeCate,
                 giveTalent = uiState.postDetail.giveTalent,
                 takeTalent = uiState.postDetail.takeTalent,
-                possibleDays = uiState.postDetail.availableTime.days.toString(),
                 possibleTimeZone = uiState.postDetail.availableTime.timezone!!,
             )
             launcher?.launch(intent)

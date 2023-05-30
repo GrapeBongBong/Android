@@ -3,7 +3,6 @@ package com.example.android_bong.view.main.talentexchange.edit
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -41,7 +40,6 @@ class TalentExchangeEditActivity : ViewBindingActivity<ActivityTalentExchangeEdi
             takeCate: String,
             giveTalent: String,
             takeTalent: String,
-            possibleDays: String,
             possibleTimeZone: String
         ): Intent {
             return Intent(context, TalentExchangeEditActivity::class.java).apply {
@@ -52,7 +50,6 @@ class TalentExchangeEditActivity : ViewBindingActivity<ActivityTalentExchangeEdi
                 putExtra("takeCate", takeCate)
                 putExtra("giveTalent", giveTalent)
                 putExtra("takeTalent", takeTalent)
-                putExtra("possibleDays", possibleDays)
                 putExtra("possibleTimeZone", possibleTimeZone)
             }
         }
@@ -86,10 +83,6 @@ class TalentExchangeEditActivity : ViewBindingActivity<ActivityTalentExchangeEdi
         return intent.getStringExtra("takeTalent")!!
     }
 
-    private fun getPostPossibleDays(): String {
-        return intent.getStringExtra("possibleDays")!!
-    }
-
     private fun getPostPossibleTimeZone(): String {
         return intent.getStringExtra("possibleTimeZone")!!
     }
@@ -110,7 +103,6 @@ class TalentExchangeEditActivity : ViewBindingActivity<ActivityTalentExchangeEdi
             takeCate = getPostTakeCate(),
             giveTalent = getPostGiveTalent(),
             takeTalent = getPostTakeTalent(),
-            possibleDays = getPostPossibleDays(),
             possibleTimeZone = getPostPossibleTimeZone(),
         )
 
@@ -146,7 +138,6 @@ class TalentExchangeEditActivity : ViewBindingActivity<ActivityTalentExchangeEdi
         takeCate: String,
         giveTalent: String,
         takeTalent: String,
-        possibleDays: String,
         possibleTimeZone: String
     ) = with(binding) {
 
@@ -156,21 +147,6 @@ class TalentExchangeEditActivity : ViewBindingActivity<ActivityTalentExchangeEdi
         binding.giveText.setText(giveTalent)
         binding.takeText.setText(takeTalent)
 
-        Log.d("possibleDays", possibleDays)
-        /**
-         *    for (day in days) {
-        Log.d("day", day)
-        when (day) {
-        getString(R.string.monday) -> mondayButton.isChecked = true
-        getString(R.string.tuesday) -> tuesdayButton.isChecked = true
-        getString(R.string.wednesday) -> wednesdayButton.isChecked = true
-        getString(R.string.thursday) -> thursdayButton.isChecked = true
-        getString(R.string.friday) -> fridayButton.isChecked = true
-        getString(R.string.saturday) -> saturdayButton.isChecked = true
-        getString(R.string.sunday) -> sundayButton.isChecked = true
-        }
-        }
-         */
 
         when (possibleTimeZone) {
             getString(R.string.dawn) -> dawnButton.isChecked = true
@@ -180,22 +156,12 @@ class TalentExchangeEditActivity : ViewBindingActivity<ActivityTalentExchangeEdi
             getString(R.string.dinner) -> dinnerButton.isChecked = true
         }
 
-        /**
-         *  뷰모델 초기 업뎃
-         */
-
         viewModel.updateContent(title)
         viewModel.updateContent(content)
         viewModel.updateGiveCate(giveCate)
         viewModel.updateTakeCate(takeCate)
         viewModel.updateGiveTalent(giveTalent)
         viewModel.updateTakeTalent(takeTalent)
-
-        /**
-         *    for (day in days) {
-        viewModel.updatePossibleDay(day)
-        }
-         */
 
 
         viewModel.updatePossibleTime(possibleTimeZone)
