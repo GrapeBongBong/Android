@@ -18,7 +18,7 @@ interface ExchangePostRepository {
         takeTalent: String,
         days: MutableList<String>,
         timeZone: String,
-        images: MutableList<File>?
+        images: List<File?>
     ): Result<String>
 
     suspend fun updateExchangePost(

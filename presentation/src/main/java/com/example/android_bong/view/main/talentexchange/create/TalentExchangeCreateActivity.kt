@@ -44,9 +44,8 @@ class TalentExchangeCreateActivity : ViewBindingActivity<ActivityTalentExchangeC
     private val pickMedia1 =
         registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { imageUri ->
             if (imageUri != null) {
-                viewModel.updateImages(imageUri.toBitmap(this))
+                viewModel.updateImages1(imageUri.toBitmap(this))
             }
-            Log.d("imageUri", imageUri.toString())
             val glide = GlideApp.with(this)
             glide.load(imageUri)
                 .fallback(R.drawable.ic_baseline_add_24)
@@ -56,7 +55,7 @@ class TalentExchangeCreateActivity : ViewBindingActivity<ActivityTalentExchangeC
     private val pickMedia2 =
         registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { imageUri ->
             if (imageUri != null) {
-                viewModel.updateImages(imageUri.toBitmap(this))
+                viewModel.updateImages2(imageUri.toBitmap(this))
             }
             Log.d("imageUri", imageUri.toString())
             val glide = GlideApp.with(this)
@@ -68,7 +67,7 @@ class TalentExchangeCreateActivity : ViewBindingActivity<ActivityTalentExchangeC
     private val pickMedia3 =
         registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { imageUri ->
             if (imageUri != null) {
-                viewModel.updateImages(imageUri.toBitmap(this))
+                viewModel.updateImages3(imageUri.toBitmap(this))
             }
             Log.d("imageUri", imageUri.toString())
             val glide = GlideApp.with(this)

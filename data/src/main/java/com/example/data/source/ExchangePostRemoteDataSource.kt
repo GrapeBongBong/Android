@@ -4,6 +4,7 @@ import com.example.data.model.ResponseBody
 import com.example.data.model.exchangePost.ExchangePostDto
 import com.example.domain.model.exchange.AvailableTime
 import retrofit2.Response
+import java.io.File
 
 interface ExchangePostRemoteDataSource {
 
@@ -18,7 +19,8 @@ interface ExchangePostRemoteDataSource {
         takeCate: String,
         giveTalent: String,
         takeTalent: String,
-        availableTime: AvailableTime
+        availableTime: AvailableTime,
+        images: List<File?>
     ): Response<ResponseBody>
 
     suspend fun updateExchangePost(

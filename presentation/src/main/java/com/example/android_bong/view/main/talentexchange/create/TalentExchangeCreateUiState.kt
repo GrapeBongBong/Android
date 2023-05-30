@@ -13,7 +13,9 @@ data class TalentExchangeCreateUiState(
     val takeTalent: String = "",
     val possibleDays: MutableList<String> = mutableListOf(),
     val possibleTimeZone: String = "",
-    val images: MutableList<Bitmap>? = mutableListOf(),
+    val image1: Bitmap? = null,
+    val image2: Bitmap? = null,
+    val image3: Bitmap? = null,
     val selectedImage: Uri? = null,
     val isSuccessPosting: Boolean = false,
     val isLoading: Boolean = false

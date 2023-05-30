@@ -1,6 +1,7 @@
 package com.example.android_bong.view.main.talentexchange.create
 
 import android.graphics.Bitmap
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.usecase.post.CreateExchangePostUseCase
@@ -61,8 +62,22 @@ class TalentExchangeCreateViewModel @Inject constructor(
         }
     }
 
-    fun updateImages(image: Bitmap) {
-        _uiState.value.images!!.add(image)
+    fun updateImages1(image: Bitmap) {
+        _uiState.update {
+            it.copy(image1 = image)
+        }
+    }
+
+    fun updateImages2(image: Bitmap) {
+        _uiState.update {
+            it.copy(image2 = image)
+        }
+    }
+
+    fun updateImages3(image: Bitmap) {
+        _uiState.update {
+            it.copy(image3 = image)
+        }
     }
 
     fun createPost() {
@@ -74,10 +89,11 @@ class TalentExchangeCreateViewModel @Inject constructor(
         val takeTalent = uiState.value.takeTalent
         val days = uiState.value.possibleDays
         val timeZone = uiState.value.possibleTimeZone
-        val images = uiState.value.images
+        val images = mutableListOf(uiState.value.image1, uiState.value.image2, uiState.value.image3)
         _uiState.update {
             it.copy(isLoading = true)
         }
+        Log.d("images", images.toString())
         fetchJob?.cancel()
         fetchJob = viewModelScope.launch {
             val result = createExchangePostUseCase(
@@ -89,7 +105,11 @@ class TalentExchangeCreateViewModel @Inject constructor(
                 takeTalent = takeTalent,
                 days = days,
                 timeZone = timeZone,
-                images = null
+                images = images.map {
+                    it?.let {
+                        convertBitmapToFileUseCase(it, "ProfileImage.jpg")
+                    }
+                }
             )
             if (result.isSuccess) {
                 _uiState.update {

@@ -54,7 +54,7 @@ class ExchangePostRepositoryImpl @Inject constructor(
         takeTalent: String,
         days: MutableList<String>,
         timeZone: String,
-        images: MutableList<File>?
+        images: List<File?>
     ): Result<String> {
         return try {
             val response = exchangePostRemoteDataSource.createExchangePost(
@@ -67,7 +67,8 @@ class ExchangePostRepositoryImpl @Inject constructor(
                 availableTime = AvailableTime(
                     days = days,
                     timezone = timeZone
-                )
+                ),
+                images = images
             )
             val responseBody = response.body()
             if (responseBody != null && response.code() == 201) {

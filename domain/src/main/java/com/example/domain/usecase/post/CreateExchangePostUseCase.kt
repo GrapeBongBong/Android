@@ -16,7 +16,7 @@ class CreateExchangePostUseCase @Inject constructor(
         takeTalent: String,
         days: MutableList<String>,
         timeZone: String,
-        images: MutableList<File>?
+        images: List<File?>
     ) = repository.createExchangePost(
         title = title,
         content = content,

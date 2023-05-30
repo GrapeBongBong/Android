@@ -3,6 +3,7 @@ package com.example.data.api
 import com.example.data.model.ResponseBody
 import com.example.data.model.exchangePost.CreateExchangePostRequestBody
 import com.example.data.model.exchangePost.ExchangePostDto
+import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.*
@@ -26,7 +27,8 @@ interface ExchangePostApi {
     @Multipart
     @POST("/exchange/post")
     suspend fun createExchangePost(
-        @Part("exchangePostDTO") requestBody: RequestBody
+        @Part("exchangePostDTO") requestBody: RequestBody,
+        @Part images: List<MultipartBody.Part?>
     ): Response<ResponseBody>
 
     @POST("/exchange/{postId}/like")
