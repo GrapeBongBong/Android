@@ -7,15 +7,19 @@ import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.MenuItem
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.android_bong.R
+import com.example.android_bong.common.GlideApp
 import com.example.android_bong.common.ViewBindingActivity
 import com.example.android_bong.databinding.ActivityProfileUpdateBinding
 import com.example.android_bong.extension.setResultRefresh
+import com.example.android_bong.extension.toBitmap
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -28,6 +32,23 @@ class ProfileUpdateActivity : ViewBindingActivity<ActivityProfileUpdateBinding>(
             return Intent(context, ProfileUpdateActivity::class.java)
         }
     }
+
+    private val pickMedia =
+        registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { imageUri ->
+            if (imageUri != null) {
+                viewModel.selectedImage = imageUri.toBitmap(this)
+
+            } else {
+                viewModel.selectedImage = null
+            }
+
+            Log.d("imageUri", imageUri.toString())
+            val glide = GlideApp.with(this)
+            glide.load(imageUri)
+                .circleCrop()
+                .fallback(R.drawable.ic_baseline_person_24)
+                .into(binding.imageView)
+        }
 
     override val bindingInflater: (LayoutInflater) -> ActivityProfileUpdateBinding
         get() = ActivityProfileUpdateBinding::inflate
@@ -133,6 +154,10 @@ class ProfileUpdateActivity : ViewBindingActivity<ActivityProfileUpdateBinding>(
             viewModel.updateProfile()
         }
 
+        addPhotoImage.setOnClickListener {
+            showImagePicker()
+        }
+
         nickName.addTextChangedListener {
             if (it != null) {
                 viewModel.updateNickName(it.toString())
@@ -156,7 +181,10 @@ class ProfileUpdateActivity : ViewBindingActivity<ActivityProfileUpdateBinding>(
                 viewModel.updatePhoneNumber(it.toString())
             }
         }
+    }
 
+    private fun showImagePicker() {
+        pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
     }
 
     private fun showSnackBar(message: String) {

@@ -2,6 +2,7 @@ package com.example.domain.usecase.user
 
 import com.example.domain.repository.AuthRepository
 import com.example.domain.repository.UserRepository
+import java.io.File
 import javax.inject.Inject
 
 class UpdateUserInfoUseCase @Inject constructor(
@@ -13,7 +14,8 @@ class UpdateUserInfoUseCase @Inject constructor(
         nickName: String,
         email: String,
         phoneNumber: String,
-        password: String
+        password: String,
+        profileImage: File?
     ): Result<String> {
         val result =
             userRepository.updateUserInfo(
@@ -21,7 +23,8 @@ class UpdateUserInfoUseCase @Inject constructor(
                 email = email,
                 phoneNumber = phoneNumber,
                 password = password,
-                userId = userId
+                userId = userId,
+                profileImage = profileImage
             )
         if (result.isSuccess) {
             authRepository.syncCurrentUser(

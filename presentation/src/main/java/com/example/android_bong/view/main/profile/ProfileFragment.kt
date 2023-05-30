@@ -15,6 +15,8 @@ import com.example.android_bong.common.ViewBindingFragment
 import com.example.android_bong.databinding.FragmentProfileBinding
 import com.example.android_bong.extension.RefreshStateContract
 import com.example.android_bong.view.main.MainViewModel
+import com.example.android_bong.view.main.check.community.CheckCommunityPostActivity
+import com.example.android_bong.view.main.check.exchange.CheckExchangePostActivity
 import com.example.android_bong.view.main.profile.profileUpdate.ProfileUpdateActivity
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
@@ -26,10 +28,11 @@ class ProfileFragment : ViewBindingFragment<FragmentProfileBinding>() {
 
     private val viewModel: MainViewModel by activityViewModels()
 
-    private lateinit var launcher: ActivityResultLauncher<Intent>
+    private var launcher: ActivityResultLauncher<Intent>? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initEvent()
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -62,19 +65,40 @@ class ProfileFragment : ViewBindingFragment<FragmentProfileBinding>() {
             showSnackBar(getString(uiState.userMessage))
             viewModel.userProfileMessageShown()
         }
+    }
+
+    private fun initEvent() = with(binding) {
         updatingButton.setOnClickListener {
             navigateToProfileUpdateActivity()
         }
 
+        checkExchangePostButton.setOnClickListener {
+            navigateToCheckExchangePostActivity()
+        }
+
+        checkCommunityPostButton.setOnClickListener {
+            navigateToCheckCommunityPostActivity()
+        }
     }
 
     private fun navigateToProfileUpdateActivity() {
         val intent = ProfileUpdateActivity.getIntent(requireContext())
-        launcher.launch(intent)
+        launcher?.launch(intent)
     }
 
     private fun showSnackBar(message: String) {
         Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).show()
     }
+
+    private fun navigateToCheckExchangePostActivity() {
+        val intent = CheckExchangePostActivity.getIntent(requireContext())
+        launcher?.launch(intent)
+    }
+
+    private fun navigateToCheckCommunityPostActivity() {
+        val intent = CheckCommunityPostActivity.getIntent(requireContext())
+        launcher?.launch(intent)
+    }
+
 
 }
