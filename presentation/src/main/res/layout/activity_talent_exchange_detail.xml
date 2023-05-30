@@ -51,15 +51,31 @@
             android:orientation="vertical"
             tools:ignore="UselessParent">
 
-            <TextView
-                android:id="@+id/title"
-                style="?attr/textAppearanceTitleLarge"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:textStyle="bold"
-                tools:text="제목이 들어가는 공간" />
+                android:layout_marginBottom="10dp">
+
+                <ImageView
+                    android:id="@+id/user_image"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/user"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/category" />
+
+                <TextView
+                    android:id="@+id/title"
+                    style="?attr/textAppearanceTitleLarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:textStyle="bold"
+                    tools:text="제목이 들어가는 공간" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/nickName"
@@ -174,7 +190,7 @@
                     android:id="@+id/likeImage"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
-                    android:src="@drawable/ic_baseline_like_border_24" />
+                    android:src="@drawable/leaf_border" />
 
                 <TextView
                     android:id="@+id/likedCount"

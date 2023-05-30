@@ -16,6 +16,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android_bong.R
+import com.example.android_bong.common.GlideApp
 import com.example.android_bong.common.ViewBindingActivity
 import com.example.android_bong.databinding.ActivityCommunityDetailBinding
 import com.example.android_bong.extension.RefreshStateContract
@@ -158,6 +159,7 @@ class CommunityDetailActivity : ViewBindingActivity<ActivityCommunityDetailBindi
     private fun updatePostDetailUi(uiState: CommunityDetailUiState) =
         with(binding) {
             val postDetail = uiState.postDetail
+            val glide = GlideApp.with(this@CommunityDetailActivity)
 
             if (postDetail != null) {
                 title.text = postDetail.title
@@ -170,6 +172,16 @@ class CommunityDetailActivity : ViewBindingActivity<ActivityCommunityDetailBindi
                 date.text = convertDateTimeFormat(postDetail.date)
 
                 postDetailButton.isVisible = postDetail.isMine
+
+                if (uiState.postDetail.liked) {
+                    glide.load(R.drawable.leaf_fill)
+                        .into(likeImage)
+                } else {
+                    glide.load(R.drawable.leaf_border)
+                        .into(likeImage)
+                }
+
+                likedCount.text = uiState.postDetail.likeCount.toString()
             }
 
             if (uiState.postDeletingSuccess) {

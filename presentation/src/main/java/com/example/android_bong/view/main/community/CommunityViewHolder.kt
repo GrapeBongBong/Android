@@ -20,10 +20,10 @@ class CommunityViewHolder(
         date.text = convertDateTimeFormat(uiState.date)
 
         if (uiState.liked) {
-            glide.load(R.drawable.ic_baseline_like_filled_24)
+            glide.load(R.drawable.leaf_fill)
                 .into(likeImage)
         } else {
-            glide.load(R.drawable.ic_baseline_like_border_24)
+            glide.load(R.drawable.leaf_border)
                 .into(likeImage)
         }
 

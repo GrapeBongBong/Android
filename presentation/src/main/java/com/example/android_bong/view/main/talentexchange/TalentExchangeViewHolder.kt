@@ -1,6 +1,5 @@
 package com.example.android_bong.view.main.talentexchange
 
-import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android_bong.R
@@ -53,25 +52,20 @@ class TalentExchangeViewHolder(
         date.text = convertDateTimeFormat(uiState.date)
 
         if (uiState.liked) {
-            glide.load(R.drawable.ic_baseline_like_filled_24)
+            glide.load(R.drawable.leaf_fill)
                 .into(likeImage)
         } else {
-            glide.load(R.drawable.ic_baseline_like_border_24)
+            glide.load(R.drawable.leaf_border)
                 .into(likeImage)
         }
 
         if (uiState.status) {
             status.text = root.context.getString(R.string.trading)
-            root.setOnClickListener { onClickItem(uiState) }
         } else {
             status.text = root.context.getString(R.string.trading_completed)
-            PostItem.setBackgroundColor(
-                ContextCompat.getColor(
-                    binding.root.context,
-                    R.color.md_theme_light_onSurfaceVariant
-                )
-            )
         }
+
+        root.setOnClickListener { onClickItem(uiState) }
 
         likedCount.text = uiState.likeCount.toString()
 

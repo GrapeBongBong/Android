@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.widget.PopupMenu
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.viewModels
+import androidx.core.net.toUri
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Lifecycle
@@ -173,13 +174,19 @@ class TalentExchangeDetailActivity :
                 postDetailButton.isVisible = postDetail.isMine
 
                 if (uiState.postDetail.liked) {
-                    glide.load(R.drawable.ic_baseline_like_filled_24)
+                    glide.load(R.drawable.leaf_fill)
                         .into(likeImage)
                 } else {
-                    glide.load(R.drawable.ic_baseline_like_border_24)
+                    glide.load(R.drawable.leaf_border)
                         .into(likeImage)
                 }
 
+                if (postDetail.writerImageURL != null) {
+                    glide.load(postDetail.writerImageURL.toUri())
+                        .circleCrop()
+                        .fallback(R.drawable.ic_baseline_person_24)
+                        .into(userImage)
+                }
                 likedCount.text = uiState.postDetail.likeCount.toString()
 
                 /**
