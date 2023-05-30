@@ -20,10 +20,7 @@ import com.example.android_bong.R
 import com.example.android_bong.common.GlideApp
 import com.example.android_bong.common.ViewBindingActivity
 import com.example.android_bong.databinding.ActivityTalentExchangeDetailBinding
-import com.example.android_bong.extension.RefreshStateContract
-import com.example.android_bong.extension.addDividerDecoration
-import com.example.android_bong.extension.convertDateTimeFormat
-import com.example.android_bong.extension.setResultRefresh
+import com.example.android_bong.extension.*
 import com.example.android_bong.view.main.comment.CommentAdapter
 import com.example.android_bong.view.main.comment.CommentItemUiState
 import com.example.android_bong.view.main.comment.CommentUiState
@@ -135,7 +132,9 @@ class TalentExchangeDetailActivity :
         }
 
         createCommentButton.setOnClickListener {
+            hideKeyboard()
             viewModel.createComment()
+            comment.setText("")
         }
 
         comment.addTextChangedListener {
