@@ -27,8 +27,8 @@
     <string name="monday">월</string>
     <string name="tuesday">화</string>
     <string name="wednesday">수</string>
-    <string name="trading">거래 중</string>
-    <string name="trading_completed">거래 완료</string>
+    <string name="trading">교환 원해요!</string>
+    <string name="trading_completed">교환 완료!</string>
     <string name="checkExchangePost">내가 작성한 재능교환 게시물 목록</string>
     <string name="checkCommunityPost">내가 작성한 재능교환 게시물 목록</string>
     <string name="thursday">목</string>

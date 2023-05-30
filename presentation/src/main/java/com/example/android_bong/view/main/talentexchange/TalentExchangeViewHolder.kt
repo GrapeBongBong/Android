@@ -61,8 +61,10 @@ class TalentExchangeViewHolder(
 
         if (uiState.status) {
             status.text = root.context.getString(R.string.trading)
+            status.setBackgroundColor(root.context.getColor(R.color.doing_trading_color))
         } else {
             status.text = root.context.getString(R.string.trading_completed)
+            status.setBackgroundColor(root.context.getColor(R.color.seed))
         }
 
         root.setOnClickListener { onClickItem(uiState) }
