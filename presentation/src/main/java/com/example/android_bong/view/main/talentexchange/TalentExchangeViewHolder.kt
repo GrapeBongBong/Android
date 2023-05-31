@@ -69,6 +69,8 @@ class TalentExchangeViewHolder(
             status.setBackgroundColor(root.context.getColor(R.color.seed))
         }
 
+        userTemperature.text = uiState.temperature.toString()
+
         root.setOnClickListener { onClickItem(uiState) }
 
         likedCount.text = uiState.likeCount.toString()

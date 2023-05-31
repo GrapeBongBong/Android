@@ -31,7 +31,6 @@
                 android:layout_marginEnd="16dp"
                 android:src="@drawable/ic_baseline_more_vert_24" />
 
-
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -75,6 +74,7 @@
                     android:layout_marginTop="5dp"
                     android:textStyle="bold"
                     tools:text="제목이 들어가는 공간" />
+
             </LinearLayout>
 
             <TextView
@@ -86,6 +86,36 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="20dp"
                 tools:text="닉네임이 들어가는 공간" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp">
+
+                <TextView
+                    android:id="@+id/post_temperature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/userPost_temperature"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/statusText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="거래완료" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:id="@+id/date"
@@ -150,11 +180,11 @@
                 android:alpha="0.6"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="@string/give_text"
                 android:textColor="?attr/colorOnBackground"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/takeTalent" />
+                app:layout_constraintTop_toBottomOf="@+id/takeTalent"
+                tools:text="가능한 날 : " />
 
             <TextView
                 android:id="@+id/possibleTime"
@@ -167,11 +197,11 @@
                 android:alpha="0.6"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="@string/give_text"
                 android:textColor="?attr/colorOnBackground"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/takeTalent" />
+                app:layout_constraintTop_toBottomOf="@+id/takeTalent"
+                tools:text="가능한 시간대 : " />
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
@@ -226,8 +256,8 @@
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/likeImage"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:src="@drawable/leaf_border" />
 
                 <TextView
@@ -235,10 +265,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:textSize="24sp"
+                    android:textSize="20sp"
                     tools:text="2" />
 
             </LinearLayout>
+
+            <Button
+                android:id="@+id/checkOrSupportButton"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="end"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:text="신청하기" />
 
             <View
                 android:layout_width="match_parent"
@@ -281,13 +321,13 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
 
-                <com.google.android.material.imageview.ShapeableImageView
+                <Button
                     android:id="@+id/create_comment_button"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.1"
+                    android:layout_weight="0.2"
                     android:padding="4dp"
-                    android:src="@drawable/ic_baseline_send_24"
+                    android:text="@string/send"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/commentInputLayout"
@@ -306,6 +346,7 @@
                     android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginBottom="40dp"
                     tools:listitem="@layout/item_comment" />
 
                 <include

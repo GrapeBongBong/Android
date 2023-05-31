@@ -146,6 +146,11 @@ class TalentExchangeDetailActivity :
         likeImage.setOnClickListener {
             viewModel.clickLike()
         }
+
+        checkOrSupportButton.setOnClickListener {
+            viewModel.applyExchangeTalent()
+        }
+
     }
 
     private fun initRecyclerView(adapter: CommentAdapter) = with(binding) {
@@ -172,6 +177,12 @@ class TalentExchangeDetailActivity :
 
                 postDetailButton.isVisible = postDetail.isMine
 
+                if (postDetail.isMine) {
+                    checkOrSupportButton.text = getString(R.string.check_chattingRoom_text)
+                } else {
+                    checkOrSupportButton.text = getString(R.string.application_button_text)
+                }
+
                 possiblaDays.text =
                     getString(R.string.possibleDays, postDetail.availableTime.days.toString())
                 possibleTime.text =
@@ -185,6 +196,14 @@ class TalentExchangeDetailActivity :
                         .into(likeImage)
                 }
 
+                if (postDetail.status) {
+                    statusText.text = root.context.getString(R.string.trading)
+                    statusText.setBackgroundColor(root.context.getColor(R.color.doing_trading_color))
+                } else {
+                    statusText.text = root.context.getString(R.string.trading_completed)
+                    statusText.setBackgroundColor(root.context.getColor(R.color.seed))
+                }
+
                 if (postDetail.writerImageURL != null) {
                     glide.load(postDetail.writerImageURL.toUri())
                         .circleCrop()
@@ -193,6 +212,11 @@ class TalentExchangeDetailActivity :
                 }
                 likedCount.text = uiState.postDetail.likeCount.toString()
 
+                postTemperature.text =
+                    getString(
+                        R.string.userPost_temperature,
+                        uiState.postDetail.temperature.toString()
+                    )
                 /**
                  *   for (image in uiState.postDetail.images) {
                 glide.load(image.fileUrl!!.toUri())

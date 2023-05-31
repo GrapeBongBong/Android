@@ -42,4 +42,10 @@ abstract class RemoteModule {
         communityRemoteDataSourceImpl: CommunityRemoteDataSourceImpl
     ): CommunityRemoteDataSource
 
+    @Singleton
+    @Binds
+    abstract fun bindsChatRemoteDataSource(
+        chatRemoteDataSourceImpl: ChatRemoteDataSourceImpl
+    ): ChatRemoteDataSource
+
 }

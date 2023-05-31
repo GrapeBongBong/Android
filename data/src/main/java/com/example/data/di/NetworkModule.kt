@@ -101,5 +101,11 @@ class NetworkModule {
     fun provideCommunityApi(retrofit: Retrofit): CommunityApi {
         return retrofit.create(CommunityApi::class.java)
     }
-    
+
+    @Provides
+    @Singleton
+    fun provideChatApi(retrofit: Retrofit): ChatApi {
+        return retrofit.create(ChatApi::class.java)
+    }
+
 }

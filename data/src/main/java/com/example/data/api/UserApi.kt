@@ -1,6 +1,7 @@
 package com.example.data.api
 
 import com.example.data.model.ResponseBody
+import com.example.data.model.chat.ChatRoomDto
 import com.example.data.model.community.CommunityDto
 import com.example.data.model.exchangePost.ExchangePostDto
 import com.example.data.model.profile.ProfileUpdateRequestBody
@@ -27,5 +28,8 @@ interface UserApi {
 
     @GET("/profile/exchange")
     suspend fun myExchangePost(): Response<List<ExchangePostDto>>
+
+    @GET("/profile/chatRoom")
+    suspend fun myChatRoom(): Response<List<ChatRoomDto>>
 
 }

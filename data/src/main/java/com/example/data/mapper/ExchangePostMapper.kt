@@ -25,7 +25,8 @@ fun ExchangePostDto.toEntity() = ExchangePost(
     status = status,
     writerImageURL = writerImageURL,
     likeCount = likeCount,
-    liked = liked
+    liked = liked,
+    temperature = temperature
 )
 
 fun AvailableTimeDto.toEntity() = AvailableTime(

@@ -22,5 +22,6 @@ fun ExchangePost.toUiState(userId: Int) = TalentExchangeItemUiState(
     isMine = (uid == userId),
     writerImageURL = writerImageURL,
     liked = liked,
-    likeCount = likeCount
+    likeCount = likeCount,
+    temperature = temperature
 )

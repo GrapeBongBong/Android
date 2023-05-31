@@ -58,6 +58,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/user_temperature"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="12dp"
+        android:alpha="0.6"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="@string/userPost_temperature"
+        android:textColor="?attr/colorOnBackground"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/user_image" />
+
+    <TextView
         android:id="@+id/title"
         style="?attr/textAppearanceTitleLarge"
         android:layout_width="match_parent"
@@ -68,7 +81,7 @@
         android:textColor="?attr/colorOnBackground"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/user_image"
+        app:layout_constraintTop_toBottomOf="@id/user_temperature"
         tools:text="안녕하세요. 개발자가 되고싶은 헬창입니다." />
 
     <TextView
@@ -134,8 +147,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/date"
         tools:text="거래완료" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

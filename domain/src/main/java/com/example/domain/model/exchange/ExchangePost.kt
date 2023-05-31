@@ -18,5 +18,6 @@ data class ExchangePost(
     val writerNick: String,
     val status: Boolean,
     val liked: Boolean,
-    val likeCount: Int
+    val likeCount: Int,
+    val temperature: Double
 )

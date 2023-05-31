@@ -19,6 +19,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".view.chat.ChattingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.main.check.chatroom.CheckChatRoomActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.main.check.exchange.CheckExchangePostActivity"
             android:exported="false" />
         <activity

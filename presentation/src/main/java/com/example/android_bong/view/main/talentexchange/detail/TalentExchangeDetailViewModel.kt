@@ -1,10 +1,12 @@
 package com.example.android_bong.view.main.talentexchange.detail
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android_bong.mapper.toUiState
 import com.example.android_bong.view.main.comment.CommentItemUiState
 import com.example.android_bong.view.main.comment.CommentUiState
+import com.example.domain.usecase.chatting.CreateChatRoomUseCase
 import com.example.domain.usecase.comment.CreateCommentUseCase
 import com.example.domain.usecase.comment.DeleteCommentUseCase
 import com.example.domain.usecase.comment.GetAllCommentUseCase
@@ -34,7 +36,9 @@ class TalentExchangeDetailViewModel @Inject constructor(
     private val createCommentUseCase: CreateCommentUseCase,
 
     private val clickUnLikeUseCase: ExchangeClickUnLikeUseCase,
-    private val clickLikeUseCase: ExchangeClickLikeUseCase
+    private val clickLikeUseCase: ExchangeClickLikeUseCase,
+
+    private val createChatRoomUseCase: CreateChatRoomUseCase
 ) : ViewModel() {
 
     private val _talentExchangeDetailUiState = MutableStateFlow(TalentExchangeDetailUiState())
@@ -209,6 +213,31 @@ class TalentExchangeDetailViewModel @Inject constructor(
 
     fun commentUserMessageShown() {
         _commentUiState.update { it.copy(userMessage = null) }
+    }
+
+    fun applyExchangeTalent() {
+        val exchangePostId = talentExchangeDetailUiState.value.postId!!
+        val applicantId = getUserUseCase()!!.id
+        Log.d("exchangePostId", exchangePostId.toString())
+        Log.d("applicantId", applicantId)
+
+        viewModelScope.launch {
+            val result = createChatRoomUseCase(
+                exchangePostId = exchangePostId,
+                applicantId = applicantId
+            )
+            if (result.isSuccess) {
+                _talentExchangeDetailUiState.update {
+                    it.copy(userMessage = result.getOrNull())
+                }
+            } else {
+                _talentExchangeDetailUiState.update {
+                    it.copy(
+                        userMessage = result.getOrNull()
+                    )
+                }
+            }
+        }
     }
 
 }

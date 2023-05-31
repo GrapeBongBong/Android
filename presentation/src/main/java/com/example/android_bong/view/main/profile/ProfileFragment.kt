@@ -17,6 +17,7 @@ import com.example.android_bong.common.ViewBindingFragment
 import com.example.android_bong.databinding.FragmentProfileBinding
 import com.example.android_bong.extension.RefreshStateContract
 import com.example.android_bong.view.main.MainViewModel
+import com.example.android_bong.view.main.check.chatroom.CheckChatRoomActivity
 import com.example.android_bong.view.main.check.community.CheckCommunityPostActivity
 import com.example.android_bong.view.main.check.exchange.CheckExchangePostActivity
 import com.example.android_bong.view.main.profile.profileUpdate.ProfileUpdateActivity
@@ -85,6 +86,10 @@ class ProfileFragment : ViewBindingFragment<FragmentProfileBinding>() {
         checkCommunityPostButton.setOnClickListener {
             navigateToCheckCommunityPostActivity()
         }
+
+        checkChatRoomButton.setOnClickListener {
+            navigateToCheckChatRoomActivity()
+        }
     }
 
     private fun navigateToProfileUpdateActivity() {
@@ -106,5 +111,8 @@ class ProfileFragment : ViewBindingFragment<FragmentProfileBinding>() {
         launcher?.launch(intent)
     }
 
-
+    private fun navigateToCheckChatRoomActivity() {
+        val intent = CheckChatRoomActivity.getIntent(requireContext())
+        launcher?.launch(intent)
+    }
 }

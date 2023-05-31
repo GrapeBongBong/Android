@@ -31,5 +31,6 @@ data class TalentExchangeItemUiState(
     val writerImageURL: String? = null,
     val liked: Boolean,
     val likeCount: Int,
-    val isMine: Boolean
+    val isMine: Boolean,
+    val temperature: Double
 ) : Serializable

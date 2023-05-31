@@ -2,6 +2,7 @@ package com.example.data.source
 
 import com.example.data.api.UserApi
 import com.example.data.model.ResponseBody
+import com.example.data.model.chat.ChatRoomDto
 import com.example.data.model.community.CommunityDto
 import com.example.data.model.exchangePost.ExchangePostDto
 import com.example.data.model.profile.ProfileUpdateRequestBody
@@ -47,6 +48,7 @@ class UserRemoteDataSourceImpl @Inject constructor(
 
     override suspend fun myCommunityPost(): Response<List<CommunityDto>> = api.myCommunityPost()
 
-
     override suspend fun myExchangePost(): Response<List<ExchangePostDto>> = api.myExchangePost()
+
+    override suspend fun myChatRoom(): Response<List<ChatRoomDto>> = api.myChatRoom()
 }

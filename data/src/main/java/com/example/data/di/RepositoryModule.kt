@@ -42,4 +42,9 @@ abstract class RepositoryModule {
         communityRepositoryImpl: CommunityRepositoryImpl
     ): CommunityRepository
 
+    @Singleton
+    @Binds
+    abstract fun bindsChatRepository(
+        chatRepositoryImpl: ChatRepositoryImpl
+    ): ChatRepository
 }
