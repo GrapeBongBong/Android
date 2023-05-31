@@ -6,17 +6,17 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.example.android_bong.databinding.ItemChatRoomBinding
 
-class ChatRoomAdapter(
+class CheckChatRoomAdapter(
     private val onClickItem: (ChatRoomItemUiState) -> Unit
-) : ListAdapter<ChatRoomItemUiState, ChatRoomViewHolder>(diffCallback) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatRoomViewHolder {
+) : ListAdapter<ChatRoomItemUiState, CheckChatRoomViewHolder>(diffCallback) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CheckChatRoomViewHolder {
 
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = ItemChatRoomBinding.inflate(layoutInflater, parent, false)
-        return ChatRoomViewHolder(binding, onClickItem)
+        return CheckChatRoomViewHolder(binding, onClickItem)
     }
 
-    override fun onBindViewHolder(holder: ChatRoomViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CheckChatRoomViewHolder, position: Int) {
         holder.bind(currentList[position])
     }
 

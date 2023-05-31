@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 @HiltViewModel
-class ChatRoomViewModel @Inject constructor(
+class CheckChatRoomViewModel @Inject constructor(
     private val getMyChatRoomUseCase: GetMyChatRoomUseCase
 ) : ViewModel() {
 

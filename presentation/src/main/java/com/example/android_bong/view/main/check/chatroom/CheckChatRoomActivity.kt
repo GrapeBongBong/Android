@@ -30,7 +30,7 @@ class CheckChatRoomActivity : ViewBindingActivity<ActivityCheckChatRoomBinding>(
     override val bindingInflater: (LayoutInflater) -> ActivityCheckChatRoomBinding
         get() = ActivityCheckChatRoomBinding::inflate
 
-    private val viewModel: ChatRoomViewModel by viewModels()
+    private val viewModel: CheckChatRoomViewModel by viewModels()
 
     companion object {
         fun getIntent(context: Context): Intent {
@@ -46,7 +46,7 @@ class CheckChatRoomActivity : ViewBindingActivity<ActivityCheckChatRoomBinding>(
         ab.setDisplayHomeAsUpEnabled(true)
 
         viewModel.fetchRooms()
-        val adapter = ChatRoomAdapter(::onClickChatRoom)
+        val adapter = CheckChatRoomAdapter(::onClickChatRoom)
         initRecyclerView(adapter)
         initEventListeners()
 
@@ -85,7 +85,7 @@ class CheckChatRoomActivity : ViewBindingActivity<ActivityCheckChatRoomBinding>(
 
     private var launcher: ActivityResultLauncher<Intent>? = null
 
-    private fun updateUi(uiState: ChatRoomUiState, adapter: ChatRoomAdapter) = with(binding) {
+    private fun updateUi(uiState: ChatRoomUiState, adapter: CheckChatRoomAdapter) = with(binding) {
         binding.loadState.emptyText.isVisible =
             uiState.rooms.isEmpty()
 
@@ -105,7 +105,7 @@ class CheckChatRoomActivity : ViewBindingActivity<ActivityCheckChatRoomBinding>(
 
     }
 
-    private fun initRecyclerView(adapter: ChatRoomAdapter) = with(binding) {
+    private fun initRecyclerView(adapter: CheckChatRoomAdapter) = with(binding) {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this@CheckChatRoomActivity)
         recyclerView.addDividerDecoration()

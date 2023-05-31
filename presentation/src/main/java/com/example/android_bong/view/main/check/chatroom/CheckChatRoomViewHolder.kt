@@ -3,7 +3,7 @@ package com.example.android_bong.view.main.check.chatroom
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android_bong.databinding.ItemChatRoomBinding
 
-class ChatRoomViewHolder(
+class CheckChatRoomViewHolder(
     private val binding: ItemChatRoomBinding,
     private val onClickItem: (ChatRoomItemUiState) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
