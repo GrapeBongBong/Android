@@ -1,9 +1,9 @@
-package com.example.android_bong.view.main.check.chatroom
+package com.example.android_bong.view.chat
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android_bong.mapper.toUiState
-import com.example.domain.usecase.user.GetMyChatRoomUseCase
+import com.example.domain.usecase.chatting.GetAllChatRoomUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,20 +15,27 @@ import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 @HiltViewModel
-class CheckChatRoomViewModel @Inject constructor(
-    private val getMyChatRoomUseCase: GetMyChatRoomUseCase
+class ChattingRoomViewModel @Inject constructor(
+    private val getAllChatRoomUseCase: GetAllChatRoomUseCase
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(CheckChatRoomUiState())
+    private val _uiState = MutableStateFlow(ChattingRoomUiSate())
     val uiState = _uiState.asStateFlow()
 
     private var fetchJob: Job? = null
 
-    fun fetchRooms() {
+    fun bind(postId: Int) {
+        fetchRooms(postId)
+    }
+
+    private fun fetchRooms(postId: Int) {
         fetchJob?.cancel()
+        _uiState.update {
+            it.copy(postId = postId)
+        }
         fetchJob = viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true) }
-            val result = getMyChatRoomUseCase()
+            val result = getAllChatRoomUseCase(postId = postId)
             if (result.isSuccess) {
                 _uiState.update { data ->
                     val posts = result.getOrNull()!!.map {

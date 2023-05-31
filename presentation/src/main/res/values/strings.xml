@@ -22,6 +22,7 @@
     <string name="anonymous_community">익명게시판</string>
     <string name="are_you_sure_you_want_to_delete">정말로 삭제할까요?</string>
     <string name="checkMyChatRoom">내가 채팅하고 있는 방 목록</string>
+    <string name="checkThisPostChatRoom">채팅방 목록</string>
     <string name="title">제목</string>
     <string name="take">Take</string>
     <string name="give">Give</string>
@@ -106,7 +107,7 @@
     <string name="write_post">게시물 쓰기</string>
     <string name="loading">로딩중…</string>
     <string name="application_button_text">신청하기</string>
-    <string name="check_chattingRoom_text">채팅방 조회하기</string>
+    <string name="check_chattingRoom_text">채팅방 목록 조회하기</string>
     <string name="user_info">사용자 정보</string>
 
     <string-array name="image_options">

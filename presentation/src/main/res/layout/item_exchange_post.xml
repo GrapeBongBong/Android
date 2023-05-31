@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
-        android:textSize="20sp"
+        android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/user_image"
         app:layout_constraintTop_toBottomOf="@+id/category"
         tools:text="ois0886(ois0886)" />

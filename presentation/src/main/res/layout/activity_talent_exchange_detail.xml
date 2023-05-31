@@ -79,12 +79,12 @@
 
             <TextView
                 android:id="@+id/nickName"
-                style="?attr/textAppearanceLabelMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="20dp"
+                android:textStyle="bold"
                 tools:text="닉네임이 들어가는 공간" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -96,11 +96,11 @@
 
                 <TextView
                     android:id="@+id/post_temperature"
+                    style="?attr/textAppearanceLabelMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/userPost_temperature"
                     android:textColor="?attr/colorOnBackground"
-                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -271,7 +271,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/checkOrSupportButton"
+                android:id="@+id/applyButton"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_gravity="end"
@@ -279,6 +279,16 @@
                 android:layout_marginEnd="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 tools:text="신청하기" />
+
+            <Button
+                android:id="@+id/checkButton"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="end"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:text="채팅방 목록 조회하기" />
 
             <View
                 android:layout_width="match_parent"

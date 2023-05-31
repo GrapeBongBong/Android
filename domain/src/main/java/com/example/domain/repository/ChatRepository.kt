@@ -1,6 +1,7 @@
 package com.example.domain.repository
 
 import com.example.domain.model.chat.ChatRoom
+import com.example.domain.model.chat.PostChatRoom
 
 interface ChatRepository {
 
@@ -10,4 +11,6 @@ interface ChatRepository {
     ): Result<String>
 
     suspend fun getAllMyChatRoom(): Result<List<ChatRoom>>
+
+    suspend fun getAllThisPostChatRoom(postId: Int): Result<List<PostChatRoom>>
 }

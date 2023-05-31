@@ -1,4 +1,4 @@
-package com.example.android_bong.view.main.check.chatroom
+package com.example.android_bong.view.chat
 
 import android.content.Context
 import android.content.Intent
@@ -16,7 +16,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android_bong.R
 import com.example.android_bong.common.ViewBindingActivity
-import com.example.android_bong.databinding.ActivityCheckChatRoomBinding
+import com.example.android_bong.databinding.ActivityChattingRoomBinding
 import com.example.android_bong.extension.RefreshStateContract
 import com.example.android_bong.extension.addDividerDecoration
 import com.example.android_bong.extension.setResultRefresh
@@ -25,28 +25,38 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class CheckChatRoomActivity : ViewBindingActivity<ActivityCheckChatRoomBinding>() {
+class ChattingRoomActivity : ViewBindingActivity<ActivityChattingRoomBinding>() {
 
-    override val bindingInflater: (LayoutInflater) -> ActivityCheckChatRoomBinding
-        get() = ActivityCheckChatRoomBinding::inflate
+    override val bindingInflater: (LayoutInflater) -> ActivityChattingRoomBinding
+        get() = ActivityChattingRoomBinding::inflate
 
-    private val viewModel: CheckChatRoomViewModel by viewModels()
+
+    private val viewModel: ChattingRoomViewModel by viewModels()
 
     companion object {
-        fun getIntent(context: Context): Intent {
-            return Intent(context, CheckChatRoomActivity::class.java)
+        fun getIntent(context: Context, postId: Int): Intent {
+            return Intent(context, ChattingRoomActivity::class.java).apply {
+                putExtra("postId", postId)
+            }
         }
     }
 
+
+    private fun getPostId(): Int {
+        return intent.getIntExtra("postId", 0)
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding.toolbar.setTitle(R.string.checkMyChatRoom)
+        binding.toolbar.setTitle(R.string.checkThisPostChatRoom)
         setSupportActionBar(binding.toolbar)
         val ab = supportActionBar!!
         ab.setDisplayHomeAsUpEnabled(true)
+        val postId = getPostId()
+        viewModel.bind(postId)
 
-        viewModel.fetchRooms()
-        val adapter = CheckChatRoomAdapter(::onClickChatRoom)
+        val adapter = ChattingRoomAdapter(::onClickChatRoom)
         initRecyclerView(adapter)
         initEventListeners()
 
@@ -60,7 +70,7 @@ class CheckChatRoomActivity : ViewBindingActivity<ActivityCheckChatRoomBinding>(
 
         launcher = registerForActivityResult(RefreshStateContract()) {
             if (it != null) {
-                viewModel.fetchRooms()
+                viewModel.bind(postId)
                 adapter.submitList(viewModel.uiState.value.rooms)
                 it.message?.let { message -> showSnackBar(message) }
             }
@@ -85,40 +95,41 @@ class CheckChatRoomActivity : ViewBindingActivity<ActivityCheckChatRoomBinding>(
 
     private var launcher: ActivityResultLauncher<Intent>? = null
 
-    private fun updateUi(uiState: CheckChatRoomUiState, adapter: CheckChatRoomAdapter) = with(binding) {
-        binding.loadState.emptyText.isVisible =
-            uiState.rooms.isEmpty()
+    private fun updateUi(uiState: ChattingRoomUiSate, adapter: ChattingRoomAdapter) =
+        with(binding) {
+            binding.loadState.emptyText.isVisible =
+                uiState.rooms.isEmpty()
 
-        loadState.retryButton.isVisible = !uiState.isLoadingSuccess
-        loadState.errorMsg.isVisible = !uiState.isLoadingSuccess
+            loadState.retryButton.isVisible = !uiState.isLoadingSuccess
+            loadState.errorMsg.isVisible = !uiState.isLoadingSuccess
 
-        loadState.progressBar.isVisible = uiState.isLoading
-        recyclerView.isVisible = !uiState.isLoading
+            loadState.progressBar.isVisible = uiState.isLoading
+            recyclerView.isVisible = !uiState.isLoading
 
-        adapter.submitList(uiState.rooms)
+            adapter.submitList(uiState.rooms)
 
-        if (uiState.userMessage != null) {
-            showSnackBar(uiState.userMessage)
-            Log.d("error", uiState.userMessage)
-            viewModel.userMessageShown()
+            if (uiState.userMessage != null) {
+                showSnackBar(uiState.userMessage)
+                Log.d("error", uiState.userMessage)
+                viewModel.userMessageShown()
+            }
+
         }
 
-    }
-
-    private fun initRecyclerView(adapter: CheckChatRoomAdapter) = with(binding) {
+    private fun initRecyclerView(adapter: ChattingRoomAdapter) = with(binding) {
         recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this@CheckChatRoomActivity)
+        recyclerView.layoutManager = LinearLayoutManager(this@ChattingRoomActivity)
         recyclerView.addDividerDecoration()
 
     }
 
     private fun initEventListeners() {
         binding.loadState.retryButton.setOnClickListener {
-            viewModel.fetchRooms()
+
         }
     }
 
-    private fun onClickChatRoom(chatRoomItemUiState: ChatRoomItemUiState) {
+    private fun onClickChatRoom(postChatRoomItemUiState: PostChatRoomItemUiState) {
 
     }
 

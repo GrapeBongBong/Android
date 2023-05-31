@@ -1,6 +1,6 @@
 package com.example.android_bong.view.main.check.chatroom
 
-data class ChatRoomUiState(
+data class CheckChatRoomUiState(
     val rooms: List<ChatRoomItemUiState> = emptyList(),
     val userMessage: String? = null,
     val isLoadingSuccess: Boolean = false,

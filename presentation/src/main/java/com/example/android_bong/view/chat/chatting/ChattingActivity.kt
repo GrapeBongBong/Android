@@ -1,4 +1,4 @@
-package com.example.android_bong.view.chat
+package com.example.android_bong.view.chat.chatting
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,6 +12,5 @@ class ChattingActivity : ViewBindingActivity<ActivityChattingBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 }

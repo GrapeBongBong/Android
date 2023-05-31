@@ -22,7 +22,7 @@ class TalentExchangeViewHolder(
             userNickName.text = root.context.getString(
                 R.string.post_id_nickName,
                 uiState.writerNick,
-                uiState.writerNick
+                uiState.writerId
             )
         }
 

@@ -3,6 +3,7 @@ package com.example.android_bong.view.main.talentexchange.detail
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -21,6 +22,7 @@ import com.example.android_bong.common.GlideApp
 import com.example.android_bong.common.ViewBindingActivity
 import com.example.android_bong.databinding.ActivityTalentExchangeDetailBinding
 import com.example.android_bong.extension.*
+import com.example.android_bong.view.chat.ChattingRoomActivity
 import com.example.android_bong.view.main.comment.CommentAdapter
 import com.example.android_bong.view.main.comment.CommentItemUiState
 import com.example.android_bong.view.main.comment.CommentUiState
@@ -147,8 +149,13 @@ class TalentExchangeDetailActivity :
             viewModel.clickLike()
         }
 
-        checkOrSupportButton.setOnClickListener {
+        applyButton.setOnClickListener {
             viewModel.applyExchangeTalent()
+        }
+
+        checkButton.setOnClickListener {
+            Log.d("postId", getPostId().toString())
+            navigateToChattingRoomActivity(getPostId())
         }
 
     }
@@ -178,9 +185,13 @@ class TalentExchangeDetailActivity :
                 postDetailButton.isVisible = postDetail.isMine
 
                 if (postDetail.isMine) {
-                    checkOrSupportButton.text = getString(R.string.check_chattingRoom_text)
+                    checkButton.text = getString(R.string.check_chattingRoom_text)
+                    checkButton.isVisible = true
+                    applyButton.isVisible = false
                 } else {
-                    checkOrSupportButton.text = getString(R.string.application_button_text)
+                    applyButton.text = getString(R.string.application_button_text)
+                    checkButton.isVisible = false
+                    applyButton.isVisible = true
                 }
 
                 possiblaDays.text =
@@ -333,5 +344,11 @@ class TalentExchangeDetailActivity :
 
         }
     }
+
+    private fun navigateToChattingRoomActivity(postId: Int) {
+        val intent = ChattingRoomActivity.getIntent(this, postId)
+        launcher?.launch(intent)
+    }
+
 
 }
