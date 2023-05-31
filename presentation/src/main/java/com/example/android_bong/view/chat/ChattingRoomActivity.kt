@@ -53,6 +53,7 @@ class ChattingRoomActivity : ViewBindingActivity<ActivityChattingRoomBinding>() 
         setSupportActionBar(binding.toolbar)
         val ab = supportActionBar!!
         ab.setDisplayHomeAsUpEnabled(true)
+
         val postId = getPostId()
         viewModel.bind(postId)
 
@@ -130,7 +131,12 @@ class ChattingRoomActivity : ViewBindingActivity<ActivityChattingRoomBinding>() 
     }
 
     private fun onClickChatRoom(postChatRoomItemUiState: PostChatRoomItemUiState) {
-        val intent = ChattingActivity.getIntent(this, postChatRoomItemUiState.roomId)
+        val intent = ChattingActivity.getIntent(
+            this,
+            roomId = postChatRoomItemUiState.roomId,
+            postId = postChatRoomItemUiState.pid,
+            roomTitle = postChatRoomItemUiState.roomName
+        )
         launcher?.launch(intent)
     }
 

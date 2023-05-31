@@ -179,22 +179,23 @@ class CommunityDetailActivity : ViewBindingActivity<ActivityCommunityDetailBindi
                     glide.load(R.drawable.leaf_border)
                         .into(likeImage)
                 }
-
                 val imageViews = listOf(imageView1, imageView2, imageView3)
                 if (postDetail.images!!.isEmpty()) {
                     imageLinearLayout.isVisible = false
                 } else {
-                    postDetail.images.forEachIndexed { index, image ->
-                        val imageView = imageViews[index]
-                        val imageUrl = image.fileUrl
-
-                        if (!imageUrl.isNullOrEmpty()) {
-                            glide.load(imageUrl)
+                    for (i in postDetail.images.indices) {
+                        if (i < imageViews.size) {
+                            val imageView = imageViews[i]
+                            val imageURL = postDetail.images[i].fileUrl
+                            glide.load(imageURL)
                                 .override(200, 200)
                                 .into(imageView)
-                        } else {
-                            imageView.isVisible = false
+                            imageView.isVisible = true
                         }
+                    }
+                    for (i in postDetail.images.size until imageViews.size) {
+                        val imageView = imageViews[i]
+                        imageView.isVisible = false
                     }
                 }
 

@@ -121,7 +121,12 @@ class CheckChatRoomActivity : ViewBindingActivity<ActivityCheckChatRoomBinding>(
     }
 
     private fun onClickChatRoom(chatRoomItemUiState: ChatRoomItemUiState) {
-        val intent = ChattingActivity.getIntent(this, chatRoomItemUiState.roomId)
+        val intent = ChattingActivity.getIntent(
+            this,
+            roomId = chatRoomItemUiState.roomId,
+            postId = null,
+            roomTitle = chatRoomItemUiState.roomName
+        )
         launcher?.launch(intent)
     }
 

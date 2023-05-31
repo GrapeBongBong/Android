@@ -36,8 +36,8 @@ class TalentExchangeFragment : ViewBindingFragment<FragmentTalentExchangeBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.fetchPosts()
         val adapter = TalentExchangeAdapter(::onClickPost)
+        viewModel.fetchPosts()
         initRecyclerView(adapter)
         initEventListeners()
 
