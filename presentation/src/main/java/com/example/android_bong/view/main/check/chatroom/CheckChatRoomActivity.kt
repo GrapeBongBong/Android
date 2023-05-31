@@ -20,6 +20,7 @@ import com.example.android_bong.databinding.ActivityCheckChatRoomBinding
 import com.example.android_bong.extension.RefreshStateContract
 import com.example.android_bong.extension.addDividerDecoration
 import com.example.android_bong.extension.setResultRefresh
+import com.example.android_bong.view.chat.chatting.ChattingActivity
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -85,25 +86,26 @@ class CheckChatRoomActivity : ViewBindingActivity<ActivityCheckChatRoomBinding>(
 
     private var launcher: ActivityResultLauncher<Intent>? = null
 
-    private fun updateUi(uiState: CheckChatRoomUiState, adapter: CheckChatRoomAdapter) = with(binding) {
-        binding.loadState.emptyText.isVisible =
-            uiState.rooms.isEmpty()
+    private fun updateUi(uiState: CheckChatRoomUiState, adapter: CheckChatRoomAdapter) =
+        with(binding) {
+            binding.loadState.emptyText.isVisible =
+                uiState.rooms.isEmpty()
 
-        loadState.retryButton.isVisible = !uiState.isLoadingSuccess
-        loadState.errorMsg.isVisible = !uiState.isLoadingSuccess
+            loadState.retryButton.isVisible = !uiState.isLoadingSuccess
+            loadState.errorMsg.isVisible = !uiState.isLoadingSuccess
 
-        loadState.progressBar.isVisible = uiState.isLoading
-        recyclerView.isVisible = !uiState.isLoading
+            loadState.progressBar.isVisible = uiState.isLoading
+            recyclerView.isVisible = !uiState.isLoading
 
-        adapter.submitList(uiState.rooms)
+            adapter.submitList(uiState.rooms)
 
-        if (uiState.userMessage != null) {
-            showSnackBar(uiState.userMessage)
-            Log.d("error", uiState.userMessage)
-            viewModel.userMessageShown()
+            if (uiState.userMessage != null) {
+                showSnackBar(uiState.userMessage)
+                Log.d("error", uiState.userMessage)
+                viewModel.userMessageShown()
+            }
+
         }
-
-    }
 
     private fun initRecyclerView(adapter: CheckChatRoomAdapter) = with(binding) {
         recyclerView.adapter = adapter
@@ -119,7 +121,8 @@ class CheckChatRoomActivity : ViewBindingActivity<ActivityCheckChatRoomBinding>(
     }
 
     private fun onClickChatRoom(chatRoomItemUiState: ChatRoomItemUiState) {
-
+        val intent = ChattingActivity.getIntent(this, chatRoomItemUiState.roomId)
+        launcher?.launch(intent)
     }
 
     private fun showSnackBar(message: String) {

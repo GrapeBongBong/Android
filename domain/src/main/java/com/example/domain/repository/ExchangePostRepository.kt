@@ -7,6 +7,11 @@ interface ExchangePostRepository {
 
     suspend fun getAll(): Result<List<ExchangePost>>
 
+    suspend fun getAllWithFilter(
+        takeCate: String,
+        giveCate: String
+    ): Result<List<ExchangePost>>
+
     suspend fun deleteExchangePost(postId: Int): Result<String>
 
     suspend fun createExchangePost(

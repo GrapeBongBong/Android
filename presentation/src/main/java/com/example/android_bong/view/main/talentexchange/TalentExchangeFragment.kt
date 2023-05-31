@@ -6,6 +6,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.activity.result.ActivityResultLauncher
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
@@ -13,6 +15,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.android_bong.R
 import com.example.android_bong.common.ViewBindingFragment
 import com.example.android_bong.databinding.FragmentTalentExchangeBinding
 import com.example.android_bong.extension.RefreshStateContract
@@ -91,6 +94,56 @@ class TalentExchangeFragment : ViewBindingFragment<FragmentTalentExchangeBinding
         binding.loadState.retryButton.setOnClickListener {
             viewModel.fetchPosts()
         }
+
+        binding.takeCateSpinner.adapter = ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.talent_with_all_array,
+            android.R.layout.simple_spinner_item
+        )
+
+        binding.giveCateSpinner.adapter = ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.talent_with_all_array,
+            android.R.layout.simple_spinner_item
+        )
+
+        binding.giveCateSpinner.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    viewModel.updateGiveCate(
+                        binding.giveCateSpinner.getItemAtPosition(position).toString()
+                    )
+                    viewModel.fetchPosts()
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+
+                }
+            }
+
+        binding.takeCateSpinner.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    viewModel.updateTakeCate(
+                        binding.takeCateSpinner.getItemAtPosition(position).toString()
+                    )
+                    viewModel.fetchPosts()
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+
+                }
+            }
     }
 
     private fun showSnackBar(message: String) {

@@ -25,6 +25,7 @@
     <string name="checkThisPostChatRoom">채팅방 목록</string>
     <string name="title">제목</string>
     <string name="take">Take</string>
+    <string name="arrow">⇨</string>
     <string name="give">Give</string>
     <string name="monday">월</string>
     <string name="tuesday">화</string>
@@ -113,6 +114,13 @@
     <string-array name="image_options">
         <item>갤러리에서 선택</item>
         <item>기본 이미지로 변경</item>
+    </string-array>
+
+    <string-array name="talent_with_all_array">
+        <item>All</item>
+        <item>IT</item>
+        <item>운동</item>
+        <item>음악</item>
     </string-array>
 
     <string-array name="talent_array">

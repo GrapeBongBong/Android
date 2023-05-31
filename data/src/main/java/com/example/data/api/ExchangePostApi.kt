@@ -3,6 +3,7 @@ package com.example.data.api
 import com.example.data.model.ResponseBody
 import com.example.data.model.exchangePost.CreateExchangePostRequestBody
 import com.example.data.model.exchangePost.ExchangePostDto
+import com.example.data.model.exchangePost.GetAllWithFilterRequestBody
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -12,6 +13,11 @@ interface ExchangePostApi {
 
     @GET("/exchange/posts")
     suspend fun getAll(): Response<List<ExchangePostDto>>
+
+    @POST("/exchange/search")
+    suspend fun getAllWithFilter(
+        @Body getAllWithFilterRequestBody: GetAllWithFilterRequestBody
+    ): Response<List<ExchangePostDto>>
 
     @HTTP(method = "DELETE", path = "/exchange/delete/{postId}", hasBody = false)
     suspend fun deleteExchangePost(

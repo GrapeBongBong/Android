@@ -10,6 +10,11 @@ interface ExchangePostRemoteDataSource {
 
     suspend fun getAll(): Response<List<ExchangePostDto>>
 
+    suspend fun getAllWithFilter(
+        takeCate: String,
+        giveCate: String
+    ): Response<List<ExchangePostDto>>
+
     suspend fun deleteExchangePost(postId: Int): Response<ResponseBody>
 
     suspend fun createExchangePost(

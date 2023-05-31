@@ -20,6 +20,7 @@ import com.example.android_bong.databinding.ActivityChattingRoomBinding
 import com.example.android_bong.extension.RefreshStateContract
 import com.example.android_bong.extension.addDividerDecoration
 import com.example.android_bong.extension.setResultRefresh
+import com.example.android_bong.view.chat.chatting.ChattingActivity
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -40,7 +41,6 @@ class ChattingRoomActivity : ViewBindingActivity<ActivityChattingRoomBinding>() 
             }
         }
     }
-
 
     private fun getPostId(): Int {
         return intent.getIntExtra("postId", 0)
@@ -130,7 +130,8 @@ class ChattingRoomActivity : ViewBindingActivity<ActivityChattingRoomBinding>() 
     }
 
     private fun onClickChatRoom(postChatRoomItemUiState: PostChatRoomItemUiState) {
-
+        val intent = ChattingActivity.getIntent(this, postChatRoomItemUiState.roomId)
+        launcher?.launch(intent)
     }
 
     private fun showSnackBar(message: String) {

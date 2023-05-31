@@ -9,7 +9,12 @@ data class TalentExchangeUiState(
     val posts: List<TalentExchangeItemUiState> = emptyList(),
     val isLoadingSuccess: Boolean = false,
     val isLoading: Boolean = false,
-    val userId: Int? = null
+    val userId: Int? = null,
+    /**
+     * 초기값은 All로 지정한다.
+     */
+    val giveCate: String? = null,
+    val takeCate: String? = null
 )
 
 data class TalentExchangeItemUiState(

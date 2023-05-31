@@ -4,6 +4,7 @@ import com.example.data.api.ExchangePostApi
 import com.example.data.model.ResponseBody
 import com.example.data.model.exchangePost.CreateExchangePostRequestBody
 import com.example.data.model.exchangePost.ExchangePostDto
+import com.example.data.model.exchangePost.GetAllWithFilterRequestBody
 import com.example.domain.model.exchange.AvailableTime
 import com.google.gson.Gson
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -24,6 +25,18 @@ class ExchangePostRemoteDataSourceImpl @Inject constructor(
     }
 
     override suspend fun getAll(): Response<List<ExchangePostDto>> = api.getAll()
+
+    override suspend fun getAllWithFilter(
+        takeCate: String,
+        giveCate: String
+    ): Response<List<ExchangePostDto>> {
+        return api.getAllWithFilter(
+            GetAllWithFilterRequestBody(
+                giveCate = giveCate,
+                takeCate = takeCate
+            )
+        )
+    }
 
     override suspend fun deleteExchangePost(postId: Int): Response<ResponseBody> =
         api.deleteExchangePost(postId = postId)
