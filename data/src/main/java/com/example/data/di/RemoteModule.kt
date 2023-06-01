@@ -47,5 +47,4 @@ abstract class RemoteModule {
     abstract fun bindsChatRemoteDataSource(
         chatRemoteDataSourceImpl: ChatRemoteDataSourceImpl
     ): ChatRemoteDataSource
-
 }

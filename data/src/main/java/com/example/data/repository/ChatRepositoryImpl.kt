@@ -2,7 +2,6 @@ package com.example.data.repository
 
 import com.example.data.mapper.toEntity
 import com.example.data.source.ChatRemoteDataSource
-import com.example.domain.model.chat.ChatMessage
 import com.example.domain.model.chat.ChatRoom
 import com.example.domain.model.chat.PostChatRoom
 import com.example.domain.repository.ChatRepository
@@ -104,18 +103,4 @@ class ChatRepositoryImpl @Inject constructor(
             Result.failure(e)
         }
     }
-
-    override suspend fun joinChatRoom(roomId: String): Result<Boolean> {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun sendMessage(roomId: String, message: String): Result<Boolean> {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun getPreviousMessages(roomId: String): Result<List<ChatMessage>> {
-        TODO("Not yet implemented")
-    }
-
-
 }

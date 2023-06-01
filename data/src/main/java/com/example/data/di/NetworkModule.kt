@@ -8,9 +8,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.WebSocket
-import okhttp3.WebSocketListener
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -24,7 +21,6 @@ class NetworkModule {
     companion object {
         private const val BASE_URL = "http://3.34.75.23:8080/"
         private const val TOKEN_HEADER_KEY = "Authorization"
-        private const val WEB_SOCKET_URL = "ws://3.34.75.23:8080/ws/chat/"
     }
 
     @Provides
@@ -112,17 +108,5 @@ class NetworkModule {
         return retrofit.create(ChatApi::class.java)
     }
 
-
-    @Provides
-    @Singleton
-    fun provideWebSocket(
-        okHttpClient: OkHttpClient,
-        webSocketListener: WebSocketListener
-    ): WebSocket {
-        val request = Request.Builder()
-            .url(WEB_SOCKET_URL)
-            .build()
-        return okHttpClient.newWebSocket(request, webSocketListener)
-    }
 
 }

@@ -5,6 +5,17 @@ data class ChattingUiState(
     val postId: Int? = null,
     val roomId: Int? = null,
     val roomTitle: String? = null,
-    val myChatMessage: String? = null,
-    val score: Int? = null
+    val chatting: List<ChattingItemUiState> = emptyList(),
+    val myChatMessage: String = "",
+    val score: Int? = null,
+    val senderId: String = ""
 )
+
+data class ChattingItemUiState(
+    val roomId: Int,
+    val senderId: String,
+    val message: String,
+    val isMine: Boolean,
+    val messageId: Int
+)
+

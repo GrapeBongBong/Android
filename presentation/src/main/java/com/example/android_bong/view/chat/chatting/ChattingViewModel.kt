@@ -2,8 +2,11 @@ package com.example.android_bong.view.chat.chatting
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.android_bong.mapper.toUiState
+import com.example.domain.model.chat.ChatMessage
 import com.example.domain.usecase.chatting.ApplyScoreUseCase
 import com.example.domain.usecase.chatting.SuccessMatchingUseCase
+import com.example.domain.usecase.user.GetUserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,7 +18,8 @@ import javax.inject.Inject
 @HiltViewModel
 class ChattingViewModel @Inject constructor(
     private val successMatchingUseCase: SuccessMatchingUseCase,
-    private val applyScoreUseCase: ApplyScoreUseCase
+    private val applyScoreUseCase: ApplyScoreUseCase,
+    private val getUserUseCase: GetUserUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(ChattingUiState())
@@ -25,7 +29,22 @@ class ChattingViewModel @Inject constructor(
 
     fun bind(postId: Int, roomId: Int, roomTitle: String) {
         _uiState.update {
-            it.copy(postId = postId, roomTitle = roomTitle, roomId = roomId)
+            it.copy(
+                postId = postId,
+                roomTitle = roomTitle,
+                roomId = roomId,
+                senderId = getUserUseCase()!!.id
+            )
+        }
+    }
+
+    fun bindChatting(chatting: List<ChatMessage>) {
+        _uiState.update {
+            it.copy(
+                chatting = chatting.map {
+                    it.toUiState(getUserUseCase()!!.id)
+                }
+            )
         }
     }
 
@@ -79,5 +98,4 @@ class ChattingViewModel @Inject constructor(
             }
         }
     }
-
 }
