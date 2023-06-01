@@ -13,6 +13,7 @@ import android.view.View
 import android.widget.RatingBar
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -120,6 +121,10 @@ class ChattingActivity : ViewBindingActivity<ActivityChattingBinding>() {
     }
 
     private fun updateUi(uiState: ChattingUiState) = with(binding) {
+
+        if (getPostId() == 0) {
+            successButton.isVisible = false
+        }
 
         if (uiState.userMessage != null) {
             showSnackBar(uiState.userMessage)
