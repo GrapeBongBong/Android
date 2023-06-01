@@ -27,6 +27,10 @@ class ChattingViewModel @Inject constructor(
         }
     }
 
+    fun updateMyChatMessage(myChatMessage: String) {
+        _uiState.update { it.copy(myChatMessage = myChatMessage) }
+    }
+
 
     fun clickSuccess() {
         val postId = uiState.value.postId!!

@@ -28,7 +28,7 @@
                 android:layout_gravity="end"
                 android:background="?android:attr/windowBackground"
                 android:padding="16dp"
-                android:text="거래완료하기"
+                android:text="@string/success_trading"
                 android:textColor="@color/seed"
                 android:textStyle="bold" />
 
@@ -76,7 +76,7 @@
             android:layout_margin="10dp"
             android:layout_toStartOf="@+id/button_gchat_send"
             android:background="@android:color/transparent"
-            android:hint="Enter Message"
+            android:hint="@string/hint_enter_message"
             android:inputType="text"
             android:maxLines="6"
             tools:ignore="Autofill" />

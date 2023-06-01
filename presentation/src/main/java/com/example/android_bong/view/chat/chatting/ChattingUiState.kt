@@ -4,5 +4,6 @@ data class ChattingUiState(
     val userMessage: String? = null,
     val postId: Int? = null,
     val roomId: Int? = null,
-    val roomTitle: String? = null
+    val roomTitle: String? = null,
+    val myChatMessage: String? = null
 )
