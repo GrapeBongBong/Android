@@ -28,4 +28,6 @@ interface CommunityRepository {
         postId: Int
     ): Result<String>
 
+    suspend fun getPopularCommunityPost(): Result<List<CommunityPost>>
+
 }

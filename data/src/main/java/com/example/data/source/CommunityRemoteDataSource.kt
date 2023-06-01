@@ -27,4 +27,6 @@ interface CommunityRemoteDataSource {
 
     suspend fun clickUnLikeCommunity(postId: Int): Response<ResponseBody>
 
+    suspend fun getPopularCommunityPost(): Response<List<CommunityDto>>
+
 }

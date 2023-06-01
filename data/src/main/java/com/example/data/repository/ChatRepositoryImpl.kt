@@ -76,5 +76,19 @@ class ChatRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun successMatching(postId: Int): Result<String> {
+        return try {
+            val response = chatRemoteDataSource.successMatching(postId = postId)
+            val responseBody = response.body()
+            if (responseBody != null && response.code() == 200) {
+                Result.success(responseBody.message)
+            } else {
+                throw Exception(responseBody!!.message)
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
 
 }

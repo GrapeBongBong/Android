@@ -43,4 +43,7 @@ interface CommunityApi {
         @Path("postId") postId: Int
     ): Response<ResponseBody>
 
+    @GET("/anonymous/popular")
+    suspend fun getPopularCommunityPost(): Response<List<CommunityDto>>
+
 }

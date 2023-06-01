@@ -1,4 +1,4 @@
-package com.example.android_bong.view.main.check.exchange
+package com.example.android_bong.view.main.check.completedmatches
 
 import android.content.Context
 import android.content.Intent
@@ -16,10 +16,12 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android_bong.R
 import com.example.android_bong.common.ViewBindingActivity
-import com.example.android_bong.databinding.ActivityCheckExchangePostBinding
+import com.example.android_bong.databinding.ActivityCompletedMatchesBinding
 import com.example.android_bong.extension.RefreshStateContract
 import com.example.android_bong.extension.addDividerDecoration
 import com.example.android_bong.extension.setResultRefresh
+import com.example.android_bong.view.main.check.exchange.CheckExchangePostUiState
+import com.example.android_bong.view.main.check.exchange.CheckExchangePostViewModel
 import com.example.android_bong.view.main.talentexchange.TalentExchangeAdapter
 import com.example.android_bong.view.main.talentexchange.TalentExchangeItemUiState
 import com.example.android_bong.view.main.talentexchange.detail.TalentExchangeDetailActivity
@@ -28,14 +30,14 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class CheckExchangePostActivity : ViewBindingActivity<ActivityCheckExchangePostBinding>() {
+class CompletedMatchesActivity : ViewBindingActivity<ActivityCompletedMatchesBinding>() {
 
-    override val bindingInflater: (LayoutInflater) -> ActivityCheckExchangePostBinding
-        get() = ActivityCheckExchangePostBinding::inflate
+    override val bindingInflater: (LayoutInflater) -> ActivityCompletedMatchesBinding
+        get() = ActivityCompletedMatchesBinding::inflate
 
     companion object {
         fun getIntent(context: Context): Intent {
-            return Intent(context, CheckExchangePostActivity::class.java)
+            return Intent(context, CompletedMatchesActivity::class.java)
         }
     }
 
@@ -45,11 +47,12 @@ class CheckExchangePostActivity : ViewBindingActivity<ActivityCheckExchangePostB
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.fetchMyExchangePosts()
-        binding.toolbar.setTitle(R.string.checkExchangePost)
+        viewModel.fetchMyCompletedPosts()
+        binding.toolbar.setTitle(R.string.completed_exchange_post)
         setSupportActionBar(binding.toolbar)
         val ab = supportActionBar!!
         ab.setDisplayHomeAsUpEnabled(true)
+
 
         val adapter = TalentExchangeAdapter(::onClickPost)
         initEventListeners()
@@ -90,7 +93,7 @@ class CheckExchangePostActivity : ViewBindingActivity<ActivityCheckExchangePostB
 
     private fun initRecyclerView(adapter: TalentExchangeAdapter) = with(binding) {
         recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this@CheckExchangePostActivity)
+        recyclerView.layoutManager = LinearLayoutManager(this@CompletedMatchesActivity)
         recyclerView.addDividerDecoration()
 
     }
@@ -101,7 +104,7 @@ class CheckExchangePostActivity : ViewBindingActivity<ActivityCheckExchangePostB
                 uiState.posts.isEmpty()
 
             loadState.retryButton.isVisible = !uiState.isLoadingSuccess
-            loadState.errorMsg.isVisible = !uiState.isLoadingSuccess
+            loadState.errorMsg.isVisible = false
 
             loadState.progressBar.isVisible = uiState.isLoading
             recyclerView.isVisible = !uiState.isLoading
@@ -118,7 +121,7 @@ class CheckExchangePostActivity : ViewBindingActivity<ActivityCheckExchangePostB
 
     private fun initEventListeners() {
         binding.loadState.retryButton.setOnClickListener {
-            viewModel.fetchMyExchangePosts()
+            viewModel.fetchMyCompletedPosts()
         }
     }
 
@@ -131,5 +134,4 @@ class CheckExchangePostActivity : ViewBindingActivity<ActivityCheckExchangePostB
             TalentExchangeDetailActivity.getIntent(this, talentExchangeItemUiState.pid)
         launcher?.launch(intent)
     }
-
 }

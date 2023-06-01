@@ -46,5 +46,7 @@ interface ExchangePostRepository {
         postId: Int
     ): Result<String>
 
+    suspend fun getPopularExchangePost(): Result<List<ExchangePost>>
+
 
 }

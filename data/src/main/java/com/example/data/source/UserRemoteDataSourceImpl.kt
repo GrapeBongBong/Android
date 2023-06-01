@@ -50,5 +50,6 @@ class UserRemoteDataSourceImpl @Inject constructor(
 
     override suspend fun myExchangePost(): Response<List<ExchangePostDto>> = api.myExchangePost()
 
-    override suspend fun myChatRoom(): Response<List<ChatRoomDto>> = api.myChatRoom()
+    override suspend fun myCompletedMatches(): Response<List<ExchangePostDto>> =
+        api.myCompletedMatches()
 }

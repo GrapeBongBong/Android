@@ -27,11 +27,11 @@ class TalentExchangeViewModel @Inject constructor(
     private var fetchJob: Job? = null
 
 
-    fun updateGiveCate(giveCate: String) {
+    fun updateGiveCate(giveCate: String?) {
         _uiState.update { it.copy(giveCate = giveCate) }
     }
 
-    fun updateTakeCate(takeCate: String) {
+    fun updateTakeCate(takeCate: String?) {
         _uiState.update { it.copy(takeCate = takeCate) }
     }
 
@@ -59,14 +59,18 @@ class TalentExchangeViewModel @Inject constructor(
                         data.copy(
                             posts = sortedList,
                             isLoadingSuccess = true,
-                            isLoading = false
+                            isLoading = false,
+                            giveCate = null,
+                            takeCate = null
                         )
                     }
                 } else {
                     _uiState.update {
                         it.copy(
                             userMessage = result.exceptionOrNull()!!.localizedMessage,
-                            isLoading = false
+                            isLoading = false,
+                            giveCate = null,
+                            takeCate = null
                         )
                     }
                 }

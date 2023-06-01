@@ -137,6 +137,10 @@ class ChattingRoomActivity : ViewBindingActivity<ActivityChattingRoomBinding>() 
             postId = postChatRoomItemUiState.pid,
             roomTitle = postChatRoomItemUiState.roomName
         )
+        Log.d("roomId", postChatRoomItemUiState.roomId.toString())
+        Log.d("postId", postChatRoomItemUiState.pid.toString())
+        Log.d("roomTitle", postChatRoomItemUiState.roomName)
+
         launcher?.launch(intent)
     }
 

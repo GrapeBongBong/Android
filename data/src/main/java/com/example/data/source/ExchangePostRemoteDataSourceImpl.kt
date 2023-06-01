@@ -115,5 +115,12 @@ class ExchangePostRemoteDataSourceImpl @Inject constructor(
     override suspend fun clickUnLikeExchange(postId: Int): Response<ResponseBody> =
         api.clickUnLikeExchange(postId = postId)
 
+    override suspend fun applyScore(postId: Int, score: Int): Response<ResponseBody> =
+        api.applyScore(
+            postId = postId, score = score
+        )
+
+    override suspend fun getPopularExchangePost(): Response<List<ExchangePostDto>> =
+        api.getPopularExchangePost()
 
 }

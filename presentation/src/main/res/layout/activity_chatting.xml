@@ -22,12 +22,13 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
             <TextView
+                android:id="@+id/successButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:background="?android:attr/windowBackground"
                 android:padding="16dp"
-                android:text="거래완료"
+                android:text="거래완료하기"
                 android:textColor="@color/seed"
                 android:textStyle="bold" />
 

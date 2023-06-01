@@ -1,7 +1,6 @@
 package com.example.data.source
 
 import com.example.data.model.ResponseBody
-import com.example.data.model.chat.ChatRoomDto
 import com.example.data.model.community.CommunityDto
 import com.example.data.model.exchangePost.ExchangePostDto
 import com.example.data.model.profile.ProfileUpdateRequestBody
@@ -22,5 +21,5 @@ interface UserRemoteDataSource {
 
     suspend fun myExchangePost(): Response<List<ExchangePostDto>>
 
-    suspend fun myChatRoom(): Response<List<ChatRoomDto>>
+    suspend fun myCompletedMatches(): Response<List<ExchangePostDto>>
 }

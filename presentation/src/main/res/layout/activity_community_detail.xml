@@ -145,8 +145,8 @@
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/likeImage"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:src="@drawable/leaf_border" />
 
                 <TextView
@@ -154,7 +154,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:textSize="24sp"
+                    android:textSize="20sp"
                     tools:text="2" />
 
             </LinearLayout>

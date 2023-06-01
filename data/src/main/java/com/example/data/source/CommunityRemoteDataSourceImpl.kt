@@ -76,4 +76,7 @@ class CommunityRemoteDataSourceImpl @Inject constructor(
     override suspend fun clickUnLikeCommunity(postId: Int): Response<ResponseBody> =
         api.clickUnLikeCommunity(postId = postId)
 
+    override suspend fun getPopularCommunityPost(): Response<List<CommunityDto>> =
+        api.getPopularCommunityPost()
+
 }

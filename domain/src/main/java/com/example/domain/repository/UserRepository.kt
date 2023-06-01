@@ -23,4 +23,6 @@ interface UserRepository {
 
     suspend fun myExchangePost(): Result<List<ExchangePost>>
 
+    suspend fun myCompletedMatches(): Result<List<ExchangePost>>
+
 }

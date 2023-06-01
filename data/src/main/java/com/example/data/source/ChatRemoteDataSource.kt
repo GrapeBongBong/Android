@@ -1,5 +1,6 @@
 package com.example.data.source
 
+import com.example.data.model.ResponseBody
 import com.example.data.model.chat.ChatRoomDto
 import com.example.data.model.chat.CreateChatRoomResponseBody
 import com.example.data.model.chat.PostChatRoomDto
@@ -15,5 +16,7 @@ interface ChatRemoteDataSource {
     suspend fun getAllMyChatRoom(): Response<List<ChatRoomDto>>
 
     suspend fun getAllThisPostChatRoom(postId: Int): Response<List<PostChatRoomDto>>
+
+    suspend fun successMatching(postId: Int): Response<ResponseBody>
 
 }

@@ -35,6 +35,7 @@
     <string name="possibleTimeZone">가능한 시간대 : %s</string>
     <string name="possibleDays">가능한 날짜 : %s</string>
     <string name="trading_completed">교환 완료!</string>
+    <string name="completed_exchange_post">거래 완료된 게시물</string>
     <string name="checkExchangePost">내가 쓴 재능교환</string>
     <string name="checkCommunityPost">내가 쓴 게시글</string>
     <string name="thursday">목</string>
@@ -55,7 +56,7 @@
     <string name="or">Or</string>
     <string name="update">수정</string>정
     <string name="doing_update">수정하기</string>
-    <string name="are_you_sure_you_want_to_update">정말로 수정할까요? \n (이미지는 수정할 수 없어요.)</string>
+    <string name="are_you_sure_you_want_to_update">정말로 수정할까요?\n(이미지는 수정할 수 없어요.)</string>
     <string name="update_profile">프로필 수정</string>
     <string name="exchange_talent">재능 교환</string>
     <string name="exchange_talent_posting">재능 교환 게시물 등록</string>
@@ -110,6 +111,8 @@
     <string name="application_button_text">신청하기</string>
     <string name="check_chattingRoom_text">채팅방 목록 조회하기</string>
     <string name="user_info">사용자 정보</string>
+    <string name="popular_exchange_post">이주의 인기 재능교환 게시물</string>
+    <string name="popular_community_post">이주의 인기 익명게시판 게시물</string>
 
     <string-array name="image_options">
         <item>갤러리에서 선택</item>

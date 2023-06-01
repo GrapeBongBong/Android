@@ -19,6 +19,7 @@ import com.example.android_bong.extension.RefreshStateContract
 import com.example.android_bong.view.main.MainViewModel
 import com.example.android_bong.view.main.check.chatroom.CheckChatRoomActivity
 import com.example.android_bong.view.main.check.community.CheckCommunityPostActivity
+import com.example.android_bong.view.main.check.completedmatches.CompletedMatchesActivity
 import com.example.android_bong.view.main.check.exchange.CheckExchangePostActivity
 import com.example.android_bong.view.main.profile.profileUpdate.ProfileUpdateActivity
 import com.google.android.material.snackbar.Snackbar
@@ -90,6 +91,10 @@ class ProfileFragment : ViewBindingFragment<FragmentProfileBinding>() {
         checkChatRoomButton.setOnClickListener {
             navigateToCheckChatRoomActivity()
         }
+
+        checkCompletedMatchButton.setOnClickListener {
+            navigateToCompletedMatchesActivity()
+        }
     }
 
     private fun navigateToProfileUpdateActivity() {
@@ -113,6 +118,11 @@ class ProfileFragment : ViewBindingFragment<FragmentProfileBinding>() {
 
     private fun navigateToCheckChatRoomActivity() {
         val intent = CheckChatRoomActivity.getIntent(requireContext())
+        launcher?.launch(intent)
+    }
+
+    private fun navigateToCompletedMatchesActivity() {
+        val intent = CompletedMatchesActivity.getIntent(requireContext())
         launcher?.launch(intent)
     }
 }

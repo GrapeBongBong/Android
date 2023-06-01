@@ -107,7 +107,7 @@ class TalentExchangeCreateViewModel @Inject constructor(
                 days = days,
                 timeZone = timeZone,
                 images = images.map {
-                    val randomNumber = Random.nextInt(1, 11) // 5부터 9까지의 난수
+                    val randomNumber = Random.nextInt(1, 1000)
                     it?.let {
                         convertBitmapToFileUseCase(it, "ExchangePostImage+${randomNumber}.jpg")
                     }

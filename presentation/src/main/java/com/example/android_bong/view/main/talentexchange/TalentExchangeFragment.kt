@@ -22,7 +22,6 @@ import com.example.android_bong.extension.RefreshStateContract
 import com.example.android_bong.extension.addDividerDecoration
 import com.example.android_bong.view.main.talentexchange.create.TalentExchangeCreateActivity
 import com.example.android_bong.view.main.talentexchange.detail.TalentExchangeDetailActivity
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 
 class TalentExchangeFragment : ViewBindingFragment<FragmentTalentExchangeBinding>() {
@@ -53,7 +52,6 @@ class TalentExchangeFragment : ViewBindingFragment<FragmentTalentExchangeBinding
             if (it != null) {
                 viewModel.fetchPosts()
                 adapter.submitList(viewModel.uiState.value.posts)
-                it.message?.let { message -> showSnackBar(message) }
             }
         }
     }
@@ -81,7 +79,6 @@ class TalentExchangeFragment : ViewBindingFragment<FragmentTalentExchangeBinding
             adapter.submitList(uiState.posts)
 
             if (uiState.userMessage != null) {
-                showSnackBar(uiState.userMessage)
                 Log.d("error", uiState.userMessage)
                 viewModel.userMessageShown()
             }
@@ -144,10 +141,6 @@ class TalentExchangeFragment : ViewBindingFragment<FragmentTalentExchangeBinding
 
                 }
             }
-    }
-
-    private fun showSnackBar(message: String) {
-        Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
     }
 
 

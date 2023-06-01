@@ -21,8 +21,6 @@ class AuthRepositoryImpl @Inject constructor(
 
     private val currentUserState: MutableStateFlow<User?> = MutableStateFlow(null)
 
-    private val isReady = MutableStateFlow(false)
-
     override fun getUserDetail(): StateFlow<User?> {
         return currentUserState
     }

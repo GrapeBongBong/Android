@@ -13,4 +13,6 @@ interface ChatRepository {
     suspend fun getAllMyChatRoom(): Result<List<ChatRoom>>
 
     suspend fun getAllThisPostChatRoom(postId: Int): Result<List<PostChatRoom>>
+
+    suspend fun successMatching(postId: Int): Result<String>
 }

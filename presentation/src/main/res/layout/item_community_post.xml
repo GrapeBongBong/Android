@@ -81,6 +81,7 @@
         android:id="@+id/likedCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/likeImage"
         tools:text="2" />

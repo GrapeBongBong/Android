@@ -1,5 +1,6 @@
 package com.example.data.api
 
+import com.example.data.model.ResponseBody
 import com.example.data.model.chat.ChatRoomDto
 import com.example.data.model.chat.CreateChatRoomRequestBody
 import com.example.data.model.chat.CreateChatRoomResponseBody
@@ -24,5 +25,10 @@ interface ChatApi {
     suspend fun getAllThisPostChatRoom(
         @Path("postId") postId: Int,
     ): Response<List<PostChatRoomDto>>
+
+    @POST("/match/{postId}")
+    suspend fun successMatching(
+        @Path("postId") postId: Int,
+    ): Response<ResponseBody>
 
 }
