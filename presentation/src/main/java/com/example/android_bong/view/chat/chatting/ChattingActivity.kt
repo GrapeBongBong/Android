@@ -9,7 +9,10 @@ import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.MenuItem
+import android.view.View
+import android.widget.RatingBar
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -95,7 +98,7 @@ class ChattingActivity : ViewBindingActivity<ActivityChattingBinding>() {
     private fun initEvent() {
 
         binding.successButton.setOnClickListener {
-            onClickCommentMenu()
+            onClickSuccessMenu()
         }
 
         binding.editChatMessage.addTextChangedListener(object : TextWatcher {
@@ -125,21 +128,46 @@ class ChattingActivity : ViewBindingActivity<ActivityChattingBinding>() {
         }
     }
 
-    private fun onClickCommentMenu() {
+    private fun onClickSuccessMenu() {
         MaterialAlertDialogBuilder(this).apply {
             setTitle(getString(R.string.matching_success))
             setMessage(R.string.are_you_sure_you_want_to_success)
             setNegativeButton(R.string.cancel) { _, _ -> }
             setPositiveButton(R.string.match_successed) { _, _ ->
                 viewModel.clickSuccess()
-                setResultRefresh()
-                finish()
+                onClickScoreMenu()
             }
         }.show()
     }
 
+    private fun onClickScoreMenu() {
+        showRatingDialog(this@ChattingActivity)
+
+    }
+
     private fun showSnackBar(message: String) {
         Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
+    }
+
+    private fun showRatingDialog(context: Context) {
+        val dialogView: View =
+            LayoutInflater.from(context).inflate(R.layout.rating_dialog_layout, null)
+        val ratingBar: RatingBar = dialogView.findViewById(R.id.rating_bar)
+
+        val alertDialogBuilder = AlertDialog.Builder(context)
+            .setView(dialogView)
+            .setTitle("Rate Item")
+            .setPositiveButton(R.string.Submit) { _, _ ->
+                val rating = ratingBar.rating.toInt()
+                viewModel.updateScore(rating)
+                viewModel.applyScore()
+            }
+            .setNegativeButton(R.string.cancel) { dialog, _ ->
+                dialog.dismiss()
+            }
+
+        val alertDialog = alertDialogBuilder.create()
+        alertDialog.show()
     }
 
 }

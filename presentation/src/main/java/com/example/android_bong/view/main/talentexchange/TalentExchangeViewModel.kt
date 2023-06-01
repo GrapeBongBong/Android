@@ -29,10 +29,12 @@ class TalentExchangeViewModel @Inject constructor(
 
     fun updateGiveCate(giveCate: String?) {
         _uiState.update { it.copy(giveCate = giveCate) }
+        fetchPosts()
     }
 
     fun updateTakeCate(takeCate: String?) {
         _uiState.update { it.copy(takeCate = takeCate) }
+        fetchPosts()
     }
 
 

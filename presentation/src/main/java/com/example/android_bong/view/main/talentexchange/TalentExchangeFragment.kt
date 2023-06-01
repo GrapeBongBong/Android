@@ -115,7 +115,6 @@ class TalentExchangeFragment : ViewBindingFragment<FragmentTalentExchangeBinding
                     viewModel.updateGiveCate(
                         binding.giveCateSpinner.getItemAtPosition(position).toString()
                     )
-                    viewModel.fetchPosts()
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -134,9 +133,7 @@ class TalentExchangeFragment : ViewBindingFragment<FragmentTalentExchangeBinding
                     viewModel.updateTakeCate(
                         binding.takeCateSpinner.getItemAtPosition(position).toString()
                     )
-                    viewModel.fetchPosts()
                 }
-
                 override fun onNothingSelected(parent: AdapterView<*>?) {
 
                 }

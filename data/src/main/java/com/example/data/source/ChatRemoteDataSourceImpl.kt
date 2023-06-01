@@ -32,4 +32,7 @@ class ChatRemoteDataSourceImpl @Inject constructor(
     override suspend fun successMatching(postId: Int): Response<ResponseBody> =
         api.successMatching(postId = postId)
 
+    override suspend fun applyScore(postId: Int, score: Int): Response<ResponseBody> =
+        api.applyScore(postId = postId, score = score)
+
 }

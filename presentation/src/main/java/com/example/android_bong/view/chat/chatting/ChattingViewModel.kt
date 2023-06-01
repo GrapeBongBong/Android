@@ -2,6 +2,7 @@ package com.example.android_bong.view.chat.chatting
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.domain.usecase.chatting.ApplyScoreUseCase
 import com.example.domain.usecase.chatting.SuccessMatchingUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
@@ -13,7 +14,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ChattingViewModel @Inject constructor(
-    private val successMatchingUseCase: SuccessMatchingUseCase
+    private val successMatchingUseCase: SuccessMatchingUseCase,
+    private val applyScoreUseCase: ApplyScoreUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(ChattingUiState())
@@ -31,6 +33,9 @@ class ChattingViewModel @Inject constructor(
         _uiState.update { it.copy(myChatMessage = myChatMessage) }
     }
 
+    fun updateScore(score: Int) {
+        _uiState.update { it.copy(score = score) }
+    }
 
     fun clickSuccess() {
         val postId = uiState.value.postId!!
@@ -53,6 +58,26 @@ class ChattingViewModel @Inject constructor(
 
     fun userMessageShown() {
         _uiState.update { it.copy(userMessage = null) }
+    }
+
+    fun applyScore() {
+        val postId = uiState.value.postId!!
+        val score = uiState.value.score!!
+        fetchJob?.cancel()
+        fetchJob = viewModelScope.launch {
+            val result = applyScoreUseCase(postId = postId, score = score)
+            if (result.isSuccess) {
+                _uiState.update {
+                    it.copy(userMessage = result.getOrNull())
+                }
+            } else {
+                _uiState.update {
+                    it.copy(
+                        userMessage = result.exceptionOrNull()!!.localizedMessage
+                    )
+                }
+            }
+        }
     }
 
 }

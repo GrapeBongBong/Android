@@ -2,6 +2,7 @@ package com.example.data.repository
 
 import com.example.data.mapper.toEntity
 import com.example.data.source.ChatRemoteDataSource
+import com.example.domain.model.chat.ChatMessage
 import com.example.domain.model.chat.ChatRoom
 import com.example.domain.model.chat.PostChatRoom
 import com.example.domain.repository.ChatRepository
@@ -88,6 +89,32 @@ class ChatRepositoryImpl @Inject constructor(
         } catch (e: Exception) {
             Result.failure(e)
         }
+    }
+
+    override suspend fun applyScore(postId: Int, score: Int): Result<String> {
+        return try {
+            val response = chatRemoteDataSource.applyScore(postId = postId, score = score)
+            val responseBody = response.body()
+            if (responseBody != null && response.code() == 200) {
+                Result.success(responseBody.message)
+            } else {
+                throw Exception(responseBody!!.message)
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    override suspend fun joinChatRoom(roomId: String): Result<Boolean> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun sendMessage(roomId: String, message: String): Result<Boolean> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getPreviousMessages(roomId: String): Result<List<ChatMessage>> {
+        TODO("Not yet implemented")
     }
 
 

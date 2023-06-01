@@ -19,4 +19,6 @@ interface ChatRemoteDataSource {
 
     suspend fun successMatching(postId: Int): Response<ResponseBody>
 
+    suspend fun applyScore(postId: Int, score: Int): Response<ResponseBody>
+
 }

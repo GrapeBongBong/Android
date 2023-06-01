@@ -2,7 +2,6 @@ package com.example.data.di
 
 import com.example.data.BuildConfig
 import com.example.data.api.*
-import com.example.data.service.WebSocketService
 import com.example.data.source.AuthLocalDataSource
 import dagger.Module
 import dagger.Provides
@@ -124,14 +123,6 @@ class NetworkModule {
             .url(WEB_SOCKET_URL)
             .build()
         return okHttpClient.newWebSocket(request, webSocketListener)
-    }
-
-    @Provides
-    @Singleton
-    fun bindsWebSocketService(
-        webSocketService: WebSocketService
-    ): WebSocketService {
-        return webSocketService
     }
 
 }

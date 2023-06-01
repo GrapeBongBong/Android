@@ -31,4 +31,10 @@ interface ChatApi {
         @Path("postId") postId: Int,
     ): Response<ResponseBody>
 
+    @POST("/match/{postId}/rating/{score}")
+    suspend fun applyScore(
+        @Path("postId") postId: Int,
+        @Path("score") score: Int
+    ): Response<ResponseBody>
+
 }
