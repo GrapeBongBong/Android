@@ -22,15 +22,10 @@ import com.example.android_bong.R
 import com.example.android_bong.common.ViewBindingActivity
 import com.example.android_bong.databinding.ActivityChattingBinding
 import com.example.android_bong.extension.setResultRefresh
-import com.example.domain.model.chat.ChatMessage
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import okhttp3.*
-import okio.ByteString
-import org.json.JSONArray
-import org.json.JSONObject
 
 @AndroidEntryPoint
 class ChattingActivity : ViewBindingActivity<ActivityChattingBinding>() {
@@ -47,84 +42,6 @@ class ChattingActivity : ViewBindingActivity<ActivityChattingBinding>() {
             }
         }
     }
-
-    private val client = OkHttpClient()
-    private var webSocket: WebSocket? = null
-    private val listener = object : WebSocketListener() {
-        override fun onOpen(webSocket: WebSocket, response: Response) {
-            super.onOpen(webSocket, response)
-            Log.d("onOpen", response.code.toString())
-        }
-
-        override fun onMessage(webSocket: WebSocket, text: String) {
-            super.onMessage(webSocket, text)
-            // 서버에서 텍스트 메시지를 받았을 때 처리하는 로직, 예: 기본 메시지 또는 이전 채팅 메시지 받기
-            try {
-                val jsonArray = JSONArray(text)
-                val chatMessages = ArrayList<ChatMessage>()
-
-                for (i in 0 until jsonArray.length()) {
-                    val jsonObject = jsonArray.getJSONObject(i)
-                    chatMessages.add(
-                        ChatMessage(
-                            roomId = jsonObject.getInt("roomId"),
-                            senderId = jsonObject.getString("senderId"),
-                            message = jsonObject.getString("message"),
-                            messageId = i
-                        )
-                    )
-                }
-                viewModel.bindChatting(chatMessages)
-            } catch (e: Exception) {  // 일반 채팅 메시지 처리
-
-            }
-
-        }
-
-        override fun onClosed(webSocket: WebSocket, code: Int, reason: String) {
-            super.onClosed(webSocket, code, reason)
-            Log.d("onClosed", code.toString())
-        }
-
-        override fun onMessage(webSocket: WebSocket, bytes: ByteString) {
-            super.onMessage(webSocket, bytes)
-            Log.d("onMessage", bytes.toString())
-        }
-
-        override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {
-            super.onFailure(webSocket, t, response)
-            Log.d("onFailure", response.toString())
-        }
-        // 오류 발생시 처리
-    }
-
-
-    private fun connect(chatRoomId: Int) {
-        val request = Request.Builder()
-            .url("ws://3.34.75.23:8080/ws/chat/${chatRoomId}")
-            .build()
-        webSocket = client.newWebSocket(request, listener)
-    }
-
-    private fun disconnect() {
-        Log.d("disconnect", "disconnect")
-        webSocket?.close(1000, null)
-    }
-
-    private fun sendMessage(roomId: Int, senderId: String, message: String) {
-        val messageJson = JSONObject().apply {
-            put("roomId", roomId)
-            put("senderId", senderId)
-            put("message", message)
-        }
-
-        if (webSocket?.send(messageJson.toString()) == true) {
-            Log.d("message success", messageJson.toString())
-        } else {
-            Log.d("message false", messageJson.toString())
-        }
-    }
-
 
     private fun getRoomId(): Int {
         return intent.getIntExtra("roomId", 0)
@@ -150,7 +67,7 @@ class ChattingActivity : ViewBindingActivity<ActivityChattingBinding>() {
             roomId = roomId,
             roomTitle = roomTitle
         )
-        connect(roomId)
+        viewModel.connectToWebSocket(roomId)
         binding.toolbar.title = getRoomTitle()
         setSupportActionBar(binding.toolbar)
         val ab = supportActionBar!!
@@ -195,11 +112,7 @@ class ChattingActivity : ViewBindingActivity<ActivityChattingBinding>() {
             onClickSuccessMenu()
         }
         binding.buttonGchatSend.setOnClickListener {
-            sendMessage(
-                roomId = getRoomId(),
-                senderId = viewModel.uiState.value.senderId,
-                message = viewModel.uiState.value.myChatMessage
-            )
+            viewModel.sendMessage()
         }
 
         binding.editChatMessage.addTextChangedListener(object : TextWatcher {
@@ -275,6 +188,6 @@ class ChattingActivity : ViewBindingActivity<ActivityChattingBinding>() {
 
     override fun onDestroy() {
         super.onDestroy()
-        disconnect()
+        viewModel.disconnectFromWebSocket()
     }
 }

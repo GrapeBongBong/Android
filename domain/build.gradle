@@ -49,5 +49,11 @@ dependencies {
     // coroutine
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
 
+    // Retrofit2
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.2'
+    implementation 'com.google.code.gson:gson:2.9.0'
+
     testImplementation 'junit:junit:4.13.2'
 }
