@@ -119,7 +119,7 @@ class CommunityRepositoryImpl @Inject constructor(
 
     override suspend fun getPopularCommunityPost(): Result<List<CommunityPost>> {
         return try {
-            val response = communityRemoteDataSource.getAll()
+            val response = communityRemoteDataSource.getPopularCommunityPost()
             val responseBody = response.body()
             if (responseBody != null && response.code() == 200) {
                 val data = responseBody.map {

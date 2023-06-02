@@ -182,7 +182,7 @@ class ExchangePostRepositoryImpl @Inject constructor(
 
     override suspend fun getPopularExchangePost(): Result<List<ExchangePost>> {
         return try {
-            val response = exchangePostRemoteDataSource.getAll()
+            val response = exchangePostRemoteDataSource.getPopularExchangePost()
             val responseBody = response.body()
             if (responseBody != null && response.code() == 200) {
                 val data = responseBody.map {
