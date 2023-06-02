@@ -75,7 +75,6 @@ class TalentExchangeFragment : ViewBindingFragment<FragmentTalentExchangeBinding
             loadState.progressBar.isVisible = uiState.isLoading
             recyclerView.isVisible = !uiState.isLoading
 
-
             adapter.submitList(uiState.posts)
 
             if (uiState.userMessage != null) {

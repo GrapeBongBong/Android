@@ -70,7 +70,10 @@ class TalentExchangeViewHolder(
             status.setBackgroundColor(root.context.getColor(R.color.seed))
         }
 
-        userTemperature.text = uiState.temperature.toString()
+        userTemperature.text = root.context.getString(
+            R.string.userPost_temperature,
+            uiState.temperature.toString()
+        )
 
         root.setOnClickListener { onClickItem(uiState) }
 
