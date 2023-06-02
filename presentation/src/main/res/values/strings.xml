@@ -4,6 +4,7 @@
     <string name="password">비밀번호</string>
     <string name="id">아이디</string>
     <string name="name">이름</string>
+    <string name="OR">Or</string>
     <string name="phoneNumber">전화번호</string>
     <string name="nickName">닉네임</string>
     <string name="email">이메일</string>

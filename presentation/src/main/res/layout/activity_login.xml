@@ -46,12 +46,12 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/passwordInputLayout"
-            app:passwordToggleEnabled="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="10dp"
+            app:passwordToggleEnabled="true">
 
             <EditText
                 android:id="@+id/password"
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:gravity="center"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             tools:ignore="UselessParent">
 
             <TextView
@@ -80,17 +80,10 @@
                 android:layout_height="wrap_content"
                 android:text="@string/signUp" />
 
-            <View
-                android:layout_width="3dp"
-                android:layout_height="12dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:background="@color/md_theme_dark_outline" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/find_password" />
+                android:text="@string/OR" />
 
         </LinearLayout>
 
@@ -99,7 +92,6 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="15dp"
             android:layout_marginRight="20dp"
             android:text="@string/login" />
 

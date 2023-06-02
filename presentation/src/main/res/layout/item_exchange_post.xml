@@ -68,6 +68,8 @@
         android:text="@string/userPost_temperature"
         android:textColor="?attr/colorOnBackground"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/user_image" />
 
     <TextView
@@ -81,6 +83,8 @@
         android:textColor="?attr/colorOnBackground"
         android:textSize="20sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/user_temperature"
         tools:text="안녕하세요. 개발자가 되고싶은 헬창입니다." />
 
@@ -94,6 +98,8 @@
         android:ellipsize="end"
         android:maxLines="2"
         android:textColor="?attr/colorOnBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"
         tools:text="전 헬스 경력 10년차 헬창입니다. C언어를 배우고 싶습니다. 초특급 미녀에 키가 165이상이며, 컴공과 전고자 출신이셨으면 좋겠습니다. 전 헬스를 알려주면서 흐흐흐흐..." />
 
@@ -108,6 +114,8 @@
         android:textColor="?attr/colorOnBackground"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/takeTalent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/content"
         tools:text="Give : 코딩" />
 
@@ -121,6 +129,8 @@
         android:maxLines="1"
         android:textColor="?attr/colorOnBackground"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/giveTalent"
         tools:text="Take : 헬스" />
 

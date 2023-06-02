@@ -25,7 +25,6 @@ class TalentExchangeViewHolder(
                 uiState.writerId
             )
         }
-
         val glide = GlideApp.with(root)
 
         if (uiState.writerImageURL != null) {
@@ -33,9 +32,11 @@ class TalentExchangeViewHolder(
                 .circleCrop()
                 .fallback(R.drawable.ic_baseline_person_24)
                 .into(userImage)
+        } else {
+            glide.load(R.drawable.ic_baseline_person_24)
+                .circleCrop()
+                .into(userImage)
         }
-
-
 
         title.text = uiState.title
         content.text = uiState.content
