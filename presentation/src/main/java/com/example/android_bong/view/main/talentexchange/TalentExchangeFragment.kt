@@ -134,6 +134,7 @@ class TalentExchangeFragment : ViewBindingFragment<FragmentTalentExchangeBinding
                         binding.takeCateSpinner.getItemAtPosition(position).toString()
                     )
                 }
+
                 override fun onNothingSelected(parent: AdapterView<*>?) {
 
                 }
