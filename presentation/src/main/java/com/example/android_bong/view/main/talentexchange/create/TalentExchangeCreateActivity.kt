@@ -150,60 +150,18 @@ class TalentExchangeCreateActivity : ViewBindingActivity<ActivityTalentExchangeC
             }
         }
 
-        mondayButton.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                viewModel.updatePossibleDay(getString(R.string.monday))
-            } else {
-                viewModel.updateImPossibleDay(getString(R.string.monday))
-            }
-        }
-
-        tuesdayButton.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                viewModel.updatePossibleDay(getString(R.string.tuesday))
-            } else {
-                viewModel.updateImPossibleDay(getString(R.string.tuesday))
-            }
-        }
-
-        wednesdayButton.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                viewModel.updatePossibleDay(getString(R.string.wednesday))
-            } else {
-                viewModel.updateImPossibleDay(getString(R.string.wednesday))
-            }
-        }
-
-        thursdayButton.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                viewModel.updatePossibleDay(getString(R.string.thursday))
-            } else {
-                viewModel.updateImPossibleDay(getString(R.string.thursday))
-            }
-        }
-
-        fridayButton.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                viewModel.updatePossibleDay(getString(R.string.friday))
-            } else {
-                viewModel.updateImPossibleDay(getString(R.string.friday))
-            }
-
-        }
-
-        saturdayButton.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                viewModel.updatePossibleDay(getString(R.string.saturday))
-            } else {
-                viewModel.updateImPossibleDay(getString(R.string.saturday))
-            }
-        }
-
-        sundayButton.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                viewModel.updatePossibleDay(getString(R.string.sunday))
-            } else {
-                viewModel.updateImPossibleDay(getString(R.string.sunday))
+        dayGroup.setOnCheckedChangeListener { group, checkedId ->
+            when (group.id) {
+                R.id.dayGroup ->
+                    when (checkedId) {
+                        R.id.morning_button -> viewModel.updatePossibleDay(getString(R.string.monday))
+                        R.id.tuesday_button -> viewModel.updatePossibleDay(getString(R.string.tuesday))
+                        R.id.wednesday_button -> viewModel.updatePossibleDay(getString(R.string.wednesday))
+                        R.id.thursday_button -> viewModel.updatePossibleDay(getString(R.string.thursday))
+                        R.id.friday_button -> viewModel.updatePossibleDay(getString(R.string.friday))
+                        R.id.saturday_button -> viewModel.updatePossibleDay(getString(R.string.saturday))
+                        R.id.sunday_button -> viewModel.updatePossibleDay(getString(R.string.sunday))
+                    }
             }
         }
 

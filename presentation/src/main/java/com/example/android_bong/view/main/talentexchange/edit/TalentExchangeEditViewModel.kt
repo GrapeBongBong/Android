@@ -56,11 +56,11 @@ class TalentExchangeEditViewModel @Inject constructor(
     }
 
     fun updatePossibleDay(day: String) {
-        _uiState.value.possibleDays.add(day)
-    }
-
-    fun updateImPossibleDay(day: String) {
-        _uiState.value.possibleDays.remove(day)
+        _uiState.update {
+            it.copy(
+                possibleDays = mutableListOf(day)
+            )
+        }
     }
 
     fun updatePossibleTime(time: String) {

@@ -51,7 +51,7 @@
     <string name="afternoon">오후</string>
     <string name="dinner">저녁</string>
     <string name="times">시간대(중복불가)</string>
-    <string name="days">요일(중복가능)</string>
+    <string name="days">요일(중복불가)</string>
     <string name="do_signup">회원 가입하기</string>
     <string name="profile_temperature">나의 온도는 %s도에요.</string>
     <string name="userPost_temperature">작성자 온도 : %s</string>
