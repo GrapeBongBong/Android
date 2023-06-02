@@ -48,7 +48,7 @@
     <string name="dawn">새벽</string>
     <string name="morning">아침</string>
     <string name="launch">점심</string>
-    <string name="afternoon">오후</string>
+    <string name="afternoon">저녁</string>
     <string name="dinner">밤</string>
     <string name="times">시간대(중복불가)</string>
     <string name="days">요일(중복불가)</string>
