@@ -17,8 +17,8 @@
             android:id="@+id/giveTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="30dp"
-            android:text="Give"
+            android:layout_marginEnd="80dp"
+            android:text="@string/Give"
             app:layout_constraintBottom_toTopOf="@+id/giveCateSpinner"
             app:layout_constraintEnd_toStartOf="@+id/textView2"
             app:layout_constraintTop_toTopOf="parent" />
@@ -50,8 +50,8 @@
             android:id="@+id/takeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:text="Take"
+            android:layout_marginStart="24dp"
+            android:text="@string/Take"
             app:layout_constraintBottom_toTopOf="@+id/takeCateSpinner"
             app:layout_constraintStart_toEndOf="@+id/textView2"
             app:layout_constraintTop_toTopOf="parent" />
