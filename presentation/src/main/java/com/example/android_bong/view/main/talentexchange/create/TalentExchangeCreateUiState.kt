@@ -11,7 +11,7 @@ data class TalentExchangeCreateUiState(
     val takeCate: String = "",
     val giveTalent: String = "",
     val takeTalent: String = "",
-    val possibleDays: MutableList<String> = mutableListOf(),
+    val possibleDays: List<String> = emptyList(),
     val possibleTimeZone: String = "",
     val image1: Bitmap? = null,
     val image2: Bitmap? = null,

@@ -23,7 +23,7 @@ data class ExchangePostDto(
 )
 
 data class AvailableTimeDto(
-    val days: List<String>? = emptyList(),
+    val days: List<String> = emptyList(),
     val timezone: String? = null
 )
 

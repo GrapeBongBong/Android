@@ -30,7 +30,7 @@ fun ExchangePostDto.toEntity() = ExchangePost(
 )
 
 fun AvailableTimeDto.toEntity() = AvailableTime(
-    days = days as MutableList<String>,
+    days = days,
     timezone = timezone
 )
 

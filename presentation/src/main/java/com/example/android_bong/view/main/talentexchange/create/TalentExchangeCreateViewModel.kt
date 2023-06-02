@@ -52,7 +52,7 @@ class TalentExchangeCreateViewModel @Inject constructor(
     fun updatePossibleDay(day: String) {
         _uiState.update {
             it.copy(
-                possibleDays = mutableListOf(day)
+                possibleDays = listOf(day)
             )
         }
     }

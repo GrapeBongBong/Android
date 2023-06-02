@@ -21,7 +21,7 @@ interface ExchangePostRepository {
         takeCate: String,
         giveTalent: String,
         takeTalent: String,
-        days: MutableList<String>,
+        days: List<String>,
         timeZone: String,
         images: List<File?>
     ): Result<String>
