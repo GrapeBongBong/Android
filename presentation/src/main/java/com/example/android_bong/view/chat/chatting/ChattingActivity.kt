@@ -75,6 +75,7 @@ class ChattingActivity : ViewBindingActivity<ActivityChattingBinding>() {
         val adapter = ChattingAdapter(viewModel.uiState.value.senderId)
         initEvent()
         initRecyclerView(adapter)
+
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect {
@@ -113,6 +114,7 @@ class ChattingActivity : ViewBindingActivity<ActivityChattingBinding>() {
         }
         binding.buttonGchatSend.setOnClickListener {
             viewModel.sendMessage()
+            editChatMessage.setText("")
         }
 
         binding.editChatMessage.addTextChangedListener(object : TextWatcher {
@@ -136,9 +138,9 @@ class ChattingActivity : ViewBindingActivity<ActivityChattingBinding>() {
         if (getPostId() == 0) {
             successButton.isVisible = false
         }
-
+        progressBar.isVisible = uiState.isLoading
         adapter.submitList(uiState.chatting)
-
+        recyclerView.scrollToPosition(adapter.itemCount - 1)
         if (uiState.userMessage != null) {
             showSnackBar(uiState.userMessage)
             Log.d("error", uiState.userMessage)

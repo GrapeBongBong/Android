@@ -7,9 +7,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android_bong.databinding.ItemMyChatMessageBinding
 import com.example.android_bong.databinding.ItemOtherChatMessageBinding
+import com.example.domain.model.chat.ChatMessage
 
 class ChattingAdapter(private val myUsrId: String) :
-    ListAdapter<ChattingItemUiState, RecyclerView.ViewHolder>(diffCallback) {
+    ListAdapter<ChatMessage, RecyclerView.ViewHolder>(diffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -35,22 +36,22 @@ class ChattingAdapter(private val myUsrId: String) :
         else OTHER_CHAT
     }
 
-    override fun submitList(list: List<ChattingItemUiState>?) {
+    override fun submitList(list: MutableList<ChatMessage>?) {
         super.submitList(list)
     }
 
     companion object {
-        private val diffCallback = object : DiffUtil.ItemCallback<ChattingItemUiState>() {
+        private val diffCallback = object : DiffUtil.ItemCallback<ChatMessage>() {
             override fun areItemsTheSame(
-                oldItem: ChattingItemUiState,
-                newItem: ChattingItemUiState
+                oldItem: ChatMessage,
+                newItem: ChatMessage
             ): Boolean {
-                return oldItem.messageId == newItem.messageId
+                return oldItem == newItem
             }
 
             override fun areContentsTheSame(
-                oldItem: ChattingItemUiState,
-                newItem: ChattingItemUiState
+                oldItem: ChatMessage,
+                newItem: ChatMessage
             ): Boolean {
                 return oldItem == newItem
             }
@@ -61,14 +62,14 @@ class ChattingAdapter(private val myUsrId: String) :
 
     inner class MyChatItemViewHolder(private val binding: ItemMyChatMessageBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(uiState: ChattingItemUiState) = with(binding) {
+        fun bind(uiState: ChatMessage) = with(binding) {
             textChatMessageMe.text = uiState.message
         }
     }
 
     inner class OtherChatItemViewHolder(private val binding: ItemOtherChatMessageBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(uiState: ChattingItemUiState) = with(binding) {
+        fun bind(uiState: ChatMessage) = with(binding) {
             textChatUserOther.text = uiState.senderId
             textChatMessageOther.text = uiState.message
         }

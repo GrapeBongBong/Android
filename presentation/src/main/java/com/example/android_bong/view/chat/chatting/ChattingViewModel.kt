@@ -3,7 +3,6 @@ package com.example.android_bong.view.chat.chatting
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.android_bong.mapper.toUiState
 import com.example.domain.model.chat.ChatMessage
 import com.example.domain.repository.ChattingRepository
 import com.example.domain.usecase.chatting.ApplyScoreUseCase
@@ -20,6 +19,7 @@ import okhttp3.WebSocket
 import okhttp3.WebSocketListener
 import okio.ByteString
 import org.json.JSONArray
+import org.json.JSONObject
 import javax.inject.Inject
 
 @HiltViewModel
@@ -47,12 +47,10 @@ class ChattingViewModel @Inject constructor(
         }
     }
 
-    fun bindChatting(chatting: List<ChatMessage>) {
+    fun bindChatting(chatting: MutableList<ChatMessage>) {
         _uiState.update {
             it.copy(
-                chatting = chatting.map {
-                    it.toUiState(getUserUseCase()!!.id)
-                }
+                chatting = chatting
             )
         }
     }
@@ -68,6 +66,11 @@ class ChattingViewModel @Inject constructor(
                 super.onMessage(webSocket, text)
                 // 서버에서 텍스트 메시지를 받았을 때 처리하는 로직, 예: 기본 메시지 또는 이전 채팅 메시지 받기
                 try {
+                    _uiState.update {
+                        it.copy(
+                            isLoading = true
+                        )
+                    }
                     val jsonArray = JSONArray(text)
                     val chatMessages = ArrayList<ChatMessage>()
 
@@ -78,13 +81,38 @@ class ChattingViewModel @Inject constructor(
                                 roomId = jsonObject.getInt("roomId"),
                                 senderId = jsonObject.getString("senderId"),
                                 message = jsonObject.getString("message"),
-                                messageId = i
                             )
                         )
                     }
                     bindChatting(chatMessages)
-                } catch (e: Exception) {  // 일반 채팅 메시지 처리
-
+                    _uiState.update {
+                        it.copy(
+                            isLoading = false
+                        )
+                    }
+                } catch (e: Exception) {
+                    _uiState.update {
+                        it.copy(
+                            isLoading = true
+                        )
+                    }
+                    val json = JSONObject(text)
+                    val chatMessage = ChatMessage(
+                        roomId = json.getInt("roomId"),
+                        senderId = json.getString("senderId"),
+                        message = json.getString("message")
+                    )
+                    Log.d("ChatMessage", chatMessage.toString())
+                    Log.d("uiState.value.chatting", uiState.value.chatting.toString())
+                    uiState.value.chatting.add(chatMessage)
+                    Log.d("uiState.value.chatting", uiState.value.chatting.toString())
+                    val chatting = uiState.value.chatting
+                    _uiState.update {
+                        it.copy(
+                            chatting = chatting,
+                            isLoading = false
+                        )
+                    }
                 }
 
             }
@@ -116,7 +144,9 @@ class ChattingViewModel @Inject constructor(
         val senderId = uiState.value.senderId
         val roomId = uiState.value.roomId!!
         val message = uiState.value.myChatMessage
-        chattingRepository.sendMessage(roomId = roomId, senderId = senderId, message = message)
+        viewModelScope.launch {
+            chattingRepository.sendMessage(roomId = roomId, senderId = senderId, message = message)
+        }
     }
 
     fun updateMyChatMessage(myChatMessage: String) {
