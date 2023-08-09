@@ -1,6 +1,6 @@
 # Android
 
-## Screenshots
+## 앱 스크린샷
 
 ## 기술
 - Coroutine
