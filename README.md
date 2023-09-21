@@ -1,7 +1,7 @@
 # Android
 
 ## 앱 스크린샷
-![image](https://github.com/GrapeBongBong/Android/assets/58154638/05603320-75bf-4984-aca0-47e488a7a1bb)
+![image](https://github.com/GrapeBongBong/Android/assets/58154638/6ecf641c-d9d9-4aa3-8c9d-1e10c73e7291)
 
 
 ## 기술
