@@ -1,6 +1,8 @@
 # Android
 
 ## 앱 스크린샷
+![image](https://github.com/GrapeBongBong/Android/assets/58154638/05603320-75bf-4984-aca0-47e488a7a1bb)
+
 
 ## 기술
 - Coroutine
