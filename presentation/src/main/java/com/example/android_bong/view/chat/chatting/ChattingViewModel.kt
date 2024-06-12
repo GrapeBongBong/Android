@@ -109,8 +109,7 @@ class ChattingViewModel @Inject constructor(
                     val chatting = uiState.value.chatting
                     _uiState.update {
                         it.copy(
-                            chatting = chatting,
-                            isLoading = false
+                            chatting = chatting, isLoading = false
                         )
                     }
                 }
