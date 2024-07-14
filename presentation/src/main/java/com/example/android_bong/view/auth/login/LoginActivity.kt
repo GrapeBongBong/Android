@@ -35,6 +35,7 @@ class LoginActivity : ViewBindingActivity<ActivityLoginBinding>() {
     companion object {
         fun getIntent(context: Context): Intent {
             return Intent(context, LoginActivity::class.java)
+            
         }
     }
 
