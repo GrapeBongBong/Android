@@ -17,5 +17,3 @@ class ChattingRepositoryImpl @Inject constructor(
     override fun sendMessage(roomId: Int, senderId: String, message: String) =
         webSocketDataSource.sendMessage(roomId = roomId, senderId = senderId, message = message)
 }
-
-

@@ -13,10 +13,8 @@ class CommunityViewHolder(
     fun bind(uiState: CommunityItemUiState) = with(binding) {
 
         val glide = GlideApp.with(root)
-
         title.text = uiState.title
         content.text = uiState.content
-
         date.text = convertDateTimeFormat(uiState.date)
 
         if (uiState.liked) {

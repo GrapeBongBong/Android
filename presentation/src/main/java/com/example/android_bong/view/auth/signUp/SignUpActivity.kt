@@ -30,7 +30,6 @@ class SignUpActivity : ViewBindingActivity<ActivitySignUpBinding>() {
     override val bindingInflater: (LayoutInflater) -> ActivitySignUpBinding
         get() = ActivitySignUpBinding::inflate
 
-
     private var launcher: ActivityResultLauncher<Intent>? = null
 
     companion object {
@@ -183,6 +182,7 @@ class SignUpActivity : ViewBindingActivity<ActivitySignUpBinding>() {
                 context.getString(R.string.password_is_not_same)
             } else null
         }
+
         binding.signUpButton.apply {
             isEnabled = uiState.isInputValid && !uiState.isLoading
             setText(if (uiState.isLoading) R.string.loading else R.string.signUp)
